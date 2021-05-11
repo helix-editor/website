@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Helix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+    @supports (font-variation-settings: normal) {
+      html { font-family: 'Inter', sans-serif; }
+    }
+    article {
+      padding: 0 1rem;
+    }
+    img { max-width: 100%; margin: 1rem 0; }
+    body {
+      font-weight: 300;
+      font-size: 1.325rem;
+      line-height: 1.5;
+      background: #281733;
+      /*background: linear-gradient(135deg, #281733, #3b224c);*/
+      color: #ebeafa;
+      color: #a4a0e8;
+      padding-top: 3rem;
+    }
+    .overlay {
+      right: 0px;
+      pointer-events: none;
+      max-width: 100vw !important;
+      height: 200vh;
+      mix-blend-mode: color;
+      /*background: rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(79, 216, 222, 0.2) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%;*/
+      background: rgba(0, 0, 0, 0) radial-gradient(50% 50%, #3b224c 0.2, #281733 100%) repeat scroll 0% 0%;
+      background: rgba(0, 0, 0, 0) radial-gradient(50% 50%, rgba(111, 68, 240, 0.15) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 9999;
+      transform: translateY(-115vh);
+    }
+    a {
+      color: #6F44F0;
+      color: #ebeafa;
+    }
+    p { line-height: 1.6 }
+    h1, h2 {
+      font-weight: 700;
+      color: #fff;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 400;
+    }
+    h3 {
+      color: #ebeafa;
+    }
+
+    body {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    ul { margin: 0; padding: 0; list-style-position: inside; list-style-type: none }
+
+    .action { text-align: center; margin: 2.5rem auto; display: block }
+    .action a {
+      padding: .5rem 1rem;
+      border-radius: .25rem;
+      margin: 1rem auto;
+      background: #ebeafa;
+      color: #281733;
+      font-weight: 500;
+    }
+
+    hr {
+      height: .125rem;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 1.5rem 0;
+    }
+
+    .asciicast {
+      border: 3px solid;
+      border-radius: 3px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <article>
+      <h1 class="title">Helix</h1>
+      <h2 class="subtitle">A post-modern <strong>text editor</strong>.</h2>
+      <!-- <img src="./screenshot.png" /> -->
+      <script id="asciicast-ZSmRwe7o6BM9rPOlpq0BJ5Ezn" src="https://asciinema.org/a/ZSmRwe7o6BM9rPOlpq0BJ5Ezn.js" async></script>
+      <div class="action">
+        <a href="">Install now.</a>
+      </div>
+      <hr/>
+      <section class="content">
+        <h2><strong>Multiple selections</strong> by default, based on <a href="http://kakoune.org/">Kakoune</a>.</h2>
+          <p>The whole design is based around multiple selections as an editing
+          primitive, with a single cursor just being a subset of that. Commands
+          manipulate selections which then allow you to concurrently edit code.</p>
+          <p>Editing is focused on being easy to reason with, even if it takes
+          a keystroke or two more than Vim or Kakoune.</p>
+          <h2><strong>Syntax highlighting</strong> and <strong>code editing</strong> using <a href="https://tree-sitter.github.io/tree-sitter/">Tree-sitter</a>.</h2>
+          <p>No more slow regex highlighting! Tree-sitter parses code into
+          syntax trees much like a compiler, giving us a lot more information
+          about code structure. We can track local variables, calculate
+          indentation and manipulate selection to select syntax nodes.</p>
+          <p>Parsing is incremental and fast enough to run on every keystroke.</p>
+          <p>Robust enough to produce results even with syntax errors.</p>
+          <h2>Built-in <strong>language server</strong> support.</h2>
+          <ul>
+            <li>Context aware completion</li>
+            <li>Documentation</li>
+            <li>Diagnostics</li>
+            <li>Code actions</li>
+          </ul>
+          <h2>Runs in a <strong>terminal</strong>.</h2>
+          <p>The base implementation uses a terminal frontend and combines well with tmux or usage over ssh.</p>
+          <p>I'm also exploring alternate frontends (wgpu-rs, skia/skulpin based
+          rendering).</p>
+
+          <h2>Built with <strong>Rust</strong>. No Electron. No VimScript. No JavaScript.</h2>
+          <p>Your laptop battery life will thank you.</p>
+        </section>
+      <hr/>
+      <section class="content">
+        <h2><strong>FAQ</strong></h2>
+          <h3>Post-modern?!</h3>
+          <p>It's a joke. If neovim is the modern vim, then helix is post-modern.</p>
+          <h3>Is it any good?</h3>
+          <a href="http://news.ycombinator.com/item?id=3067434">Yes.</a>
+      </section>
+      <hr/>
+      <section class="content">
+        <h2><strong>Support</strong></h2>
+            <p>Contribute code on <a href="https://github.com/helix-editor/helix">Github</a>.</p>
+            <p>Discuss the project on <a href="https://matrix.to/#/#helix-editor:example.com">Matrix</a>.</p>
+            <p>Donate to fund development.</a>
+      </section>
+      <hr/>
+    </article>
+</body></html>
+
