@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Helix</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A post-modern modal text editor.">
     <style>
     @supports (font-variation-settings: normal) {
       html { font-family: 'Inter', sans-serif; }
@@ -82,11 +83,12 @@
       margin: 1.5rem 0;
     }
 
-    .asciicast {
+    .asciinema-player {
       border: 3px solid;
       border-radius: 3px;
     }
     </style>
+    <link href="/asciinema-player.css" rel="stylesheet">
   </head>
   <body>
     <div class="overlay"></div>
@@ -94,7 +96,7 @@
       <h1 class="title">Helix</h1>
       <h2 class="subtitle">A post-modern <strong>text editor</strong>.</h2>
       <!-- <img src="./screenshot.png" /> -->
-      <script id="asciicast-ZSmRwe7o6BM9rPOlpq0BJ5Ezn" src="https://asciinema.org/a/ZSmRwe7o6BM9rPOlpq0BJ5Ezn.js" async></script>
+      <asciinema-player src="/411894.cast" cols="146" rows="50"></asciinema-player>
       <div class="action">
         <a href="https://github.com/helix-editor/helix">Install now.</a>
       </div>
@@ -145,5 +147,6 @@
       </section>
       <hr/>
     </article>
+    <script src="./asciinema-player.js"></script>
 </body></html>
 
