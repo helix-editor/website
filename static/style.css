@@ -1,10 +1,13 @@
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter', sans-serif; }
 }
-nav { padding: 0 .25rem; text-align: right; font-size: 1rem; display: flex;justify-content: end; }
+nav { padding: 0 .25rem 1.5rem; text-align: right; font-size: 1rem; display: flex;justify-content: end; align-items: center; }
+nav a:first-child { margin-left: 0; text-decoration: none }
+nav h1 { margin: 0 }
 nav a { margin-left: 1.5rem; }
-article {
-  padding: 0 1rem;
+article, nav {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 img { max-width: 100%; margin: 1rem 0; }
 body {
@@ -80,4 +83,15 @@ hr {
   border: 3px solid;
   border-radius: 3px;
   z-index: 9999;
+}
+
+h1.title { margin-bottom: 0 }
+time {
+  font-size: .875rem;
+}
+
+pre {
+  padding: 0.5rem;
+  border: 3px solid #a4a0e8;
+  border-radius: 3px;
 }

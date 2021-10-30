@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+.post-header {
+  display: flex;
+}
+.post { padding: 1.5rem 0 }
+ .post-header h4 { margin-top: 0 }
+ .meta {
+   flex: 1;
+ }
+.meta time { font-size: 1rem }
+ .matter {
+   flex: 3;
+ }
+
+</style>
+<h1>
+ {{ section.title }}
+</h1>
+
+ <hr/>
+<ul class="posts flat">
+{% for post in section.pages %}
+ <li class="post">
+ <div class="post-header">
+ <div class="meta">
+ <time>{{ post.date | date(format='%d %B')}}</time>
+ </div>
+ <div class="matter">
+ <h4 class="title small">
+ <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+ </h4>
+ <span class="description">
+ {{post.description}}
+ </span>
+ </div>
+ </div>
+ </li>
+ {% endfor %}
+</ul>
+ <hr/>
+{% endblock content %}
