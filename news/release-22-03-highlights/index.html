@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Helix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A post-modern modal text editor.">
+    <style> </style>
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/"><h1>Helix</h1></a>
+        <div style="flex: 1"></div>
+        <a href="/news">News</a>
+        <a href="https://docs.helix-editor.com">Documentation</a>
+        <a href="https://github.com/helix-editor/helix">GitHub</a>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 22.03 Highlights</h1>
+ <time>28 March 2022</time>
+
+<p>Ranging from small quality-of-life improvements and fixes to large features
+and refactors, Helix 22.03 brings some exciting changes.</p>
+<p>Before we look at the highlights, there are some administrative notes.
+<code>master</code> branch changes are now published separately from the release
+<a href="https://docs.helix-editor.com/">documentation</a>. Find the new <code>master</code> docs <a href="https://docs.helix-editor.com/master/">here</a>.
+Helix is switching versioning schemes. Expect to find new releases in
+Calendar Version format: <code>YY.0M(.MICRO)</code>. We're aiming to cut regular
+releases every two months or so. Check out the <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2203-2022-03-28">changelog</a>
+for all of the new features and fixes from this release.</p>
+<p>With that out of the way, let's check out the highlights!</p>
+<h2 id="health-check">Health-check</h2>
+<p>Helix 22.03 brings another new CLI flag: <code>hx --health</code>. Use the new health-check
+flag to troubleshoot missing language servers and queries.</p>
+<p>Check the health of all languages with <code>hx --health</code> or ask for details
+about a specific language with <code>hx --health &lt;lang&gt;</code>.</p>
+<asciinema-player src="/health-check.cast" cols="92" rows="24"></asciinema-player>
+<h2 id="experimental-dap-support">Experimental DAP Support</h2>
+<p>Debug Adapter Protocol (DAP) is an abstract protocol for editors and debuggers
+to communicate. It's very similar in spirit to the Language Server Protocol
+(LSP), but built for debugging. Interact with the debug adapter with
+<code>&lt;space-d&gt;</code>.</p>
+<asciinema-player src="/dap.cast" cols="154" rows="46"></asciinema-player>
+<p>Note that the DAP adapter is experimental: it isn't yet documented, there may
+be bugs, and the UX is a bit clunky. Contributions are very welcome!</p>
+<h2 id="incremental-injection-parsing-rewrite">Incremental Injection Parsing Rewrite</h2>
+<p>One of the cooler features of syntax highlight driven by tree-sitter is the
+ability to <em>inject</em> a language into another language's document. For example,
+if you're writing Markdown, you might use a code-fence like so:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>This is some rust:
+</span><span>
+</span><span>```rust
+</span><span>println!(&quot;Hello, world!&quot;)
+</span><span>```
+</span></code></pre>
+<p>Helix highlights the Rust block by injecting tree-sitter-rust. Injections
+have been rewritten so that changes within are now parsed incrementally, which
+is a big speed boost when editing documents with large injected blocks.</p>
+<p>Along with this rewrite, Helix now supports <em>combined</em> injections. For example,
+when highlighting Interactive Elixir (IEx), we might have a block of code like
+the following:</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; send(self(), </span><span style="color:#a3be8c;">:hello</span><span>)
+</span><span>iex&gt; </span><span style="color:#b48ead;">receive </span><span style="color:#d08770;">do: </span><span>(</span><span style="color:#a3be8c;">:hello </span><span>-&gt; </span><span style="color:#a3be8c;">:ok</span><span>)
+</span></code></pre>
+<p>The IEx grammar injects tree-sitter-elixir into each line after the prompt
+token. Combined injections cover the case where separate injected documents
+must be parsed in one combined document, like so:</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; </span><span style="color:#b48ead;">if </span><span style="color:#d08770;">true </span><span style="color:#b48ead;">do
+</span><span>...&gt;   </span><span style="color:#a3be8c;">:ok
+</span><span>...&gt; </span><span style="color:#b48ead;">end
+</span></code></pre>
+<p>Helix can now parse all three lines together. In the future this can be used
+to add support for templating languages like EJS or ERB.</p>
+<h2 id="tree-sitter-grammars-refactor">Tree-Sitter Grammars Refactor</h2>
+<p>In the past, tree-sitter grammar repositories have been added to the Helix
+repository as Git submodules. Submodules can be painful to work with though,
+especially when there are more than 50 in a repository. Cloning, CI, and
+packaging times have slowed down as language support has improved.</p>
+<p>Helix 22.03 completely overhauls the system for tree-sitter grammars. The headline
+is that <strong>submodules are gone</strong>! If you're working with the source, you can
+now clone with a standard <code>git clone https://github.com/helix-editor/helix</code>.
+So where did the tree-sitter submodules go? They've been replaced with two
+new CLI flags: <code>hx --grammar fetch</code> to clone grammar repositories into the
+runtime directory and <code>hx --grammar build</code> to compile them. Use <code>-g</code> for
+short. Grammar repositories are shallow-cloned in parallel, so fetching all
+60 grammars can now take as little as 6 seconds on a good connection.</p>
+<p>If you're building from source or developing Helix, note that fetching and
+building are included in the <code>helix-term</code> build step, so you should not
+need to manually fetch or build grammars.</p>
+<p>Additionally, if you would like to customize which tree-sitter grammars
+you fetch and build, you may now add the <code>use-grammars</code> key to the <strong>top</strong> of
+your <code>languages.toml</code>:</p>
+<asciinema-player src="/use-grammars.cast" cols="92" rows="24"></asciinema-player>
+<p>If you're writing a tree-sitter grammar, you can try out integrating it
+by pointing helix to your grammar's local path in <code>languages.toml</code> without
+needing to publish changes to a Git remote:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[[language]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
+</span><span style="color:#65737e;"># ..
+</span><span>
+</span><span>[[grammar]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
+</span><span style="color:#bf616a;">source </span><span>= { </span><span style="color:#bf616a;">path </span><span>= &quot;</span><span style="color:#a3be8c;">/local/path/to/tree-sitter-mylang</span><span>&quot; }
+</span></code></pre>
+<p>Running <code>hx -g build</code> will build the grammar. Add some queries and you're
+on your way to interactive grammar development.</p>
+<h2 id="up-next">Up Next</h2>
+<p>The next release is sure to be exciting as well. Contribute and follow
+along with development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to
+join in on discussions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
+<script src="/asciinema-player.js"></script>
+
+
+
+    </article>
+</body></html>
+
