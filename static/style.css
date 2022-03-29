@@ -98,6 +98,10 @@ code {
   font-size: 1.2rem;
 }
 
+article > p > code {
+  color: #ebeafa;
+}
+
 pre > code {
   padding: unset;
   background-color: unset;
