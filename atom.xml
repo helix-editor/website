@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title></title>
+	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://helix-editor.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2022-03-28T16:25:00+00:00</updated>
+	<id>https://helix-editor.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Release 22.03 Highlights</title>
+		<published>2022-03-28T16:25:00+00:00</published>
+		<updated>2022-03-28T16:25:00+00:00</updated>
+		<link href="https://helix-editor.com/news/release-22-03-highlights/" type="text/html"/>
+		<id>https://helix-editor.com/news/release-22-03-highlights/</id>
+		<content type="html">&lt;p&gt;Ranging from small quality-of-life improvements and fixes to large features
+and refactors, Helix 22.03 brings some exciting changes.&lt;&#x2F;p&gt;
+&lt;p&gt;Before we look at the highlights, there are some administrative notes.
+&lt;code&gt;master&lt;&#x2F;code&gt; branch changes are now published separately from the release
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;&quot;&gt;documentation&lt;&#x2F;a&gt;. Find the new &lt;code&gt;master&lt;&#x2F;code&gt; docs &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.
+Helix is switching versioning schemes. Expect to find new releases in
+Calendar Version format: &lt;code&gt;YY.0M(.MICRO)&lt;&#x2F;code&gt;. We&#x27;re aiming to cut regular
+releases every two months or so. Check out the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2203-2022-03-28&quot;&gt;changelog&lt;&#x2F;a&gt;
+for all of the new features and fixes from this release.&lt;&#x2F;p&gt;
+&lt;p&gt;With that out of the way, let&#x27;s check out the highlights!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;health-check&quot;&gt;Health-check&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix 22.03 brings another new CLI flag: &lt;code&gt;hx --health&lt;&#x2F;code&gt;. Use the new health-check
+flag to troubleshoot missing language servers and queries.&lt;&#x2F;p&gt;
+&lt;p&gt;Check the health of all languages with &lt;code&gt;hx --health&lt;&#x2F;code&gt; or ask for details
+about a specific language with &lt;code&gt;hx --health &amp;lt;lang&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;health-check.cast&quot; cols=&quot;92&quot; rows=&quot;24&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;h2 id=&quot;experimental-dap-support&quot;&gt;Experimental DAP Support&lt;&#x2F;h2&gt;
+&lt;p&gt;Debug Adapter Protocol (DAP) is an abstract protocol for editors and debuggers
+to communicate. It&#x27;s very similar in spirit to the Language Server Protocol
+(LSP), but built for debugging. Interact with the debug adapter with
+&lt;code&gt;&amp;lt;space-d&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;dap.cast&quot; cols=&quot;154&quot; rows=&quot;46&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Note that the DAP adapter is experimental: it isn&#x27;t yet documented, there may
+be bugs, and the UX is a bit clunky. Contributions are very welcome!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;incremental-injection-parsing-rewrite&quot;&gt;Incremental Injection Parsing Rewrite&lt;&#x2F;h2&gt;
+&lt;p&gt;One of the cooler features of syntax highlight driven by tree-sitter is the
+ability to &lt;em&gt;inject&lt;&#x2F;em&gt; a language into another language&#x27;s document. For example,
+if you&#x27;re writing Markdown, you might use a code-fence like so:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;This is some rust:
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;```rust
+&lt;&#x2F;span&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;```
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Helix highlights the Rust block by injecting tree-sitter-rust. Injections
+have been rewritten so that changes within are now parsed incrementally, which
+is a big speed boost when editing documents with large injected blocks.&lt;&#x2F;p&gt;
+&lt;p&gt;Along with this rewrite, Helix now supports &lt;em&gt;combined&lt;&#x2F;em&gt; injections. For example,
+when highlighting Interactive Elixir (IEx), we might have a block of code like
+the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; send(self(), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;receive &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;do: &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The IEx grammar injects tree-sitter-elixir into each line after the prompt
+token. Combined injections cover the case where separate injected documents
+must be parsed in one combined document, like so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;do
+&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok
+&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Helix can now parse all three lines together. In the future this can be used
+to add support for templating languages like EJS or ERB.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tree-sitter-grammars-refactor&quot;&gt;Tree-Sitter Grammars Refactor&lt;&#x2F;h2&gt;
+&lt;p&gt;In the past, tree-sitter grammar repositories have been added to the Helix
+repository as Git submodules. Submodules can be painful to work with though,
+especially when there are more than 50 in a repository. Cloning, CI, and
+packaging times have slowed down as language support has improved.&lt;&#x2F;p&gt;
+&lt;p&gt;Helix 22.03 completely overhauls the system for tree-sitter grammars. The headline
+is that &lt;strong&gt;submodules are gone&lt;&#x2F;strong&gt;! If you&#x27;re working with the source, you can
+now clone with a standard &lt;code&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&lt;&#x2F;code&gt;.
+So where did the tree-sitter submodules go? They&#x27;ve been replaced with two
+new CLI flags: &lt;code&gt;hx --grammar fetch&lt;&#x2F;code&gt; to clone grammar repositories into the
+runtime directory and &lt;code&gt;hx --grammar build&lt;&#x2F;code&gt; to compile them. Use &lt;code&gt;-g&lt;&#x2F;code&gt; for
+short. Grammar repositories are shallow-cloned in parallel, so fetching all
+60 grammars can now take as little as 6 seconds on a good connection.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re building from source or developing Helix, note that fetching and
+building are included in the &lt;code&gt;helix-term&lt;&#x2F;code&gt; build step, so you should not
+need to manually fetch or build grammars.&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally, if you would like to customize which tree-sitter grammars
+you fetch and build, you may now add the &lt;code&gt;use-grammars&lt;&#x2F;code&gt; key to the &lt;strong&gt;top&lt;&#x2F;strong&gt; of
+your &lt;code&gt;languages.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;use-grammars.cast&quot; cols=&quot;92&quot; rows=&quot;24&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;If you&#x27;re writing a tree-sitter grammar, you can try out integrating it
+by pointing helix to your grammar&#x27;s local path in &lt;code&gt;languages.toml&lt;&#x2F;code&gt; without
+needing to publish changes to a Git remote:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[[language]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ..
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[[grammar]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;source &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;path &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;local&#x2F;path&#x2F;to&#x2F;tree-sitter-mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Running &lt;code&gt;hx -g build&lt;&#x2F;code&gt; will build the grammar. Add some queries and you&#x27;re
+on your way to interactive grammar development.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;up-next&quot;&gt;Up Next&lt;&#x2F;h2&gt;
+&lt;p&gt;The next release is sure to be exciting as well. Contribute and follow
+along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to
+join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;script src=&quot;&#x2F;asciinema-player.js&quot;&gt;&lt;&#x2F;script&gt;
+</content>
+	</entry>
+</feed>
