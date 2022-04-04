@@ -4,16 +4,18 @@
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-03-28T16:25:00+00:00</updated>
+	<updated>2022-04-04T13:25:00+00:00</updated>
 	<id>https://helix-editor.com/atom.xml</id>
 	<entry xml:lang="en">
 		<title>Release 22.03 Highlights</title>
 		<published>2022-03-28T16:25:00+00:00</published>
-		<updated>2022-03-28T16:25:00+00:00</updated>
+		<updated>2022-04-04T13:25:00+00:00</updated>
 		<link href="https://helix-editor.com/news/release-22-03-highlights/" type="text/html"/>
 		<id>https://helix-editor.com/news/release-22-03-highlights/</id>
 		<content type="html">&lt;p&gt;Ranging from small quality-of-life improvements and fixes to large features
-and refactors, Helix 22.03 brings some exciting changes.&lt;&#x2F;p&gt;
+and refactors, Helix 22.03 brings some exciting changes. Helix is a modal
+text editor with built-in support for multiple selections, Language
+Server Protocol (LSP), tree-sitter, and now Debug Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Before we look at the highlights, there are some administrative notes.
 &lt;code&gt;master&lt;&#x2F;code&gt; branch changes are now published separately from the release
 &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;&quot;&gt;documentation&lt;&#x2F;a&gt;. Find the new &lt;code&gt;master&lt;&#x2F;code&gt; docs &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.
@@ -23,7 +25,7 @@ releases every two months or so. Check out the &lt;a href=&quot;https:&#x2F;&#x2
 for all of the new features and fixes from this release.&lt;&#x2F;p&gt;
 &lt;p&gt;With that out of the way, let&#x27;s check out the highlights!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;health-check&quot;&gt;Health-check&lt;&#x2F;h2&gt;
-&lt;p&gt;Helix 22.03 brings another new CLI flag: &lt;code&gt;hx --health&lt;&#x2F;code&gt;. Use the new health-check
+&lt;p&gt;Helix 22.03 brings a new CLI flag: &lt;code&gt;hx --health&lt;&#x2F;code&gt;. Use the new health-check
 flag to troubleshoot missing language servers and queries.&lt;&#x2F;p&gt;
 &lt;p&gt;Check the health of all languages with &lt;code&gt;hx --health&lt;&#x2F;code&gt; or ask for details
 about a specific language with &lt;code&gt;hx --health &amp;lt;lang&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
