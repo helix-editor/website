@@ -118,3 +118,21 @@ pre {
 strong {
   font-weight: 600;
 }
+
+.selling-points {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.selling-point {
+  /* Max 2, min 1 selling point per row */
+  max-width: 20em;
+  font-size: 1.20rem;
+  padding: 2rem;
+  padding-top: 1rem;
+}
+
+.selling-point h2 {
+  font-weight: bold;
+}
