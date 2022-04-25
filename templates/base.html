@@ -1,31 +1,41 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Helix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="title" content="Helix">
     <meta name="description" content="A post-modern modal text editor.">
-    <style> </style>
+    <meta property="og:title" content="Nova">    
+    <meta property="og:description" content="The beautiful, fast, flexible, native Mac code editor from Panic.">
+    <meta property="twitter:title" content="Nova">
+    <meta property="twitter:description" content="The beautiful, fast, flexible, native Mac code editor from Panic.">
     <link href="/style.css" rel="stylesheet">
     <link href="/asciinema-player.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">    
     {% block rss %}
       <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
     {% endblock %}
   </head>
   <body>
-    <div class="overlay"></div>
     <nav>
-        <a href="/"><h1>Helix</h1></a>
-        <div style="flex: 1"></div>
+      <div class="logo">
+        <a href="/">
+          <h1>Helix</h1>
+        </a>
+      </div>
+      <div class="menu">
         <a href="/news">News</a>
         <a href="https://docs.helix-editor.com">Documentation</a>
         <a href="https://github.com/helix-editor/helix">GitHub</a>
         <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+        <a class="btn" href="https://github.com/helix-editor/helix">Download</a>
+      </div>
     </nav>
     <article>
         {% block content %} {% endblock %}
     </article>
-</body></html>
+  </body>
+</html>
 
