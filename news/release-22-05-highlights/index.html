@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Helix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A post-modern modal text editor.">
+    <style> </style>
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.com/atom.xml">
+    
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/"><h1>Helix</h1></a>
+        <div style="flex: 1"></div>
+        <a href="/news">News</a>
+        <a href="https://docs.helix-editor.com">Documentation</a>
+        <a href="https://github.com/helix-editor/helix">GitHub</a>
+        <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 22.05 Highlights</h1>
+ <time>28 May 2022</time>
+
+<p>Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).</p>
+<p>Today marks the 22.05 release, a featureful release with over double the number
+of contributors as last release (110!). A big thanks to all involved! 🙌</p>
+<p>Also a big shout out to <a href="https://github.com/amirrezaask"><code>@amirrezaask</code></a> for
+this great <a href="https://www.youtube.com/watch?v=__U4A2Q9fNI">Helix introduction video</a>!</p>
+<p>Let's check out the flashy features of 22.05.</p>
+<h2 id="indentation-rework">Indentation rework</h2>
+<p>The indentation system has been fully reworked. Indentation still works by
+querying the parsed tree-sitter syntax tree for a document, but now query files
+can use the full expressive power of tree-sitter queries rather than just
+simple node names. Expect more robust indentation with fewer edge cases.</p>
+<h2 id="configurable-gutters">Configurable gutters</h2>
+<p>Gutters can now be configured in your <code>config.toml</code> file. For example, you can
+remove the line-number gutter while still showing LSP diagnostics.</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[editor]
+</span><span style="color:#bf616a;">gutters </span><span>= [&quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] </span><span style="color:#65737e;"># default is [&quot;diagnostics&quot;, &quot;line-numbers&quot;]
+</span></code></pre>
+<h2 id="local-language-configuration">Local language configuration</h2>
+<p>Language configuration can now be specified local to a project. Create a
+<code>.helix</code> directory and a <code>languages.toml</code> under it to override values from the
+<a href="https://docs.helix-editor.com/guides/adding_languages.html#language-configuration">default language configuration</a>. For example, override a C project's indents
+to use tabs instead of spaces for indentation:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># my_c_project/.helix/languages.toml
+</span><span>[[language]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">c</span><span>&quot;
+</span><span style="color:#bf616a;">indent </span><span>= { </span><span style="color:#bf616a;">tab-width </span><span>= </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#bf616a;">unit </span><span>= &quot;</span><span style="color:#96b5b4;">\t</span><span>&quot; }
+</span></code></pre>
+<h2 id="rulers">Rulers</h2>
+<asciinema-player src="/rulers.cast" cols="94" rows="25"></asciinema-player>
+<p>Vertical rulers may now be configured through the <code>rulers</code> option. Use them
+as a guide when adhering to a maximum line length.</p>
+<h2 id="show-visible-whitespace">Show visible whitespace</h2>
+<asciinema-player src="/visible-whitespace.cast" cols="94" rows="25"></asciinema-player>
+<p>Whitespace characters like spaces, tabs, and newlines may now be rendered. Use
+the <code>whitespace.render</code> option either at runtime with the <code>:set</code> command or in
+your <code>config.toml</code> under the editor section. Visible whitespace indicators can
+make Helix's selection model more intuitive, especially around line endings.
+The characters used for tabs, spaces, non-breaking space, and newlines may also
+be customized as well as whether any of the characters are rendered at all. In
+fact, for the remaining asciicasts in this post, you'll be seeing my custom tab
+and newline characters!</p>
+<h2 id="use-registers-in-prompts">Use registers in prompts</h2>
+<asciinema-player src="/insert-registers-in-prompts.cast" cols="94" rows="25"></asciinema-player>
+<p>Values stored in registers may now be used in prompts like search or global
+search. In the above example, we yank a selection to the <code>&quot;</code> register with
+<code>y</code> and then open up the global search prompt with <code>Space</code> <code>/</code>. The available
+registers are shown above the prompt and we hit <code>&quot;</code> to insert the contents of
+the <code>&quot;</code> register.</p>
+<h2 id="reflow-paragraphs">Reflow paragraphs</h2>
+<asciinema-player src="/reflow.cast" cols="94" rows="25"></asciinema-player>
+<p>The new <code>:reflow</code> command hard-wraps text to a given column width. Default
+column widths may be configured on a per-language basis. Reflow recognizes
+matching prefixes between lines, so you may reflow line-comments, markdown
+quotes or lines with leading whitespace and the leading characters will be
+placed appropriately.</p>
+<h2 id="swap-windows">Swap windows</h2>
+<asciinema-player src="/window-swapping.cast" cols="94" rows="25"></asciinema-player>
+<p>Windows may now be swapped with neighbor windows and splits may be transposed.
+With the window menu open (<code>C-w</code> or <code>space w</code>), use <code>H</code>, <code>J</code>, <code>K</code>, and <code>L</code>
+to swap the current window with the left, down, up, and right neighbors,
+respectively. Use <code>t</code> or <code>C-t</code> to switch between a vertical and horizontal
+split or vice versa.</p>
+<h2 id="set-a-language-at-runtime">Set a language at runtime</h2>
+<asciinema-player src="/set-language.cast" cols="94" rows="25"></asciinema-player>
+<p>The language for a buffer may now be set at runtime. Use
+<code>:set-language language</code> (or <code>:lang language</code> for short) to set the language
+and switch language servers.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>These are just some highlights from the changes in 22.05. Check out the
+<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2205-2022-05-17">changelog</a> for the full set. Pick up the release binaries for 22.05 on the
+<a href="https://github.com/helix-editor/helix/releases/tag/22.05">release page</a>. Starting with this release, an AppImage is included in the
+release binaries for easier usage from Linux.</p>
+<p>Expect plenty more features and improvements in Helix 22.07 coming in July.
+Contribute and follow along with development in the
+<a href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to join in on discussions in the
+<a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
+<script src="/asciinema-player.js"></script>
+
+
+
+    </article>
+</body></html>
+

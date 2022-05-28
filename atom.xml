@@ -4,8 +4,95 @@
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-04-04T13:25:00+00:00</updated>
+	<updated>2022-05-28T13:00:00+00:00</updated>
 	<id>https://helix-editor.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Release 22.05 Highlights</title>
+		<published>2022-05-28T13:00:00+00:00</published>
+		<updated>2022-05-28T13:00:00+00:00</updated>
+		<link href="https://helix-editor.com/news/release-22-05-highlights/" type="text/html"/>
+		<id>https://helix-editor.com/news/release-22-05-highlights/</id>
+		<content type="html">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 22.05 release, a featureful release with over double the number
+of contributors as last release (110!). A big thanks to all involved! 🙌&lt;&#x2F;p&gt;
+&lt;p&gt;Also a big shout out to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;amirrezaask&quot;&gt;&lt;code&gt;@amirrezaask&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for
+this great &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=__U4A2Q9fNI&quot;&gt;Helix introduction video&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out the flashy features of 22.05.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;indentation-rework&quot;&gt;Indentation rework&lt;&#x2F;h2&gt;
+&lt;p&gt;The indentation system has been fully reworked. Indentation still works by
+querying the parsed tree-sitter syntax tree for a document, but now query files
+can use the full expressive power of tree-sitter queries rather than just
+simple node names. Expect more robust indentation with fewer edge cases.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configurable-gutters&quot;&gt;Configurable gutters&lt;&#x2F;h2&gt;
+&lt;p&gt;Gutters can now be configured in your &lt;code&gt;config.toml&lt;&#x2F;code&gt; file. For example, you can
+remove the line-number gutter while still showing LSP diagnostics.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[editor]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gutters &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# default is [&amp;quot;diagnostics&amp;quot;, &amp;quot;line-numbers&amp;quot;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;local-language-configuration&quot;&gt;Local language configuration&lt;&#x2F;h2&gt;
+&lt;p&gt;Language configuration can now be specified local to a project. Create a
+&lt;code&gt;.helix&lt;&#x2F;code&gt; directory and a &lt;code&gt;languages.toml&lt;&#x2F;code&gt; under it to override values from the
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;guides&#x2F;adding_languages.html#language-configuration&quot;&gt;default language configuration&lt;&#x2F;a&gt;. For example, override a C project&#x27;s indents
+to use tabs instead of spaces for indentation:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# my_c_project&#x2F;.helix&#x2F;languages.toml
+&lt;&#x2F;span&gt;&lt;span&gt;[[language]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;indent &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;tab-width &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;unit &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\t&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rulers&quot;&gt;Rulers&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;rulers.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Vertical rulers may now be configured through the &lt;code&gt;rulers&lt;&#x2F;code&gt; option. Use them
+as a guide when adhering to a maximum line length.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;show-visible-whitespace&quot;&gt;Show visible whitespace&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;visible-whitespace.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Whitespace characters like spaces, tabs, and newlines may now be rendered. Use
+the &lt;code&gt;whitespace.render&lt;&#x2F;code&gt; option either at runtime with the &lt;code&gt;:set&lt;&#x2F;code&gt; command or in
+your &lt;code&gt;config.toml&lt;&#x2F;code&gt; under the editor section. Visible whitespace indicators can
+make Helix&#x27;s selection model more intuitive, especially around line endings.
+The characters used for tabs, spaces, non-breaking space, and newlines may also
+be customized as well as whether any of the characters are rendered at all. In
+fact, for the remaining asciicasts in this post, you&#x27;ll be seeing my custom tab
+and newline characters!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;use-registers-in-prompts&quot;&gt;Use registers in prompts&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;insert-registers-in-prompts.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Values stored in registers may now be used in prompts like search or global
+search. In the above example, we yank a selection to the &lt;code&gt;&amp;quot;&lt;&#x2F;code&gt; register with
+&lt;code&gt;y&lt;&#x2F;code&gt; and then open up the global search prompt with &lt;code&gt;Space&lt;&#x2F;code&gt; &lt;code&gt;&#x2F;&lt;&#x2F;code&gt;. The available
+registers are shown above the prompt and we hit &lt;code&gt;&amp;quot;&lt;&#x2F;code&gt; to insert the contents of
+the &lt;code&gt;&amp;quot;&lt;&#x2F;code&gt; register.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;reflow-paragraphs&quot;&gt;Reflow paragraphs&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;reflow.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new &lt;code&gt;:reflow&lt;&#x2F;code&gt; command hard-wraps text to a given column width. Default
+column widths may be configured on a per-language basis. Reflow recognizes
+matching prefixes between lines, so you may reflow line-comments, markdown
+quotes or lines with leading whitespace and the leading characters will be
+placed appropriately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;swap-windows&quot;&gt;Swap windows&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;window-swapping.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Windows may now be swapped with neighbor windows and splits may be transposed.
+With the window menu open (&lt;code&gt;C-w&lt;&#x2F;code&gt; or &lt;code&gt;space w&lt;&#x2F;code&gt;), use &lt;code&gt;H&lt;&#x2F;code&gt;, &lt;code&gt;J&lt;&#x2F;code&gt;, &lt;code&gt;K&lt;&#x2F;code&gt;, and &lt;code&gt;L&lt;&#x2F;code&gt;
+to swap the current window with the left, down, up, and right neighbors,
+respectively. Use &lt;code&gt;t&lt;&#x2F;code&gt; or &lt;code&gt;C-t&lt;&#x2F;code&gt; to switch between a vertical and horizontal
+split or vice versa.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;set-a-language-at-runtime&quot;&gt;Set a language at runtime&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;set-language.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The language for a buffer may now be set at runtime. Use
+&lt;code&gt;:set-language language&lt;&#x2F;code&gt; (or &lt;code&gt;:lang language&lt;&#x2F;code&gt; for short) to set the language
+and switch language servers.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These are just some highlights from the changes in 22.05. Check out the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2205-2022-05-17&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set. Pick up the release binaries for 22.05 on the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.05&quot;&gt;release page&lt;&#x2F;a&gt;. Starting with this release, an AppImage is included in the
+release binaries for easier usage from Linux.&lt;&#x2F;p&gt;
+&lt;p&gt;Expect plenty more features and improvements in Helix 22.07 coming in July.
+Contribute and follow along with development in the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the
+&lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;script src=&quot;&#x2F;asciinema-player.js&quot;&gt;&lt;&#x2F;script&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Release 22.03 Highlights</title>
 		<published>2022-03-28T16:25:00+00:00</published>
