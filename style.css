@@ -1,7 +1,15 @@
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter', sans-serif; }
 }
-nav { padding: 0 .25rem 1.5rem; text-align: right; font-size: 1rem; display: flex;justify-content: end; align-items: center; }
+nav {
+  padding: 0 .25rem 1.5rem;
+  text-align: right;
+  font-size: 1rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+}
 nav a:first-child { margin-left: 0; text-decoration: none }
 nav h1 { margin: 0 }
 nav a { margin-left: 1.5rem; }
@@ -113,6 +121,7 @@ pre {
   padding: 0.5rem;
   border: 3px solid #a4a0e8;
   border-radius: 3px;
+  overflow-x: auto;
 }
 
 strong {
