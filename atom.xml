@@ -4,8 +4,103 @@
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-05-28T13:00:00+00:00</updated>
+	<updated>2022-08-30T13:00:00+00:00</updated>
 	<id>https://helix-editor.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Release 22.08 Highlights</title>
+		<published>2022-08-30T13:00:00+00:00</published>
+		<updated>2022-08-30T13:00:00+00:00</updated>
+		<link href="https://helix-editor.com/news/release-22-08-highlights/" type="text/html"/>
+		<id>https://helix-editor.com/news/release-22-08-highlights/</id>
+		<content type="html">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 22.08 release, a release with plenty of fixes and new features.
+A big &lt;em&gt;thank you&lt;&#x2F;em&gt; to our contributors! This release had 91 contributors. 🎉&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out the highlighted features for 22.08.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;indent-guides&quot;&gt;Indent guides&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;indent-guides.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Indent guides provide a visual representation for the current indentation
+level. Enable indent guides with the &lt;code&gt;editor.indent-guide.render&lt;&#x2F;code&gt; key.
+The character used as a guide is also customizable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cursorline&quot;&gt;Cursorline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;cursorline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The cursorline is a horizontal highlighted bar that follows your cursor.
+Cursorlines may be themed for the primary and all secondary cursors and
+can be enabled or disabled separate from theming with the &lt;code&gt;editor.cursorline&lt;&#x2F;code&gt;
+option.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mode-colors&quot;&gt;Mode colors&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;color-modes.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The mode indicator in the statusline may now be styled based on the current
+mode. This feature may be enabled with the &lt;code&gt;editor.color-modes&lt;&#x2F;code&gt; option and
+colors may be configured using &lt;code&gt;ui.cursorline.{insert,normal,select}&lt;&#x2F;code&gt; keys
+in themes.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configurable-statusline&quot;&gt;Configurable statusline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;configurable-statusline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The statusline may now be configured in the &lt;code&gt;editor.statusline&lt;&#x2F;code&gt; section
+of the config. Elements may be placed on the left, center or right of
+the statusline with a configurable separator and spacers. Two new elements
+may now also be added to your statusline: &lt;code&gt;file-line-ending&lt;&#x2F;code&gt; and
+&lt;code&gt;position-percentage&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-signature-help&quot;&gt;LSP signature help&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;signature-help.gif&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Signature help provides documentation as you type the arguments to a function
+call and tracks which function parameter is currently being entered. Signature
+help is enabled by default.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-document-highlight&quot;&gt;LSP document highlight&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;document-highlight.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The document highlight request (&lt;code&gt;Space-h&lt;&#x2F;code&gt;) creates a selection for all
+instances of the symbol under the primary cursor. Helix has robust support for
+multiple selections, so you may edit all selections simultaneously (for
+example with &lt;code&gt;c&lt;&#x2F;code&gt;) or cycle between selections (&lt;code&gt;(&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;)&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-diagnostics-pickers&quot;&gt;LSP diagnostics pickers&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;diagnostic-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new buffer and workspace diagnostics pickers may be used to jump to
+Language Server diagnostics like warnings and errors. Use &lt;code&gt;Space-g&lt;&#x2F;code&gt; to
+open the picker with diagnostics for the current buffer and &lt;code&gt;Space-G&lt;&#x2F;code&gt;
+to view all diagnostics in a workspace.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;jumplist-picker&quot;&gt;Jumplist picker&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;jumplist-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The jumplist saves a history of selections. Save selections with &lt;code&gt;C-s&lt;&#x2F;code&gt; and jump
+forward with &lt;code&gt;C-i&lt;&#x2F;code&gt; and backward with &lt;code&gt;C-o&lt;&#x2F;code&gt;. The jumplist is a powerful tool,
+especially when working with Language Server goto-definition or global search
+which both save to the jumplist automatically.&lt;&#x2F;p&gt;
+&lt;p&gt;22.08 adds a new picker that can be used to jump across entries in the jumplist.
+The preview pane shows the line of the saved primary selection. Bring up the
+jumplist picker with &lt;code&gt;Space-j&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;external-formatters&quot;&gt;External formatters&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;external-formatter.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Many Language Servers provide format-on-save capabilities. For languages
+without Language Servers or for Language Servers that do not implement
+formatting, an external formatter binary may now be configured. The document
+is passed through the formatter&#x27;s stdin and replaced with the formatted output
+from stdout.&lt;&#x2F;p&gt;
+&lt;p&gt;An external formatter may also be used when you prefer the formatting from an
+external tool over formatting provided by a Language Server. For example if you
+configure &lt;code&gt;black&lt;&#x2F;code&gt; for formatting Python, formatting will be accomplished with
+&lt;code&gt;black&lt;&#x2F;code&gt; rather than &lt;code&gt;pylsp&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bracketed-paste&quot;&gt;Bracketed paste&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;bracketed-paste.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Bracketed paste is terminal emulator feature that allows terminal programs to
+recognize paste sequences and handle the pasted text. Without bracketed paste
+support, text pasted with operating-system level paste (&lt;code&gt;C-v&lt;&#x2F;code&gt;) looked to Helix
+like text that was entered very quickly which lead to some odd side-effects
+like awkward indentation or mysteriously appearing auto-pair characters.&lt;&#x2F;p&gt;
+&lt;p&gt;22.08 adds support for bracketed paste, so now all pastes into Helix from
+terminal emulators that support bracketed paste work as if you had pressed
+&lt;code&gt;Space-p&lt;&#x2F;code&gt; in normal mode. In the above cast, the entire text of &lt;em&gt;Moby-Dick&lt;&#x2F;em&gt;
+is pasted with &lt;code&gt;C-v&lt;&#x2F;code&gt; in insert mode instantly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These changes are just the highlights. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-30&quot;&gt;changelog&lt;&#x2F;a&gt; to see
+all that&#x27;s changed since 22.05. Release binaries can be found on the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.08&quot;&gt;release
+page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Be ready for more exciting changes in Helix 22.10 expected in October!
+Contribute and follow along with development in the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in
+the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;script src=&quot;&#x2F;asciinema-player.js&quot;&gt;&lt;&#x2F;script&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Release 22.05 Highlights</title>
 		<published>2022-05-28T13:00:00+00:00</published>
