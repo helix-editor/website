@@ -16,7 +16,7 @@
 Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today marks the 22.08 release, a release with plenty of fixes and new features.
-A big &lt;em&gt;thank you&lt;&#x2F;em&gt; to our contributors! This release had 91 contributors. 🎉&lt;&#x2F;p&gt;
+A big &lt;em&gt;thank you&lt;&#x2F;em&gt; to our contributors! This release had 87 contributors. 🎉&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s check out the highlighted features for 22.08.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;indent-guides&quot;&gt;Indent guides&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;indent-guides.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
