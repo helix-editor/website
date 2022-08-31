@@ -4,12 +4,12 @@
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-08-30T13:00:00+00:00</updated>
+	<updated>2022-08-31T18:00:00+00:00</updated>
 	<id>https://helix-editor.com/atom.xml</id>
 	<entry xml:lang="en">
 		<title>Release 22.08 Highlights</title>
-		<published>2022-08-30T13:00:00+00:00</published>
-		<updated>2022-08-30T13:00:00+00:00</updated>
+		<published>2022-08-31T18:00:00+00:00</published>
+		<updated>2022-08-31T18:00:00+00:00</updated>
 		<link href="https://helix-editor.com/news/release-22-08-highlights/" type="text/html"/>
 		<id>https://helix-editor.com/news/release-22-08-highlights/</id>
 		<content type="html">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
