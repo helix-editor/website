@@ -21,7 +21,7 @@ A big &lt;em&gt;thank you&lt;&#x2F;em&gt; to our contributors! This release had 
 &lt;h2 id=&quot;indent-guides&quot;&gt;Indent guides&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;indent-guides.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
 &lt;p&gt;Indent guides provide a visual representation for the current indentation
-level. Enable indent guides with the &lt;code&gt;editor.indent-guide.render&lt;&#x2F;code&gt; key.
+level. Enable indent guides with the &lt;code&gt;editor.indent-guides.render&lt;&#x2F;code&gt; key.
 The character used as a guide is also customizable.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;cursorline&quot;&gt;Cursorline&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;cursorline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
