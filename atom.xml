@@ -91,7 +91,7 @@ terminal emulators that support bracketed paste work as if you had pressed
 &lt;code&gt;Space-p&lt;&#x2F;code&gt; in normal mode. In the above cast, the entire text of &lt;em&gt;Moby-Dick&lt;&#x2F;em&gt;
 is pasted with &lt;code&gt;C-v&lt;&#x2F;code&gt; in insert mode instantly.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
-&lt;p&gt;These changes are just the highlights. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-30&quot;&gt;changelog&lt;&#x2F;a&gt; to see
+&lt;p&gt;These changes are just the highlights. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-31&quot;&gt;changelog&lt;&#x2F;a&gt; to see
 all that&#x27;s changed since 22.05. Release binaries can be found on the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.08&quot;&gt;release
 page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Be ready for more exciting changes in Helix 22.10 expected in October!
