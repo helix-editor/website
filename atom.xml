@@ -33,7 +33,7 @@ option.&lt;&#x2F;p&gt;
 &lt;asciinema-player src=&quot;&#x2F;color-modes.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
 &lt;p&gt;The mode indicator in the statusline may now be styled based on the current
 mode. This feature may be enabled with the &lt;code&gt;editor.color-modes&lt;&#x2F;code&gt; option and
-colors may be configured using &lt;code&gt;ui.cursorline.{insert,normal,select}&lt;&#x2F;code&gt; keys
+colors may be configured using &lt;code&gt;ui.statusline.{insert,normal,select}&lt;&#x2F;code&gt; keys
 in themes.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;configurable-statusline&quot;&gt;Configurable statusline&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;configurable-statusline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
