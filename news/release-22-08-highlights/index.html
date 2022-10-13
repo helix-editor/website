@@ -121,9 +121,9 @@ the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>
 <script src="/asciinema-player.min.js"></script>
 <script>
 for (const player of document.getElementsByTagName("asciinema-player")) {
-  AsciinemaPlayer.create(player.attributes["src"], player, {
-    cols: parseInt(player.attributes["cols"]),
-    rows: parseInt(player.attributes["rows"]),
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
   });
 }
 </script>
