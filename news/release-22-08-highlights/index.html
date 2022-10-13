@@ -116,8 +116,17 @@ page</a>.</p>
 Contribute and follow along with development in the
 <a href="https://github.com/helix-editor/helix/">Helix GitHub repository</a> and be sure to join in on discussions in
 the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
-<script src="/asciinema-player.js"></script>
 
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"], player, {
+    cols: parseInt(player.attributes["cols"]),
+    rows: parseInt(player.attributes["rows"]),
+  });
+}
+</script>
 
 
     </article>
