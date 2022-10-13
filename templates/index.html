@@ -3,7 +3,7 @@
 {% block content %}
         <h2 class="subtitle">A post-modern <strong>text editor</strong>.</h2>
       <!-- <img src="./screenshot.png" /> -->
-      <asciinema-player src="/430253.cast" cols="120" rows="35"></asciinema-player>
+      <div id="demo"></div>
       <div class="action">
         <a href="https://docs.helix-editor.com/install.html">Install now.</a>
       </div>
@@ -79,5 +79,11 @@
             <!--<p>Donate to fund development.</a>-->
       </section>
       <hr/>
-    <script src="./asciinema-player.js"></script>
+    <script src="./asciinema-player.min.js"></script>
+    <script>
+      AsciinemaPlayer.create('/430253.cast', document.getElementById('demo'), {
+        cols: 120,
+        rows: 35,
+      });
+    </script>
 {% endblock content %}
