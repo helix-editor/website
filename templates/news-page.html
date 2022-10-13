@@ -7,4 +7,14 @@
 
 {{ page.content | safe }}
 
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
 {% endblock content %}
