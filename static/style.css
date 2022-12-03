@@ -26,7 +26,7 @@ body {
   /*background: linear-gradient(135deg, #281733, #3b224c);*/
   color: #ebeafa;
   color: #a4a0e8;
-  color: hsl(243.8, 61.5%, 82.9%);
+  color: hsl(243.8, 61%, 85%);
   padding-top: 3rem;
 }
 .overlay {
@@ -97,6 +97,7 @@ hr {
 h1.title { margin-bottom: 0 }
 time {
   font-size: .875rem;
+  color: hsl(243.8, 1.5%, 82.9%); /* body color, desaturated */
 }
 
 code {
