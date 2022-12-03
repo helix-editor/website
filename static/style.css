@@ -144,7 +144,7 @@ strong {
 .selling-point {
   max-width: 50%;
   box-sizing: border-box;
-  font-size: 1.20rem;
+  font-size: 1.25rem;
   padding: 1rem 1.5rem;
 }
 
@@ -156,4 +156,12 @@ strong {
 
 .selling-point h2 {
   font-weight: bold;
+}
+
+/* shrink font sizes on mobile */
+@media only screen and (max-width: 768px) {
+  body { font-size: 1.125rem }
+  h1 { font-size: 1.75rem }
+  h2 { font-size: 1.5rem }
+  code { font-size: 1rem; padding: 0.125rem 0.25rem }
 }
