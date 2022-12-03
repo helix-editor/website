@@ -10,9 +10,15 @@ nav {
   align-items: center;
   flex-wrap: wrap;
 }
-nav a:first-child { margin-left: 0; text-decoration: none }
+menu { padding: 0; display: flex }
+nav > a:first-child { margin-left: 0; text-decoration: none }
 nav h1 { margin: 0 }
 nav a { margin-left: 1.5rem; }
+@media only screen and (max-width: 540px) {
+  nav { flex-direction: column; padding-bottom: .5rem }
+  menu { margin: 2rem 0 0 }
+  menu a { margin: .75rem }
+}
 article, nav {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -136,11 +142,16 @@ strong {
 }
 
 .selling-point {
-  /* Max 2, min 1 selling point per row */
-  max-width: 20em;
+  max-width: 50%;
+  box-sizing: border-box;
   font-size: 1.20rem;
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .selling-point {
+    max-width: 100%
+  }
 }
 
 .selling-point h2 {
