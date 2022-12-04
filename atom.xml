@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title></title>
+	<title>Helix</title>
+	<subtitle>A post-modern modal text editor.</subtitle>
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
