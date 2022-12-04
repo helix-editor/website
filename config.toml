@@ -10,6 +10,10 @@ build_search_index = true
 # Generate an RSS feed
 generate_feed = true
 
+# The site title and description; used in feeds by default.
+title = "Helix"
+description = "A post-modern modal text editor."
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
