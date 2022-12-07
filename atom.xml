@@ -84,7 +84,7 @@ files in particular since markdown uses injections extensively.&lt;&#x2F;li&gt;
 gracefully handles cases like language servers not supporting capabilities
 and unexpected language server crashes.&lt;&#x2F;li&gt;
 &lt;li&gt;The speed and memory usage of the &lt;code&gt;:reload&lt;&#x2F;code&gt; command has been vastly improved.
-This comes from the creation of &lt;a href=&quot;https:&#x2F;&#x2F;helix-editor.com&#x2F;news&#x2F;release-22-12-highlights&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
+This comes from the creation of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
 implementation which is faster than the one used internally by &lt;code&gt;git&lt;&#x2F;code&gt;!&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
