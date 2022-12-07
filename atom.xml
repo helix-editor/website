@@ -5,8 +5,97 @@
 	<link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://helix-editor.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2022-08-31T18:00:00+00:00</updated>
+	<updated>2022-12-06T22:00:00+00:00</updated>
 	<id>https://helix-editor.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Release 22.12 Highlights</title>
+		<published>2022-12-06T22:00:00+00:00</published>
+		<updated>2022-12-06T22:00:00+00:00</updated>
+		<link href="https://helix-editor.com/news/release-22-12-highlights/" type="text/html"/>
+		<id>https://helix-editor.com/news/release-22-12-highlights/</id>
+		<content type="html">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today we cut the 22.12 release. This release is big and featureful and saw
+contributions from 99 contributors. Thank you all! 🎊&lt;&#x2F;p&gt;
+&lt;p&gt;Helix now has a logo! Thank you &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jakehl&quot;&gt;&lt;code&gt;@jakehl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for your
+contribution!&lt;&#x2F;p&gt;
+&lt;img src=&quot;&#x2F;logo-with-text.svg&quot; style=&quot;max-width: 75%; display: block; margin-left: auto; margin-right: auto&quot; &#x2F;&gt;
+&lt;p&gt;Looking for an introduction to Helix or to see Helix out in the wild? Check out
+these new videos on Helix.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8L308PdmhMY&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8L308PdmhMY&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now let&#x27;s jump into the highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;git-diff-gutter&quot;&gt;Git diff gutter&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;git-diff-gutter.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new git diff gutter tracks the changes in the current buffer compared to
+the the git index. The markers in the gutter indicate additions, modifications,
+and removals compared to the file checked in to git. The git diff gutter is
+enabled by default.&lt;&#x2F;p&gt;
+&lt;p&gt;Also be sure to try out the new hunk textobject: &lt;code&gt;]g&lt;&#x2F;code&gt; jumps to the next changed
+hunk and &lt;code&gt;[g&lt;&#x2F;code&gt; jumps to the previous.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;underline-styles-and-colors&quot;&gt;Underline styles and colors&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;undercurl.png&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Terminals with support for extended underlines can render underlines with
+styles like curls or dots as well as colors. Extended underlines can be used to
+improve the display of LSP diagnostics. These can be configured in themes with
+the new &lt;code&gt;underline&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;style &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The existing &lt;code&gt;underline&lt;&#x2F;code&gt; modifier is now an alias for the &lt;code&gt;&amp;quot;line&amp;quot;&lt;&#x2F;code&gt; style.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re looking to use this in a theme that hasn&#x27;t configured it yet, you
+can use the new &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;themes.html#inheritance&quot;&gt;theme inheritance&lt;&#x2F;a&gt; feature to modify just the scopes you would
+like to change:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;themes&#x2F;my-onedark.toml
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;inherits &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;onedark&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;fg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorfg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorbg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;autosave-when-the-terminal-loses-focus&quot;&gt;Autosave when the terminal loses focus&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;auto-save.gif&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Terminals with support for focus events can now automatically save the current
+file when you focus on a new window. Enable this behavior by setting the
+&lt;code&gt;editor.auto-save&lt;&#x2F;code&gt; configuration key to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;multi-cursor-completion&quot;&gt;Multi-cursor completion&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;multi-cursor-completion.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Editing with multiple selections is a central feature within helix. LSP
+auto-completion now applies to all cursors when editing with multiple
+selections, making it easy to replace multiple instances of a symbol with
+auto-complete&#x27;s help.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bufferline&quot;&gt;Bufferline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;bufferline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The bufferline is a listing of buffers displayed at the top of a window. It
+provides an at-a-glance view of the buffers you&#x27;re working with. Set
+the &lt;code&gt;editor.bufferline&lt;&#x2F;code&gt; configuration key to &lt;code&gt;&amp;quot;always&amp;quot;&lt;&#x2F;code&gt; to always show the
+bufferline, &lt;code&gt;&amp;quot;multiple&amp;quot;&lt;&#x2F;code&gt; to show the bufferline only when there are multiple
+buffers open, and &lt;code&gt;&amp;quot;never&amp;quot;&lt;&#x2F;code&gt; to disable it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;behind-the-scenes-improvements&quot;&gt;Behind-the-scenes improvements&lt;&#x2F;h2&gt;
+&lt;p&gt;22.12 brings also brings important changes to Helix&#x27;s plumbing:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The code-path for writing files has been overhauled. This fixes a number of
+edge cases around writing large files and failures to write.&lt;&#x2F;li&gt;
+&lt;li&gt;Performance has been improved for tree-sitter parsing, querying and the
+handling of injections. This is a noticeable speed boost for large markdown
+files in particular since markdown uses injections extensively.&lt;&#x2F;li&gt;
+&lt;li&gt;Failure handling in the LSP code-paths has been improved. Helix now
+gracefully handles cases like language servers not supporting capabilities
+and unexpected language server crashes.&lt;&#x2F;li&gt;
+&lt;li&gt;The speed and memory usage of the &lt;code&gt;:reload&lt;&#x2F;code&gt; command has been vastly improved.
+This comes from the creation of &lt;a href=&quot;https:&#x2F;&#x2F;helix-editor.com&#x2F;news&#x2F;release-22-12-highlights&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
+implementation which is faster than the one used internally by &lt;code&gt;git&lt;&#x2F;code&gt;!&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;There are many more changes arriving now in 22.12 than we can fit in this post.
+Check out the 22.12 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2212-2022-12-06&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the performance
+boosts, usability improvements and fixes in 22.12.&lt;&#x2F;p&gt;
+&lt;p&gt;Contribute and follow along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub
+repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix
+channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Release 22.08 Highlights</title>
 		<published>2022-08-31T18:00:00+00:00</published>

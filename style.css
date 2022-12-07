@@ -75,7 +75,9 @@ body {
   margin: auto;
 }
 
-ul { margin: 0; padding: 0; list-style-position: inside; list-style-type: none }
+ul { margin: 0; padding: 0; }
+
+ul.posts { list-style-position: inside; list-style-type: none }
 
 .action { text-align: center; margin: 2.5rem auto; display: block }
 .action a {

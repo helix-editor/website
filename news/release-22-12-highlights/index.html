@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Helix</title>
+    <meta name="description" content="A post-modern modal text editor.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.com/atom.xml">
+    
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/" style="display: flex; align-items: center;">
+          <img src="/logo.svg" alt="Logo" height="64" style="padding-right: 1.25rem; margin: 0" />
+          <h1>Helix</h1>
+        </a>
+        <div style="flex: 1"></div>
+        <menu>
+          <a href="/news">News</a>
+          <a href="https://docs.helix-editor.com">Documentation</a>
+          <a href="https://github.com/helix-editor/helix">GitHub</a>
+          <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+        </menu>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 22.12 Highlights</h1>
+ <time>06 December 2022</time>
+
+<p>Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).</p>
+<p>Today we cut the 22.12 release. This release is big and featureful and saw
+contributions from 99 contributors. Thank you all! 🎊</p>
+<p>Helix now has a logo! Thank you <a href="https://github.com/jakehl"><code>@jakehl</code></a> for your
+contribution!</p>
+<img src="/logo-with-text.svg" style="max-width: 75%; display: block; margin-left: auto; margin-right: auto" />
+<p>Looking for an introduction to Helix or to see Helix out in the wild? Check out
+these new videos on Helix.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=xHebvTGOdH8">https://www.youtube.com/watch?v=xHebvTGOdH8</a></li>
+<li><a href="https://www.youtube.com/watch?v=8L308PdmhMY">https://www.youtube.com/watch?v=8L308PdmhMY</a></li>
+<li><a href="https://www.youtube.com/watch?v=7mTi278jUS8">https://www.youtube.com/watch?v=7mTi278jUS8</a></li>
+</ul>
+<p>Now let's jump into the highlights.</p>
+<h2 id="git-diff-gutter">Git diff gutter</h2>
+<asciinema-player src="/git-diff-gutter.cast" cols="94" rows="25"></asciinema-player>
+<p>The new git diff gutter tracks the changes in the current buffer compared to
+the the git index. The markers in the gutter indicate additions, modifications,
+and removals compared to the file checked in to git. The git diff gutter is
+enabled by default.</p>
+<p>Also be sure to try out the new hunk textobject: <code>]g</code> jumps to the next changed
+hunk and <code>[g</code> jumps to the previous.</p>
+<h2 id="underline-styles-and-colors">Underline styles and colors</h2>
+<img src="/undercurl.png" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
+<p>Terminals with support for extended underlines can render underlines with
+styles like curls or dots as well as colors. Extended underlines can be used to
+improve the display of LSP diagnostics. These can be configured in themes with
+the new <code>underline</code> key:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>&quot;</span><span style="color:#a3be8c;">diagnostic.error</span><span>&quot; = { </span><span style="color:#bf616a;">underline </span><span>= { </span><span style="color:#bf616a;">style </span><span>= &quot;</span><span style="color:#a3be8c;">curl</span><span>&quot;, </span><span style="color:#bf616a;">color </span><span>= &quot;</span><span style="color:#a3be8c;">red</span><span>&quot; } }
+</span></code></pre>
+<p>The existing <code>underline</code> modifier is now an alias for the <code>&quot;line&quot;</code> style.</p>
+<p>If you're looking to use this in a theme that hasn't configured it yet, you
+can use the new <a href="https://docs.helix-editor.com/master/themes.html#inheritance">theme inheritance</a> feature to modify just the scopes you would
+like to change:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># ~/.config/helix/themes/my-onedark.toml
+</span><span style="color:#bf616a;">inherits </span><span>= &quot;</span><span style="color:#a3be8c;">onedark</span><span>&quot;
+</span><span>
+</span><span>&quot;</span><span style="color:#a3be8c;">diagnostic.error</span><span>&quot; = { </span><span style="color:#bf616a;">fg </span><span>= &quot;</span><span style="color:#a3be8c;">errorfg</span><span>&quot;, </span><span style="color:#bf616a;">bg </span><span>= &quot;</span><span style="color:#a3be8c;">errorbg</span><span>&quot;, </span><span style="color:#bf616a;">underline </span><span>= { </span><span style="color:#bf616a;">color </span><span>= &quot;</span><span style="color:#a3be8c;">red</span><span>&quot; } }
+</span></code></pre>
+<h2 id="autosave-when-the-terminal-loses-focus">Autosave when the terminal loses focus</h2>
+<img src="/auto-save.gif" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
+<p>Terminals with support for focus events can now automatically save the current
+file when you focus on a new window. Enable this behavior by setting the
+<code>editor.auto-save</code> configuration key to <code>true</code>.</p>
+<h2 id="multi-cursor-completion">Multi-cursor completion</h2>
+<asciinema-player src="/multi-cursor-completion.cast" cols="94" rows="25"></asciinema-player>
+<p>Editing with multiple selections is a central feature within helix. LSP
+auto-completion now applies to all cursors when editing with multiple
+selections, making it easy to replace multiple instances of a symbol with
+auto-complete's help.</p>
+<h2 id="bufferline">Bufferline</h2>
+<asciinema-player src="/bufferline.cast" cols="94" rows="25"></asciinema-player>
+<p>The bufferline is a listing of buffers displayed at the top of a window. It
+provides an at-a-glance view of the buffers you're working with. Set
+the <code>editor.bufferline</code> configuration key to <code>&quot;always&quot;</code> to always show the
+bufferline, <code>&quot;multiple&quot;</code> to show the bufferline only when there are multiple
+buffers open, and <code>&quot;never&quot;</code> to disable it.</p>
+<h2 id="behind-the-scenes-improvements">Behind-the-scenes improvements</h2>
+<p>22.12 brings also brings important changes to Helix's plumbing:</p>
+<ul>
+<li>The code-path for writing files has been overhauled. This fixes a number of
+edge cases around writing large files and failures to write.</li>
+<li>Performance has been improved for tree-sitter parsing, querying and the
+handling of injections. This is a noticeable speed boost for large markdown
+files in particular since markdown uses injections extensively.</li>
+<li>Failure handling in the LSP code-paths has been improved. Helix now
+gracefully handles cases like language servers not supporting capabilities
+and unexpected language server crashes.</li>
+<li>The speed and memory usage of the <code>:reload</code> command has been vastly improved.
+This comes from the creation of <a href="https://helix-editor.com/news/release-22-12-highlights/imara-diff"><code>imara-diff</code></a>, a new diffing
+implementation which is faster than the one used internally by <code>git</code>!</li>
+</ul>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>There are many more changes arriving now in 22.12 than we can fit in this post.
+Check out the 22.12 <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2212-2022-12-06">changelog</a> for the full details on all of the performance
+boosts, usability improvements and fixes in 22.12.</p>
+<p>Contribute and follow along with development in the <a href="https://github.com/helix-editor/helix/">Helix GitHub
+repository</a> and be sure to join in on discussions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix
+channel</a>.</p>
+
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
+
+    </article>
+</body></html>
+
