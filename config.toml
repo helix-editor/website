@@ -10,9 +10,10 @@ build_search_index = true
 # Generate an RSS feed
 generate_feed = true
 
-# The site title and description; used in feeds by default.
+# The site title, author and description; used in feeds by default.
 title = "Helix"
 description = "A post-modern modal text editor."
+author = "Helix Contributors"
 
 [markdown]
 # Whether to do syntax highlighting
