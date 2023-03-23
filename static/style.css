@@ -145,6 +145,7 @@ strong {
 
 section.content {
   padding: 0 1.25rem;
+  font-size: 1.25rem;
 }
 
 .selling-points {
@@ -156,7 +157,6 @@ section.content {
 }
 
 .selling-point {
-  font-size: 1.25rem;
 }
 
 @media only screen and (max-width: 768px) {
