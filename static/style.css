@@ -1,6 +1,12 @@
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter', sans-serif; }
 }
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 nav {
   padding: 0 .25rem 1.5rem;
   text-align: right;
@@ -137,22 +143,25 @@ strong {
   font-weight: 600;
 }
 
+section.content {
+  padding: 0 1.25rem;
+}
+
 .selling-points {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr)); 
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
 
 .selling-point {
-  max-width: 50%;
-  box-sizing: border-box;
   font-size: 1.25rem;
-  padding: 1rem 1.5rem;
 }
 
 @media only screen and (max-width: 768px) {
-  .selling-point {
-    max-width: 100%
+  .selling-points {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); 
   }
 }
 
