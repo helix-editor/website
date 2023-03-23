@@ -67,8 +67,18 @@
           <a href="http://news.ycombinator.com/item?id=3067434">Yes.</a>
 
           <h3>Are there plans for a GUI frontend?</h3>
-          <p>Eventually, yes! See the <a href="https://github.com/helix-editor/helix/issues/39">
-          tracking issue</a> on GitHub.</p>
+          <p>Eventually, yes! We'd like to prototype a WebGPU-based alternative frontend.
+          See the <a href="https://github.com/helix-editor/helix/issues/39">tracking issue</a> on GitHub.
+          </p>
+
+          <h3>What about plugins?</h3>
+          <p>While there is currently no plugin system available, we do intend to eventually have one. But this will take some time (<a href="https://github.com/helix-editor/helix/discussions/3806">more discussion here</a>).</p>
+
+          <h3>How does it differ from Kakoune?</h3>
+          <p>Mainly by having more things built-in. Kakoune is <a href="https://github.com/mawww/kakoune/blob/master/doc/design.asciidoc">composable by design</a>, relying on external tooling to manage splits and provide language server support. Helix instead chooses to integrate more. We also use tree-sitter for highlighting and code analysis.</p>
+
+          <h3>How does it differ from Vim?</h3>
+          <p>By starting from scratch we were able to learn from our experience with Vim and make some breaking changes. The result is a much smaller codebase and a modern set of defaults. It's easier to get started if you've never used a modal editor before, and there's much less fiddling with config files.</p>
 
       </section>
       <hr/>
