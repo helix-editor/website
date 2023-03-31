@@ -5,8 +5,99 @@
     <link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://helix-editor.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2022-12-06T22:00:00+00:00</updated>
+    <updated>2023-03-31T00:00:00+00:00</updated>
     <id>https://helix-editor.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Release 23.03 Highlights</title>
+        <published>2023-03-31T00:00:00+00:00</published>
+        <updated>2023-03-31T00:00:00+00:00</updated>
+        <author>
+          <name>Helix Contributors</name>
+        </author>
+        <link rel="alternate" href="https://helix-editor.com/news/release-23-03-highlights/" type="text/html"/>
+        <id>https://helix-editor.com/news/release-23-03-highlights/</id>
+        <content type="html">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 23.03 release. First, a big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone involved!
+This release includes changes from 102 contributors. Today&#x27;s release brings
+some especially useful and exciting features, so let&#x27;s jump right in.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;soft-wrap&quot;&gt;Soft-wrap&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;softwrap.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Soft-wrap breaks up lines to fit in view without inserting actual line break
+characters into the text (so called &amp;quot;hard-wrapping&amp;quot;). This can be useful for
+reading and editing documentation or code with especially long lines. Enable
+soft-wrap in your config with the &lt;code&gt;editor.soft-wrap.enable&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml
+&lt;&#x2F;span&gt;&lt;span&gt;[editor.soft-wrap]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;enable &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Heuristics for where to break lines and the wrap indicator may also be
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorsoft-wrap-section&quot;&gt;configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Soft-wrap is the first feature implemented on top of a new &amp;quot;virtual text&amp;quot; API
+within the Helix codebase. The virtual text API allows us to decorate and
+manipulate the actual text in a document without disturbing positioning and
+modifications. The virtual text API opens the door for many new exciting
+features like the inlay hints we&#x27;ll see next.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;inlay-hints&quot;&gt;Inlay hints&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;inlay-hints.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Inlay hints are a new feature in the latest LSP specification. Language servers
+can provide editors with hints to show in a document. In the example above,
+rust-analyzer provides type hints for variables and intermediary expressions
+as well as parameter names in function calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Inlay hints can be enabled in your config with the &lt;code&gt;lsp.display-inlay-hints&lt;&#x2F;code&gt;
+key.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;initial-support-for-snippets&quot;&gt;Initial support for snippets&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;snippets.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;LSP snippets are a way for language servers to provide more complex completions
+for an editor. Language servers can specify where to place cursors within a
+completion (tabstops), placeholder values and more. Helix now has initial
+support for LSP completions, leaving more advanced snippet features like
+virtual placeholders, multiple tabstops, and variable substitutions for future
+work.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dynamic-workspace-symbol-picker&quot;&gt;Dynamic workspace symbol picker&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;dynamic-workspace-symbol-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The workspace symbol picker (&lt;code&gt;&amp;lt;space&amp;gt;S&lt;&#x2F;code&gt;) is an LSP-driven feature for looking
+up a symbol in a project. Large projects might have many symbols, though, so
+this symbol picker typically wouldn&#x27;t load them all at once. The workspace
+symbol picker has been reworked in this release though to dynamically
+re-request symbols with a new query as you type in the picker. This lets the
+language server narrow down the number of symbols and only tell Helix about the
+ones relevant to the search. This rework fixes compatibility with some language
+servers which returned empty symbols with no query (&lt;code&gt;gopls&lt;&#x2F;code&gt;, &lt;code&gt;pyright&lt;&#x2F;code&gt;,
+&lt;code&gt;clangd&lt;&#x2F;code&gt;) or limited results (&lt;code&gt;rust-analyzer&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;The &amp;quot;dynamic picker&amp;quot; introduced in this refactor may benefit other pickers in
+the future, for example allowing the global search picker (&lt;code&gt;&amp;lt;space&amp;gt;&#x2F;&lt;&#x2F;code&gt;) to
+update on-the-fly as you change the query.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;version-control-head-statusline-element&quot;&gt;Version control HEAD statusline element&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;vcs-statusline-element.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;A new statusline element has been added which displays the version control
+HEAD. Add this to your statusline by introducing the &lt;code&gt;&amp;quot;version-control&amp;quot;&lt;&#x2F;code&gt;
+element in the
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorstatusline-section&quot;&gt;&lt;code&gt;editor.statusline&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;
+section of your config for the &lt;code&gt;left&lt;&#x2F;code&gt;, &lt;code&gt;center&lt;&#x2F;code&gt; or &lt;code&gt;right&lt;&#x2F;code&gt; sides.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enhanced-keyboard-protocol&quot;&gt;Enhanced keyboard protocol&lt;&#x2F;h2&gt;
+&lt;p&gt;Support for the &lt;a href=&quot;https:&#x2F;&#x2F;sw.kovidgoyal.net&#x2F;kitty&#x2F;keyboard-protocol&#x2F;&quot;&gt;enhanced keyboard protocol&lt;&#x2F;a&gt; is now enabled. Terminals that
+support the protocol (Kitty, WezTerm) can now send unambiguous keycodes to
+Helix, enabling key combinations that weren&#x27;t possible to bind before like
+&lt;code&gt;C-&#x2F;&lt;&#x2F;code&gt;, &lt;code&gt;C-h&lt;&#x2F;code&gt; or &lt;code&gt;S-backspace&lt;&#x2F;code&gt;. This functionality works out-of-the-box for
+terminals that support the protocol.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;runtime-directory-refactor&quot;&gt;Runtime directory refactor&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix keeps files like tree-sitter parsers and queries, themes and the tutor
+file in a special &amp;quot;runtime&amp;quot; directory. This directory is typically installed
+by your package manager and shouldn&#x27;t be modified by hand. Multiple runtime
+directories are now supported, so you can keep the runtime files installed by
+your package manager unchanged while adding new tree-sitter parsers and
+queries to a local runtime directory. On Unix systems you can add files to the
+&lt;code&gt;~&#x2F;.config&#x2F;helix&#x2F;runtime&lt;&#x2F;code&gt; directory which take precedence over the runtime
+directory installed by a package manager.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These flashy features are just the tip of the iceberg though. Check out the
+23.03 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2303-2023-03-31&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the changes in this release.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
     <entry xml:lang="en">
         <title>Release 22.12 Highlights</title>
         <published>2022-12-06T22:00:00+00:00</published>
