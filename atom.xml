@@ -5,12 +5,12 @@
     <link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://helix-editor.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-10-24T00:00:00+00:00</updated>
+    <updated>2023-10-25T00:00:00+00:00</updated>
     <id>https://helix-editor.com/atom.xml</id>
     <entry xml:lang="en">
         <title>Release 23.10 Highlights</title>
-        <published>2023-10-24T00:00:00+00:00</published>
-        <updated>2023-10-24T00:00:00+00:00</updated>
+        <published>2023-10-25T00:00:00+00:00</published>
+        <updated>2023-10-25T00:00:00+00:00</updated>
         <author>
           <name>Helix Contributors</name>
         </author>
