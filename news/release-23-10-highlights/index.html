@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Helix</title>
+    <meta name="description" content="A post-modern modal text editor.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.com/atom.xml">
+    
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/" style="display: flex; align-items: center;">
+          <img src="/logo.svg" alt="Logo" height="64" style="padding-right: 1.25rem; margin: 0" />
+          <h1>Helix</h1>
+        </a>
+        <div style="flex: 1"></div>
+        <menu>
+          <a href="/news">News</a>
+          <a href="https://docs.helix-editor.com">Documentation</a>
+          <a href="https://github.com/helix-editor/helix">GitHub</a>
+          <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+        </menu>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 23.10 Highlights</h1>
+ <time>24 October 2023</time>
+
+<p>The Helix 23.10 release is finally here! 23.10 introduces some very large
+internal changes that enable some powerful features. A very big <em>thank you</em> to
+everyone who made this release possible.</p>
+<p>New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).</p>
+<p>Let's check out this release's highlights.</p>
+<h2 id="multiple-language-servers">Multiple language servers</h2>
+<p>23.10 brings a big change to the way we handle language servers.
+Previously each language could only support one language server at a time but
+now you can configure multiple to work in tandem. For example you might use
+the TypeScript language server for JavaScript/TypeScript development and also
+configure <a href="https://github.com/mattn/efm-langserver">efm-langserver</a> for
+Prettier formatting and ESLint diagnostics. With the new support for multiple
+language servers, you can specify which features to use from each language
+server.</p>
+<p>This brings a big change to the way language servers are configured in your
+language configuration (<code>languages.toml</code>). All language servers are now
+specified separately from languages and then each language selects which
+language server(s) to use. From the example above, you might configure efm-
+langserver and typescript-language-server like so:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[language-server.efm]
+</span><span style="color:#bf616a;">command </span><span>= &quot;</span><span style="color:#a3be8c;">efm-langserver</span><span>&quot;
+</span><span style="color:#bf616a;">config</span><span>.</span><span style="color:#bf616a;">documentFormatting </span><span>= </span><span style="color:#d08770;">true
+</span><span>
+</span><span>[language-server.typescript-language-server]
+</span><span style="color:#bf616a;">command </span><span>= &quot;</span><span style="color:#a3be8c;">typescript-language-server</span><span>&quot;
+</span><span style="color:#bf616a;">args </span><span>= [&quot;</span><span style="color:#a3be8c;">--stdio</span><span>&quot;]
+</span><span style="color:#bf616a;">config</span><span>.</span><span style="color:#bf616a;">hostInfo </span><span>= &quot;</span><span style="color:#a3be8c;">helix</span><span>&quot;
+</span><span>
+</span><span>[[language]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">typescript</span><span>&quot;
+</span><span style="color:#bf616a;">auto-format </span><span>= </span><span style="color:#d08770;">true
+</span><span style="color:#bf616a;">language-servers </span><span>= [
+</span><span>  { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">efm</span><span>&quot;, </span><span style="color:#bf616a;">only-features </span><span>= [&quot;</span><span style="color:#a3be8c;">format</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] },
+</span><span>  { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">typescript-language-server</span><span>&quot;, </span><span style="color:#bf616a;">except-features </span><span>= [&quot;</span><span style="color:#a3be8c;">format</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] },
+</span><span>]
+</span></code></pre>
+<p>See more details in the <a href="https://docs.helix-editor.com/languages.html">language configuration docs</a>.</p>
+<h2 id="fuzzy-matching-with-nucleo">Fuzzy matching with Nucleo</h2>
+<asciinema-player src="/nucleo-nix-store.cast" cols="94" rows="25"></asciinema-player>
+<p>Helix uses &quot;fuzzy&quot; matching to filter as-you-type in components like the file
+picker. Previously we used the popular <code>skim</code>/<code>fuzzy-matcher</code> crates but in the
+23.10 release we've switched to the new
+<a href="https://github.com/helix-editor/helix"><code>nucleo</code></a> crate. Nucleo is
+significantly faster than skim and fzf, handles Unicode correctly, and uses a
+bonus system that feels more intuitive.</p>
+<p>Nucleo also enables us to lazily stream in new items, which is a big boost for
+the user experience for pickers. In the asciicast above I'm scanning through
+my computer's <code>/nix/store</code>, a huge directory containing more than twenty
+million files. The file picker now works gradually as we scan through the
+directory and matches files as we find them.</p>
+<p>Nucleo also paves the way for future picker upgrades. Stay tuned to the
+upcoming release notes to see where we'll take the picker.</p>
+<h2 id="smart-tab">Smart tab</h2>
+<p>Smart tab is a new feature bound to the tab key in the default keymap. When
+you press tab and the line to the left of the cursor isn't all whitespace,
+the cursor will jump to the end of the syntax tree's parent node. For example:</p>
+<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span>{
+</span><span>  </span><span style="color:#d08770;">key </span><span>= &quot;</span><span style="color:#a3be8c;">value</span><span>&quot;;
+</span><span>  </span><span style="color:#d08770;">nested </span><span>= {
+</span><span>    </span><span style="color:#d08770;">key2 </span><span>= &quot;</span><span style="color:#a3be8c;">value2</span><span>&quot;; </span><span style="color:#65737e;"># When the cursor is at the end of the line here, &lt;tab&gt;
+</span><span>                     </span><span style="color:#65737e;"># jumps right after the closing brace on the next line.
+</span><span>  };
+</span><span>}
+</span></code></pre>
+<p>This is useful in languages like Nix for adding semicolons at the end of an
+attribute set or jumping to the end of a block in a C-like language:</p>
+<asciinema-player src="/smart-tab.cast" cols="94" rows="25"></asciinema-player>
+<h2 id="expanded-support-for-registers">Expanded support for registers</h2>
+<asciinema-player src="/special-registers.cast" cols="94" rows="25"></asciinema-player>
+<p>Registers allow you to save and paste values. For example you might select
+a paragraph, use <code>&quot;ay</code> to yank it into the <code>a</code> register, and later use <code>&quot;ap</code>
+to paste that paragraph. Some registers have special effects when read or
+written to though like the <code>_</code> &quot;blackhole&quot; register: any values written are
+discarded and nothing can be read. Special registers have been expanded to
+include some useful ones from Kakoune and clipboard registers:</p>
+<ul>
+<li><code>%</code>: the current buffer name</li>
+<li><code>#</code>: the number of each selection, 1-indexed</li>
+<li><code>.</code>: the contents of each selection</li>
+<li><code>*</code> and <code>+</code>: system and primary clipboards</li>
+</ul>
+<p>Also check out the new register statusline element. It appears when you select
+a register with <code>&quot;</code>. Notice the <code>reg=#</code> in the bottom-right corner of the
+statusline in the asciicast when we select the <code>#</code> register and how it goes
+away when we paste that register (<code>p</code>) or increment the selections (<code>C-a</code>).</p>
+<h2 id="initial-support-for-lsp-didchangewatchedfiles">Initial support for LSP DidChangeWatchedFiles</h2>
+<asciinema-player src="/initial-lsp-didchangewatchedfiles.cast" cols="94" rows="25"></asciinema-player>
+<p>Some language servers use the DidChangeWatchedFiles notification to discover
+changes to related files in other languages. For example, <code>rust-analyzer</code> will
+fetch and index new dependencies when you add them to your <code>Cargo.toml</code>.
+Helix will now send file change notifications when the file is changed by
+Helix itself. Full support for DidChangeWatchedFiles will require a file
+watcher but for now we're able to support the most common use-case for
+DidChangeWatchedFiles.</p>
+<h2 id="syntax-highlight-regex-prompts">Syntax highlight regex prompts</h2>
+<img src="/regex-prompt-highlighting.png" style="max-width: 80%; display: block; margin-left: auto; margin-right: auto"/>
+<p>Regex prompts like those created with <code>s</code>, <code>S</code> or <code>|</code> are now syntax highlighted
+via tree-sitter-regex. The highlighting makes special characters more obvious
+and can catch syntax errors like trailing backslashes.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>As always, this is just the tip of the iceberg for the 23.10 release. Check out
+the <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2310-2023-10-24">changelog</a> for the full details.</p>
+<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
+and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
+
+    </article>
+</body></html>
+
