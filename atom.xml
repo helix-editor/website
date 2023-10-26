@@ -61,7 +61,7 @@ langserver and typescript-language-server like so:&lt;&#x2F;p&gt;
 &lt;p&gt;Helix uses &amp;quot;fuzzy&amp;quot; matching to filter as-you-type in components like the file
 picker. Previously we used the popular &lt;code&gt;skim&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;fuzzy-matcher&lt;&#x2F;code&gt; crates but in the
 23.10 release we&#x27;ve switched to the new
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&quot;&gt;&lt;code&gt;nucleo&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. Nucleo is
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;nucleo&quot;&gt;&lt;code&gt;nucleo&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. Nucleo is
 significantly faster than skim and fzf, handles Unicode correctly, and uses a
 bonus system that feels more intuitive.&lt;&#x2F;p&gt;
 &lt;p&gt;Nucleo also enables us to lazily stream in new items, which is a big boost for
