@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Helix</title>
+    <meta name="description" content="A post-modern modal text editor.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/asciinema-player.css" rel="stylesheet">
+    
+      <link rel="alternate" type="application/atom+xml" title="Atom" href="https://helix-editor.com/atom.xml">
+    
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <nav>
+        <a href="/" style="display: flex; align-items: center;">
+          <img src="/logo.svg" alt="Logo" height="64" style="padding-right: 1.25rem; margin: 0" />
+          <h1>Helix</h1>
+        </a>
+        <div style="flex: 1"></div>
+        <menu>
+          <a href="/news">News</a>
+          <a href="https://docs.helix-editor.com">Documentation</a>
+          <a href="https://github.com/helix-editor/helix">GitHub</a>
+          <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix</a>
+        </menu>
+    </nav>
+    <article>
+        
+
+ <h1 class="title">Release 24.03 Highlights</h1>
+ <time>30 March 2024</time>
+
+<p>The Helix 24.03 release has arrived! First, a very big <em>thank you</em> to everyone
+who made this release possible. This release saw changes from 125 contributors.</p>
+<p>New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).</p>
+<p>Let's check out this release's highlights.</p>
+<h2 id="amp-like-jumping">Amp-like jumping</h2>
+<asciinema-player src="/amp-jump.cast" cols="94" rows="25"></asciinema-player>
+<p>Jumping features are popular in the (Neo)Vim plugin space and there are even
+plugins to add the same functionality to other tools like browsers. They allow
+you to move your selection efficiently across even large parts of the view,
+like you could by clicking with a mouse, but by entering &quot;labels&quot; instead.
+24.03 introduces jumping commands inspired by the <a href="https://github.com/jmacdonald/amp">Amp editor</a>'s <a href="https://amp.rs/docs/usage/#jump-mode">jump mode</a>.
+Press <code>gw</code> to add the jump labels and then enter one of the labels to jump to
+the word under that label. Using <code>gw</code> in select mode (<code>v</code>) extends the
+selection.</p>
+<h2 id="block-comments">Block comments</h2>
+<p>In the past, Helix has only been able to toggle line comments like <code>//</code> and <code>#</code>
+and languages like OCaml have been left with workarounds like a &quot;line&quot; comment
+token of <code>(*</code>. In 24.03 Helix can now toggle block comments as well. Use <code>C-c</code>
+or <code>&lt;space&gt;c</code> to smartly add or remove line or block comments around the current
+selection based on the language's comment token configuration, <code>&lt;space&gt;c</code> to
+toggle block comments around the current selection, or <code>&lt;space&gt;&lt;A-c&gt;</code> to toggle
+only line comments on the current line.</p>
+<h2 id="improvements-to-tree-sitter-injections">Improvements to tree-sitter injections</h2>
+<p>Helix uses <a href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> incremental parsing for syntax highlighting,
+textobjects, indentation and some motions and commands. 24.03 improves how we
+handle <em><a href="https://tree-sitter.github.io/tree-sitter/syntax-highlighting#language-injection">injections</a></em> - a powerful tree-sitter feature for parsing documents
+with multiple languages. For example you might have JavaScript, CSS or other
+languages within a <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> tag in HTML. The HTML parser doesn't
+need to know how to parse all of these languages. Instead it can <em>inject</em>
+JavaScript or CSS parsers to handle the <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> tag contents.</p>
+<asciinema-player src="/ts-subtree-and-motions-injection.cast" cols="94" rows="25"></asciinema-player>
+<p>One of these improvements is to the <code>:tree-sitter-subtree</code> command that
+displays an S-expression of the syntax tree under the cursor. 24.03 shows the
+injection layer under the selection instead of only the root layer. For example
+in this asciicast we now show the syntax tree for the JavaScript parts of the
+document while in the past we only showed the HTML part of the tree.</p>
+<p>The other big improvement is to the tree-sitter motions. <code>A-o</code> (alt + o)
+expands the selection to the parent node of the syntax tree node covered by the
+current selection. <code>A-i</code> shrinks to the child node and <code>A-n</code> and <code>A-p</code> go to
+the <em>n</em>ext and <em>p</em>revious nodes, respectively. Previously these
+commands only worked on the root layer (for example HTML in the asciicast) but
+they now find the injection layer that contains the selection and move along
+that layer's syntax tree. Internally we organize injection layers into a
+tree-like structure so that these motions can switch layers when needed.</p>
+<p>Stay tuned for future changes that improve injections, like finding textobjects
+within injected content.</p>
+<h2 id="internal-improvements">Internal improvements</h2>
+<p>24.03 also saw major internal improvements. The first comes from a new &quot;event
+system&quot; - a system built around Tokio channels and tasks that allows different
+parts of the Helix codebase to communicate with one another. The event system
+also adds generic ways to debounce and run tasks in background threads so we
+can prevent locking up the UI. Some parts of the code base have already been
+migrated to the event system like LSP completion and signature-help. In
+24.03 you'll notice that LSP completion doesn't automatically pop up after just
+navigating around in insert mode, for example with arrow keys. It's now hooked
+into document changes instead, so it can smartly pop up when you start changing
+a document rather than every time the editor goes idle.</p>
+<p>The other major improvement to be excited for is the general replacement of the
+<code>regex</code> crate with <a href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a>, a streaming regex implementation
+compatible with <a href="https://github.com/cessen/ropey"><code>ropey</code></a>, the rope crate we use to represent all documents.
+<code>regex-cursor</code> is capable of running on <em>discontiguous strings</em> - input that
+may not be collocated in memory. In a rope, different parts of the document
+might be stored separately internally. To use the <code>regex</code> API we needed to
+convert slices of the document to a regular Rust <code>String</code>, duplicating the
+memory footprint of that slice of the document. <code>regex-cursor</code> operates on the
+chunks of the rope instead, which greatly improves efficiency.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>As always, this is just the highlights from the 24.03 release. Check out the
+full <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2404-2024-03-30">changelog</a> for the details.</p>
+<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
+and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+
+
+<script src="/asciinema-player.min.js"></script>
+<script>
+for (const player of document.getElementsByTagName("asciinema-player")) {
+  AsciinemaPlayer.create(player.attributes["src"].value, player, {
+    cols: parseInt(player.attributes["cols"].value),
+    rows: parseInt(player.attributes["rows"].value),
+  });
+}
+</script>
+
+
+    </article>
+</body></html>
+

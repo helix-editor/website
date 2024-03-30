@@ -5,8 +5,93 @@
     <link href="https://helix-editor.com/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://helix-editor.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-10-25T00:00:00+00:00</updated>
+    <updated>2024-03-30T00:00:00+00:00</updated>
     <id>https://helix-editor.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Release 24.03 Highlights</title>
+        <published>2024-03-30T00:00:00+00:00</published>
+        <updated>2024-03-30T00:00:00+00:00</updated>
+        <author>
+          <name>Helix Contributors</name>
+        </author>
+        <link rel="alternate" href="https://helix-editor.com/news/release-24-03-highlights/" type="text/html"/>
+        <id>https://helix-editor.com/news/release-24-03-highlights/</id>
+        <content type="html">&lt;p&gt;The Helix 24.03 release has arrived! First, a very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone
+who made this release possible. This release saw changes from 125 contributors.&lt;&#x2F;p&gt;
+&lt;p&gt;New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out this release&#x27;s highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;amp-like-jumping&quot;&gt;Amp-like jumping&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;amp-jump.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Jumping features are popular in the (Neo)Vim plugin space and there are even
+plugins to add the same functionality to other tools like browsers. They allow
+you to move your selection efficiently across even large parts of the view,
+like you could by clicking with a mouse, but by entering &amp;quot;labels&amp;quot; instead.
+24.03 introduces jumping commands inspired by the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jmacdonald&#x2F;amp&quot;&gt;Amp editor&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;amp.rs&#x2F;docs&#x2F;usage&#x2F;#jump-mode&quot;&gt;jump mode&lt;&#x2F;a&gt;.
+Press &lt;code&gt;gw&lt;&#x2F;code&gt; to add the jump labels and then enter one of the labels to jump to
+the word under that label. Using &lt;code&gt;gw&lt;&#x2F;code&gt; in select mode (&lt;code&gt;v&lt;&#x2F;code&gt;) extends the
+selection.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;block-comments&quot;&gt;Block comments&lt;&#x2F;h2&gt;
+&lt;p&gt;In the past, Helix has only been able to toggle line comments like &lt;code&gt;&#x2F;&#x2F;&lt;&#x2F;code&gt; and &lt;code&gt;#&lt;&#x2F;code&gt;
+and languages like OCaml have been left with workarounds like a &amp;quot;line&amp;quot; comment
+token of &lt;code&gt;(*&lt;&#x2F;code&gt;. In 24.03 Helix can now toggle block comments as well. Use &lt;code&gt;C-c&lt;&#x2F;code&gt;
+or &lt;code&gt;&amp;lt;space&amp;gt;c&lt;&#x2F;code&gt; to smartly add or remove line or block comments around the current
+selection based on the language&#x27;s comment token configuration, &lt;code&gt;&amp;lt;space&amp;gt;c&lt;&#x2F;code&gt; to
+toggle block comments around the current selection, or &lt;code&gt;&amp;lt;space&amp;gt;&amp;lt;A-c&amp;gt;&lt;&#x2F;code&gt; to toggle
+only line comments on the current line.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;improvements-to-tree-sitter-injections&quot;&gt;Improvements to tree-sitter injections&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; incremental parsing for syntax highlighting,
+textobjects, indentation and some motions and commands. 24.03 improves how we
+handle &lt;em&gt;&lt;a href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;syntax-highlighting#language-injection&quot;&gt;injections&lt;&#x2F;a&gt;&lt;&#x2F;em&gt; - a powerful tree-sitter feature for parsing documents
+with multiple languages. For example you might have JavaScript, CSS or other
+languages within a &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;lt;style&amp;gt;&lt;&#x2F;code&gt; tag in HTML. The HTML parser doesn&#x27;t
+need to know how to parse all of these languages. Instead it can &lt;em&gt;inject&lt;&#x2F;em&gt;
+JavaScript or CSS parsers to handle the &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;lt;style&amp;gt;&lt;&#x2F;code&gt; tag contents.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;ts-subtree-and-motions-injection.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;One of these improvements is to the &lt;code&gt;:tree-sitter-subtree&lt;&#x2F;code&gt; command that
+displays an S-expression of the syntax tree under the cursor. 24.03 shows the
+injection layer under the selection instead of only the root layer. For example
+in this asciicast we now show the syntax tree for the JavaScript parts of the
+document while in the past we only showed the HTML part of the tree.&lt;&#x2F;p&gt;
+&lt;p&gt;The other big improvement is to the tree-sitter motions. &lt;code&gt;A-o&lt;&#x2F;code&gt; (alt + o)
+expands the selection to the parent node of the syntax tree node covered by the
+current selection. &lt;code&gt;A-i&lt;&#x2F;code&gt; shrinks to the child node and &lt;code&gt;A-n&lt;&#x2F;code&gt; and &lt;code&gt;A-p&lt;&#x2F;code&gt; go to
+the &lt;em&gt;n&lt;&#x2F;em&gt;ext and &lt;em&gt;p&lt;&#x2F;em&gt;revious nodes, respectively. Previously these
+commands only worked on the root layer (for example HTML in the asciicast) but
+they now find the injection layer that contains the selection and move along
+that layer&#x27;s syntax tree. Internally we organize injection layers into a
+tree-like structure so that these motions can switch layers when needed.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for future changes that improve injections, like finding textobjects
+within injected content.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;internal-improvements&quot;&gt;Internal improvements&lt;&#x2F;h2&gt;
+&lt;p&gt;24.03 also saw major internal improvements. The first comes from a new &amp;quot;event
+system&amp;quot; - a system built around Tokio channels and tasks that allows different
+parts of the Helix codebase to communicate with one another. The event system
+also adds generic ways to debounce and run tasks in background threads so we
+can prevent locking up the UI. Some parts of the code base have already been
+migrated to the event system like LSP completion and signature-help. In
+24.03 you&#x27;ll notice that LSP completion doesn&#x27;t automatically pop up after just
+navigating around in insert mode, for example with arrow keys. It&#x27;s now hooked
+into document changes instead, so it can smartly pop up when you start changing
+a document rather than every time the editor goes idle.&lt;&#x2F;p&gt;
+&lt;p&gt;The other major improvement to be excited for is the general replacement of the
+&lt;code&gt;regex&lt;&#x2F;code&gt; crate with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;regex-cursor&quot;&gt;&lt;code&gt;regex-cursor&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a streaming regex implementation
+compatible with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;cessen&#x2F;ropey&quot;&gt;&lt;code&gt;ropey&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, the rope crate we use to represent all documents.
+&lt;code&gt;regex-cursor&lt;&#x2F;code&gt; is capable of running on &lt;em&gt;discontiguous strings&lt;&#x2F;em&gt; - input that
+may not be collocated in memory. In a rope, different parts of the document
+might be stored separately internally. To use the &lt;code&gt;regex&lt;&#x2F;code&gt; API we needed to
+convert slices of the document to a regular Rust &lt;code&gt;String&lt;&#x2F;code&gt;, duplicating the
+memory footprint of that slice of the document. &lt;code&gt;regex-cursor&lt;&#x2F;code&gt; operates on the
+chunks of the rope instead, which greatly improves efficiency.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;As always, this is just the highlights from the 24.03 release. Check out the
+full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2404-2024-03-30&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
     <entry xml:lang="en">
         <title>Release 23.10 Highlights</title>
         <published>2023-10-25T00:00:00+00:00</published>
