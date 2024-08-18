@@ -8,7 +8,7 @@ compile_sass = false
 build_search_index = true
 
 # Generate an RSS feed
-generate_feed = true
+generate_feeds = true
 
 # The site title, author and description; used in feeds by default.
 title = "Helix"
