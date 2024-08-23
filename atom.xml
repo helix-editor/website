@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Helix</title>
+    <subtitle>A post-modern modal text editor.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://helix-editor.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://helix-editor.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-03-30T00:00:00+00:00</updated>
+    <id>https://helix-editor.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Release 24.03 Highlights</title>
+        <published>2024-03-30T00:00:00+00:00</published>
+        <updated>2024-03-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-24-03-highlights/"/>
+        <id>https://helix-editor.com/news/release-24-03-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-24-03-highlights/">&lt;p&gt;The Helix 24.03 release has arrived! First, a very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone
+who made this release possible. This release saw changes from 125 contributors.&lt;&#x2F;p&gt;
+&lt;p&gt;New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out this release&#x27;s highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;amp-like-jumping&quot;&gt;Amp-like jumping&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;amp-jump.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Jumping features are popular in the (Neo)Vim plugin space and there are even
+plugins to add the same functionality to other tools like browsers. They allow
+you to move your selection efficiently across even large parts of the view,
+like you could by clicking with a mouse, but by entering &quot;labels&quot; instead.
+24.03 introduces jumping commands inspired by the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jmacdonald&#x2F;amp&quot;&gt;Amp editor&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;amp.rs&#x2F;docs&#x2F;usage&#x2F;#jump-mode&quot;&gt;jump mode&lt;&#x2F;a&gt;.
+Press &lt;code&gt;gw&lt;&#x2F;code&gt; to add the jump labels and then enter one of the labels to jump to
+the word under that label. Using &lt;code&gt;gw&lt;&#x2F;code&gt; in select mode (&lt;code&gt;v&lt;&#x2F;code&gt;) extends the
+selection.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;block-comments&quot;&gt;Block comments&lt;&#x2F;h2&gt;
+&lt;p&gt;In the past, Helix has only been able to toggle line comments like &lt;code&gt;&#x2F;&#x2F;&lt;&#x2F;code&gt; and &lt;code&gt;#&lt;&#x2F;code&gt;
+and languages like OCaml have been left with workarounds like a &quot;line&quot; comment
+token of &lt;code&gt;(*&lt;&#x2F;code&gt;. In 24.03 Helix can now toggle block comments as well. Use &lt;code&gt;C-c&lt;&#x2F;code&gt;
+or &lt;code&gt;&amp;lt;space&amp;gt;c&lt;&#x2F;code&gt; to smartly add or remove line or block comments around the current
+selection based on the language&#x27;s comment token configuration, &lt;code&gt;&amp;lt;space&amp;gt;c&lt;&#x2F;code&gt; to
+toggle block comments around the current selection, or &lt;code&gt;&amp;lt;space&amp;gt;&amp;lt;A-c&amp;gt;&lt;&#x2F;code&gt; to toggle
+only line comments on the current line.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;improvements-to-tree-sitter-injections&quot;&gt;Improvements to tree-sitter injections&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; incremental parsing for syntax highlighting,
+textobjects, indentation and some motions and commands. 24.03 improves how we
+handle &lt;em&gt;&lt;a href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;syntax-highlighting#language-injection&quot;&gt;injections&lt;&#x2F;a&gt;&lt;&#x2F;em&gt; - a powerful tree-sitter feature for parsing documents
+with multiple languages. For example you might have JavaScript, CSS or other
+languages within a &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;lt;style&amp;gt;&lt;&#x2F;code&gt; tag in HTML. The HTML parser doesn&#x27;t
+need to know how to parse all of these languages. Instead it can &lt;em&gt;inject&lt;&#x2F;em&gt;
+JavaScript or CSS parsers to handle the &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;lt;style&amp;gt;&lt;&#x2F;code&gt; tag contents.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;ts-subtree-and-motions-injection.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;One of these improvements is to the &lt;code&gt;:tree-sitter-subtree&lt;&#x2F;code&gt; command that
+displays an S-expression of the syntax tree under the cursor. 24.03 shows the
+injection layer under the selection instead of only the root layer. For example
+in this asciicast we now show the syntax tree for the JavaScript parts of the
+document while in the past we only showed the HTML part of the tree.&lt;&#x2F;p&gt;
+&lt;p&gt;The other big improvement is to the tree-sitter motions. &lt;code&gt;A-o&lt;&#x2F;code&gt; (alt + o)
+expands the selection to the parent node of the syntax tree node covered by the
+current selection. &lt;code&gt;A-i&lt;&#x2F;code&gt; shrinks to the child node and &lt;code&gt;A-n&lt;&#x2F;code&gt; and &lt;code&gt;A-p&lt;&#x2F;code&gt; go to
+the &lt;em&gt;n&lt;&#x2F;em&gt;ext and &lt;em&gt;p&lt;&#x2F;em&gt;revious nodes, respectively. Previously these
+commands only worked on the root layer (for example HTML in the asciicast) but
+they now find the injection layer that contains the selection and move along
+that layer&#x27;s syntax tree. Internally we organize injection layers into a
+tree-like structure so that these motions can switch layers when needed.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for future changes that improve injections, like finding textobjects
+within injected content.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;internal-improvements&quot;&gt;Internal improvements&lt;&#x2F;h2&gt;
+&lt;p&gt;24.03 also saw major internal improvements. The first comes from a new &quot;event
+system&quot; - a system built around Tokio channels and tasks that allows different
+parts of the Helix codebase to communicate with one another. The event system
+also adds generic ways to debounce and run tasks in background threads so we
+can prevent locking up the UI. Some parts of the code base have already been
+migrated to the event system like LSP completion and signature-help. In
+24.03 you&#x27;ll notice that LSP completion doesn&#x27;t automatically pop up after just
+navigating around in insert mode, for example with arrow keys. It&#x27;s now hooked
+into document changes instead, so it can smartly pop up when you start changing
+a document rather than every time the editor goes idle.&lt;&#x2F;p&gt;
+&lt;p&gt;The other major improvement to be excited for is the general replacement of the
+&lt;code&gt;regex&lt;&#x2F;code&gt; crate with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;regex-cursor&quot;&gt;&lt;code&gt;regex-cursor&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a streaming regex implementation
+compatible with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;cessen&#x2F;ropey&quot;&gt;&lt;code&gt;ropey&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, the rope crate we use to represent all documents.
+&lt;code&gt;regex-cursor&lt;&#x2F;code&gt; is capable of running on &lt;em&gt;discontiguous strings&lt;&#x2F;em&gt; - input that
+may not be collocated in memory. In a rope, different parts of the document
+might be stored separately internally. To use the &lt;code&gt;regex&lt;&#x2F;code&gt; API we needed to
+convert slices of the document to a regular Rust &lt;code&gt;String&lt;&#x2F;code&gt;, duplicating the
+memory footprint of that slice of the document. &lt;code&gt;regex-cursor&lt;&#x2F;code&gt; operates on the
+chunks of the rope instead, which greatly improves efficiency.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;As always, this is just the highlights from the 24.03 release. Check out the
+full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2404-2024-03-30&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 23.10 Highlights</title>
+        <published>2023-10-25T00:00:00+00:00</published>
+        <updated>2023-10-25T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-23-10-highlights/"/>
+        <id>https://helix-editor.com/news/release-23-10-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-23-10-highlights/">&lt;p&gt;The Helix 23.10 release is finally here! 23.10 introduces some very large
+internal changes that enable some powerful features. A very big &lt;em&gt;thank you&lt;&#x2F;em&gt; to
+everyone who made this release possible.&lt;&#x2F;p&gt;
+&lt;p&gt;New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out this release&#x27;s highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;multiple-language-servers&quot;&gt;Multiple language servers&lt;&#x2F;h2&gt;
+&lt;p&gt;23.10 brings a big change to the way we handle language servers.
+Previously each language could only support one language server at a time but
+now you can configure multiple to work in tandem. For example you might use
+the TypeScript language server for JavaScript&#x2F;TypeScript development and also
+configure &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mattn&#x2F;efm-langserver&quot;&gt;efm-langserver&lt;&#x2F;a&gt; for
+Prettier formatting and ESLint diagnostics. With the new support for multiple
+language servers, you can specify which features to use from each language
+server.&lt;&#x2F;p&gt;
+&lt;p&gt;This brings a big change to the way language servers are configured in your
+language configuration (&lt;code&gt;languages.toml&lt;&#x2F;code&gt;). All language servers are now
+specified separately from languages and then each language selects which
+language server(s) to use. From the example above, you might configure efm-
+langserver and typescript-language-server like so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[language-server.efm]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;command &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;efm-langserver&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;documentFormatting &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[language-server.typescript-language-server]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;command &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript-language-server&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;args &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;--stdio&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hostInfo &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;helix&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[[language]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;auto-format &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;language-servers &lt;&#x2F;span&gt;&lt;span&gt;= [
+&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;efm&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;only-features &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] },
+&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript-language-server&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;except-features &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] },
+&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;See more details in the &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;languages.html&quot;&gt;language configuration docs&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fuzzy-matching-with-nucleo&quot;&gt;Fuzzy matching with Nucleo&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;nucleo-nix-store.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Helix uses &quot;fuzzy&quot; matching to filter as-you-type in components like the file
+picker. Previously we used the popular &lt;code&gt;skim&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;fuzzy-matcher&lt;&#x2F;code&gt; crates but in the
+23.10 release we&#x27;ve switched to the new
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;nucleo&quot;&gt;&lt;code&gt;nucleo&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. Nucleo is
+significantly faster than skim and fzf, handles Unicode correctly, and uses a
+bonus system that feels more intuitive.&lt;&#x2F;p&gt;
+&lt;p&gt;Nucleo also enables us to lazily stream in new items, which is a big boost for
+the user experience for pickers. In the asciicast above I&#x27;m scanning through
+my computer&#x27;s &lt;code&gt;&#x2F;nix&#x2F;store&lt;&#x2F;code&gt;, a huge directory containing more than twenty
+million files. The file picker now works gradually as we scan through the
+directory and matches files as we find them.&lt;&#x2F;p&gt;
+&lt;p&gt;Nucleo also paves the way for future picker upgrades. Stay tuned to the
+upcoming release notes to see where we&#x27;ll take the picker.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;smart-tab&quot;&gt;Smart tab&lt;&#x2F;h2&gt;
+&lt;p&gt;Smart tab is a new feature bound to the tab key in the default keymap. When
+you press tab and the line to the left of the cursor isn&#x27;t all whitespace,
+the cursor will jump to the end of the syntax tree&#x27;s parent node. For example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;nix&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-nix &quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;key &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;nested &lt;&#x2F;span&gt;&lt;span&gt;= {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;key2 &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;value2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# When the cursor is at the end of the line here, &amp;lt;tab&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;                     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# jumps right after the closing brace on the next line.
+&lt;&#x2F;span&gt;&lt;span&gt;  };
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is useful in languages like Nix for adding semicolons at the end of an
+attribute set or jumping to the end of a block in a C-like language:&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;smart-tab.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;h2 id=&quot;expanded-support-for-registers&quot;&gt;Expanded support for registers&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;special-registers.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Registers allow you to save and paste values. For example you might select
+a paragraph, use &lt;code&gt;&quot;ay&lt;&#x2F;code&gt; to yank it into the &lt;code&gt;a&lt;&#x2F;code&gt; register, and later use &lt;code&gt;&quot;ap&lt;&#x2F;code&gt;
+to paste that paragraph. Some registers have special effects when read or
+written to though like the &lt;code&gt;_&lt;&#x2F;code&gt; &quot;blackhole&quot; register: any values written are
+discarded and nothing can be read. Special registers have been expanded to
+include some useful ones from Kakoune and clipboard registers:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;%&lt;&#x2F;code&gt;: the current buffer name&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;&#x2F;code&gt;: the number of each selection, 1-indexed&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;.&lt;&#x2F;code&gt;: the contents of each selection&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;&#x2F;code&gt; and &lt;code&gt;+&lt;&#x2F;code&gt;: system and primary clipboards&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Also check out the new register statusline element. It appears when you select
+a register with &lt;code&gt;&quot;&lt;&#x2F;code&gt;. Notice the &lt;code&gt;reg=#&lt;&#x2F;code&gt; in the bottom-right corner of the
+statusline in the asciicast when we select the &lt;code&gt;#&lt;&#x2F;code&gt; register and how it goes
+away when we paste that register (&lt;code&gt;p&lt;&#x2F;code&gt;) or increment the selections (&lt;code&gt;C-a&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;initial-support-for-lsp-didchangewatchedfiles&quot;&gt;Initial support for LSP DidChangeWatchedFiles&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;initial-lsp-didchangewatchedfiles.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Some language servers use the DidChangeWatchedFiles notification to discover
+changes to related files in other languages. For example, &lt;code&gt;rust-analyzer&lt;&#x2F;code&gt; will
+fetch and index new dependencies when you add them to your &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt;.
+Helix will now send file change notifications when the file is changed by
+Helix itself. Full support for DidChangeWatchedFiles will require a file
+watcher but for now we&#x27;re able to support the most common use-case for
+DidChangeWatchedFiles.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;syntax-highlight-regex-prompts&quot;&gt;Syntax highlight regex prompts&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;regex-prompt-highlighting.png&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Regex prompts like those created with &lt;code&gt;s&lt;&#x2F;code&gt;, &lt;code&gt;S&lt;&#x2F;code&gt; or &lt;code&gt;|&lt;&#x2F;code&gt; are now syntax highlighted
+via tree-sitter-regex. The highlighting makes special characters more obvious
+and can catch syntax errors like trailing backslashes.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;As always, this is just the tip of the iceberg for the 23.10 release. Check out
+the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2310-2023-10-24&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 23.03 Highlights</title>
+        <published>2023-03-31T00:00:00+00:00</published>
+        <updated>2023-03-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-23-03-highlights/"/>
+        <id>https://helix-editor.com/news/release-23-03-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-23-03-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 23.03 release. First, a big &lt;em&gt;thank you&lt;&#x2F;em&gt; to everyone involved!
+This release includes changes from 102 contributors. Today&#x27;s release brings
+some especially useful and exciting features, so let&#x27;s jump right in.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;soft-wrap&quot;&gt;Soft-wrap&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;softwrap.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Soft-wrap breaks up lines to fit in view without inserting actual line break
+characters into the text (so called &quot;hard-wrapping&quot;). This can be useful for
+reading and editing documentation or code with especially long lines. Enable
+soft-wrap in your config with the &lt;code&gt;editor.soft-wrap.enable&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml
+&lt;&#x2F;span&gt;&lt;span&gt;[editor.soft-wrap]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;enable &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Heuristics for where to break lines and the wrap indicator may also be
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorsoft-wrap-section&quot;&gt;configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Soft-wrap is the first feature implemented on top of a new &quot;virtual text&quot; API
+within the Helix codebase. The virtual text API allows us to decorate and
+manipulate the actual text in a document without disturbing positioning and
+modifications. The virtual text API opens the door for many new exciting
+features like the inlay hints we&#x27;ll see next.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;inlay-hints&quot;&gt;Inlay hints&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;inlay-hints.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Inlay hints are a new feature in the latest LSP specification. Language servers
+can provide editors with hints to show in a document. In the example above,
+rust-analyzer provides type hints for variables and intermediary expressions
+as well as parameter names in function calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Inlay hints can be enabled in your config with the &lt;code&gt;lsp.display-inlay-hints&lt;&#x2F;code&gt;
+key.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;initial-support-for-snippets&quot;&gt;Initial support for snippets&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;snippets.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;LSP snippets are a way for language servers to provide more complex completions
+for an editor. Language servers can specify where to place cursors within a
+completion (tabstops), placeholder values and more. Helix now has initial
+support for LSP completions, leaving more advanced snippet features like
+virtual placeholders, multiple tabstops, and variable substitutions for future
+work.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dynamic-workspace-symbol-picker&quot;&gt;Dynamic workspace symbol picker&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;dynamic-workspace-symbol-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The workspace symbol picker (&lt;code&gt;&amp;lt;space&amp;gt;S&lt;&#x2F;code&gt;) is an LSP-driven feature for looking
+up a symbol in a project. Large projects might have many symbols, though, so
+this symbol picker typically wouldn&#x27;t load them all at once. The workspace
+symbol picker has been reworked in this release though to dynamically
+re-request symbols with a new query as you type in the picker. This lets the
+language server narrow down the number of symbols and only tell Helix about the
+ones relevant to the search. This rework fixes compatibility with some language
+servers which returned empty symbols with no query (&lt;code&gt;gopls&lt;&#x2F;code&gt;, &lt;code&gt;pyright&lt;&#x2F;code&gt;,
+&lt;code&gt;clangd&lt;&#x2F;code&gt;) or limited results (&lt;code&gt;rust-analyzer&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;The &quot;dynamic picker&quot; introduced in this refactor may benefit other pickers in
+the future, for example allowing the global search picker (&lt;code&gt;&amp;lt;space&amp;gt;&#x2F;&lt;&#x2F;code&gt;) to
+update on-the-fly as you change the query.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;version-control-head-statusline-element&quot;&gt;Version control HEAD statusline element&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;vcs-statusline-element.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;A new statusline element has been added which displays the version control
+HEAD. Add this to your statusline by introducing the &lt;code&gt;&quot;version-control&quot;&lt;&#x2F;code&gt;
+element in the
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorstatusline-section&quot;&gt;&lt;code&gt;editor.statusline&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;
+section of your config for the &lt;code&gt;left&lt;&#x2F;code&gt;, &lt;code&gt;center&lt;&#x2F;code&gt; or &lt;code&gt;right&lt;&#x2F;code&gt; sides.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enhanced-keyboard-protocol&quot;&gt;Enhanced keyboard protocol&lt;&#x2F;h2&gt;
+&lt;p&gt;Support for the &lt;a href=&quot;https:&#x2F;&#x2F;sw.kovidgoyal.net&#x2F;kitty&#x2F;keyboard-protocol&#x2F;&quot;&gt;enhanced keyboard protocol&lt;&#x2F;a&gt; is now enabled. Terminals that
+support the protocol (Kitty, WezTerm) can now send unambiguous keycodes to
+Helix, enabling key combinations that weren&#x27;t possible to bind before like
+&lt;code&gt;C-&#x2F;&lt;&#x2F;code&gt;, &lt;code&gt;C-h&lt;&#x2F;code&gt; or &lt;code&gt;S-backspace&lt;&#x2F;code&gt;. This functionality works out-of-the-box for
+terminals that support the protocol.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;runtime-directory-refactor&quot;&gt;Runtime directory refactor&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix keeps files like tree-sitter parsers and queries, themes and the tutor
+file in a special &quot;runtime&quot; directory. This directory is typically installed
+by your package manager and shouldn&#x27;t be modified by hand. Multiple runtime
+directories are now supported, so you can keep the runtime files installed by
+your package manager unchanged while adding new tree-sitter parsers and
+queries to a local runtime directory. On Unix systems you can add files to the
+&lt;code&gt;~&#x2F;.config&#x2F;helix&#x2F;runtime&lt;&#x2F;code&gt; directory which take precedence over the runtime
+directory installed by a package manager.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These flashy features are just the tip of the iceberg though. Check out the
+23.03 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2303-2023-03-31&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the changes in this release.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 22.12 Highlights</title>
+        <published>2022-12-06T22:00:00+00:00</published>
+        <updated>2022-12-06T22:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-12-highlights/"/>
+        <id>https://helix-editor.com/news/release-22-12-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-22-12-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today we cut the 22.12 release. This release is big and featureful and saw
+contributions from 99 contributors. Thank you all! 🎊&lt;&#x2F;p&gt;
+&lt;p&gt;Helix now has a logo! Thank you &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jakehl&quot;&gt;&lt;code&gt;@jakehl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for your
+contribution!&lt;&#x2F;p&gt;
+&lt;img src=&quot;&#x2F;logo-with-text.svg&quot; style=&quot;max-width: 75%; display: block; margin-left: auto; margin-right: auto&quot; &#x2F;&gt;
+&lt;p&gt;Looking for an introduction to Helix or to see Helix out in the wild? Check out
+these new videos on Helix.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8L308PdmhMY&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8L308PdmhMY&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now let&#x27;s jump into the highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;git-diff-gutter&quot;&gt;Git diff gutter&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;git-diff-gutter.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new git diff gutter tracks the changes in the current buffer compared to
+the the git index. The markers in the gutter indicate additions, modifications,
+and removals compared to the file checked in to git. The git diff gutter is
+enabled by default.&lt;&#x2F;p&gt;
+&lt;p&gt;Also be sure to try out the new hunk textobject: &lt;code&gt;]g&lt;&#x2F;code&gt; jumps to the next changed
+hunk and &lt;code&gt;[g&lt;&#x2F;code&gt; jumps to the previous.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;underline-styles-and-colors&quot;&gt;Underline styles and colors&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;undercurl.png&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Terminals with support for extended underlines can render underlines with
+styles like curls or dots as well as colors. Extended underlines can be used to
+improve the display of LSP diagnostics. These can be configured in themes with
+the new &lt;code&gt;underline&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;style &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The existing &lt;code&gt;underline&lt;&#x2F;code&gt; modifier is now an alias for the &lt;code&gt;&quot;line&quot;&lt;&#x2F;code&gt; style.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re looking to use this in a theme that hasn&#x27;t configured it yet, you
+can use the new &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;themes.html#inheritance&quot;&gt;theme inheritance&lt;&#x2F;a&gt; feature to modify just the scopes you would
+like to change:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;themes&#x2F;my-onedark.toml
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;inherits &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;onedark&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;fg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorfg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorbg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;autosave-when-the-terminal-loses-focus&quot;&gt;Autosave when the terminal loses focus&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;auto-save.gif&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Terminals with support for focus events can now automatically save the current
+file when you focus on a new window. Enable this behavior by setting the
+&lt;code&gt;editor.auto-save&lt;&#x2F;code&gt; configuration key to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;multi-cursor-completion&quot;&gt;Multi-cursor completion&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;multi-cursor-completion.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Editing with multiple selections is a central feature within helix. LSP
+auto-completion now applies to all cursors when editing with multiple
+selections, making it easy to replace multiple instances of a symbol with
+auto-complete&#x27;s help.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bufferline&quot;&gt;Bufferline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;bufferline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The bufferline is a listing of buffers displayed at the top of a window. It
+provides an at-a-glance view of the buffers you&#x27;re working with. Set
+the &lt;code&gt;editor.bufferline&lt;&#x2F;code&gt; configuration key to &lt;code&gt;&quot;always&quot;&lt;&#x2F;code&gt; to always show the
+bufferline, &lt;code&gt;&quot;multiple&quot;&lt;&#x2F;code&gt; to show the bufferline only when there are multiple
+buffers open, and &lt;code&gt;&quot;never&quot;&lt;&#x2F;code&gt; to disable it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;behind-the-scenes-improvements&quot;&gt;Behind-the-scenes improvements&lt;&#x2F;h2&gt;
+&lt;p&gt;22.12 brings also brings important changes to Helix&#x27;s plumbing:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The code-path for writing files has been overhauled. This fixes a number of
+edge cases around writing large files and failures to write.&lt;&#x2F;li&gt;
+&lt;li&gt;Performance has been improved for tree-sitter parsing, querying and the
+handling of injections. This is a noticeable speed boost for large markdown
+files in particular since markdown uses injections extensively.&lt;&#x2F;li&gt;
+&lt;li&gt;Failure handling in the LSP code-paths has been improved. Helix now
+gracefully handles cases like language servers not supporting capabilities
+and unexpected language server crashes.&lt;&#x2F;li&gt;
+&lt;li&gt;The speed and memory usage of the &lt;code&gt;:reload&lt;&#x2F;code&gt; command has been vastly improved.
+This comes from the creation of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
+implementation which is faster than the one used internally by &lt;code&gt;git&lt;&#x2F;code&gt;!&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;There are many more changes arriving now in 22.12 than we can fit in this post.
+Check out the 22.12 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2212-2022-12-06&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the performance
+boosts, usability improvements and fixes in 22.12.&lt;&#x2F;p&gt;
+&lt;p&gt;Contribute and follow along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub
+repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix
+channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 22.08 Highlights</title>
+        <published>2022-08-31T18:00:00+00:00</published>
+        <updated>2022-08-31T18:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-08-highlights/"/>
+        <id>https://helix-editor.com/news/release-22-08-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-22-08-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 22.08 release, a release with plenty of fixes and new features.
+A big &lt;em&gt;thank you&lt;&#x2F;em&gt; to our contributors! This release had 87 contributors. 🎉&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out the highlighted features for 22.08.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;indent-guides&quot;&gt;Indent guides&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;indent-guides.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Indent guides provide a visual representation for the current indentation
+level. Enable indent guides with the &lt;code&gt;editor.indent-guides.render&lt;&#x2F;code&gt; key.
+The character used as a guide is also customizable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cursorline&quot;&gt;Cursorline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;cursorline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The cursorline is a horizontal highlighted bar that follows your cursor.
+Cursorlines may be themed for the primary and all secondary cursors and
+can be enabled or disabled separate from theming with the &lt;code&gt;editor.cursorline&lt;&#x2F;code&gt;
+option.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mode-colors&quot;&gt;Mode colors&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;color-modes.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The mode indicator in the statusline may now be styled based on the current
+mode. This feature may be enabled with the &lt;code&gt;editor.color-modes&lt;&#x2F;code&gt; option and
+colors may be configured using &lt;code&gt;ui.statusline.{insert,normal,select}&lt;&#x2F;code&gt; keys
+in themes.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configurable-statusline&quot;&gt;Configurable statusline&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;configurable-statusline.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The statusline may now be configured in the &lt;code&gt;editor.statusline&lt;&#x2F;code&gt; section
+of the config. Elements may be placed on the left, center or right of
+the statusline with a configurable separator and spacers. Two new elements
+may now also be added to your statusline: &lt;code&gt;file-line-ending&lt;&#x2F;code&gt; and
+&lt;code&gt;position-percentage&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-signature-help&quot;&gt;LSP signature help&lt;&#x2F;h2&gt;
+&lt;img src=&quot;&#x2F;signature-help.gif&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
+&lt;p&gt;Signature help provides documentation as you type the arguments to a function
+call and tracks which function parameter is currently being entered. Signature
+help is enabled by default.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-document-highlight&quot;&gt;LSP document highlight&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;document-highlight.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The document highlight request (&lt;code&gt;Space-h&lt;&#x2F;code&gt;) creates a selection for all
+instances of the symbol under the primary cursor. Helix has robust support for
+multiple selections, so you may edit all selections simultaneously (for
+example with &lt;code&gt;c&lt;&#x2F;code&gt;) or cycle between selections (&lt;code&gt;(&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;)&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lsp-diagnostics-pickers&quot;&gt;LSP diagnostics pickers&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;diagnostic-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new buffer and workspace diagnostics pickers may be used to jump to
+Language Server diagnostics like warnings and errors. Use &lt;code&gt;Space-g&lt;&#x2F;code&gt; to
+open the picker with diagnostics for the current buffer and &lt;code&gt;Space-G&lt;&#x2F;code&gt;
+to view all diagnostics in a workspace.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;jumplist-picker&quot;&gt;Jumplist picker&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;jumplist-picker.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The jumplist saves a history of selections. Save selections with &lt;code&gt;C-s&lt;&#x2F;code&gt; and jump
+forward with &lt;code&gt;C-i&lt;&#x2F;code&gt; and backward with &lt;code&gt;C-o&lt;&#x2F;code&gt;. The jumplist is a powerful tool,
+especially when working with Language Server goto-definition or global search
+which both save to the jumplist automatically.&lt;&#x2F;p&gt;
+&lt;p&gt;22.08 adds a new picker that can be used to jump across entries in the jumplist.
+The preview pane shows the line of the saved primary selection. Bring up the
+jumplist picker with &lt;code&gt;Space-j&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;external-formatters&quot;&gt;External formatters&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;external-formatter.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Many Language Servers provide format-on-save capabilities. For languages
+without Language Servers or for Language Servers that do not implement
+formatting, an external formatter binary may now be configured. The document
+is passed through the formatter&#x27;s stdin and replaced with the formatted output
+from stdout.&lt;&#x2F;p&gt;
+&lt;p&gt;An external formatter may also be used when you prefer the formatting from an
+external tool over formatting provided by a Language Server. For example if you
+configure &lt;code&gt;black&lt;&#x2F;code&gt; for formatting Python, formatting will be accomplished with
+&lt;code&gt;black&lt;&#x2F;code&gt; rather than &lt;code&gt;pylsp&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bracketed-paste&quot;&gt;Bracketed paste&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;bracketed-paste.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Bracketed paste is terminal emulator feature that allows terminal programs to
+recognize paste sequences and handle the pasted text. Without bracketed paste
+support, text pasted with operating-system level paste (&lt;code&gt;C-v&lt;&#x2F;code&gt;) looked to Helix
+like text that was entered very quickly which lead to some odd side-effects
+like awkward indentation or mysteriously appearing auto-pair characters.&lt;&#x2F;p&gt;
+&lt;p&gt;22.08 adds support for bracketed paste, so now all pastes into Helix from
+terminal emulators that support bracketed paste work as if you had pressed
+&lt;code&gt;Space-p&lt;&#x2F;code&gt; in normal mode. In the above cast, the entire text of &lt;em&gt;Moby-Dick&lt;&#x2F;em&gt;
+is pasted with &lt;code&gt;C-v&lt;&#x2F;code&gt; in insert mode instantly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These changes are just the highlights. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-31&quot;&gt;changelog&lt;&#x2F;a&gt; to see
+all that&#x27;s changed since 22.05. Release binaries can be found on the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.08&quot;&gt;release
+page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Be ready for more exciting changes in Helix 22.10 expected in October!
+Contribute and follow along with development in the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in
+the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 22.05 Highlights</title>
+        <published>2022-05-28T13:00:00+00:00</published>
+        <updated>2022-05-28T13:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-05-highlights/"/>
+        <id>https://helix-editor.com/news/release-22-05-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-22-05-highlights/">&lt;p&gt;Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Today marks the 22.05 release, a featureful release with over double the number
+of contributors as last release (110!). A big thanks to all involved! 🙌&lt;&#x2F;p&gt;
+&lt;p&gt;Also a big shout out to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;amirrezaask&quot;&gt;&lt;code&gt;@amirrezaask&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for
+this great &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=__U4A2Q9fNI&quot;&gt;Helix introduction video&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check out the flashy features of 22.05.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;indentation-rework&quot;&gt;Indentation rework&lt;&#x2F;h2&gt;
+&lt;p&gt;The indentation system has been fully reworked. Indentation still works by
+querying the parsed tree-sitter syntax tree for a document, but now query files
+can use the full expressive power of tree-sitter queries rather than just
+simple node names. Expect more robust indentation with fewer edge cases.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configurable-gutters&quot;&gt;Configurable gutters&lt;&#x2F;h2&gt;
+&lt;p&gt;Gutters can now be configured in your &lt;code&gt;config.toml&lt;&#x2F;code&gt; file. For example, you can
+remove the line-number gutter while still showing LSP diagnostics.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[editor]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gutters &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# default is [&amp;quot;diagnostics&amp;quot;, &amp;quot;line-numbers&amp;quot;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;local-language-configuration&quot;&gt;Local language configuration&lt;&#x2F;h2&gt;
+&lt;p&gt;Language configuration can now be specified local to a project. Create a
+&lt;code&gt;.helix&lt;&#x2F;code&gt; directory and a &lt;code&gt;languages.toml&lt;&#x2F;code&gt; under it to override values from the
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;guides&#x2F;adding_languages.html#language-configuration&quot;&gt;default language configuration&lt;&#x2F;a&gt;. For example, override a C project&#x27;s indents
+to use tabs instead of spaces for indentation:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# my_c_project&#x2F;.helix&#x2F;languages.toml
+&lt;&#x2F;span&gt;&lt;span&gt;[[language]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;indent &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;tab-width &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;unit &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\t&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rulers&quot;&gt;Rulers&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;rulers.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Vertical rulers may now be configured through the &lt;code&gt;rulers&lt;&#x2F;code&gt; option. Use them
+as a guide when adhering to a maximum line length.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;show-visible-whitespace&quot;&gt;Show visible whitespace&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;visible-whitespace.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Whitespace characters like spaces, tabs, and newlines may now be rendered. Use
+the &lt;code&gt;whitespace.render&lt;&#x2F;code&gt; option either at runtime with the &lt;code&gt;:set&lt;&#x2F;code&gt; command or in
+your &lt;code&gt;config.toml&lt;&#x2F;code&gt; under the editor section. Visible whitespace indicators can
+make Helix&#x27;s selection model more intuitive, especially around line endings.
+The characters used for tabs, spaces, non-breaking space, and newlines may also
+be customized as well as whether any of the characters are rendered at all. In
+fact, for the remaining asciicasts in this post, you&#x27;ll be seeing my custom tab
+and newline characters!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;use-registers-in-prompts&quot;&gt;Use registers in prompts&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;insert-registers-in-prompts.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Values stored in registers may now be used in prompts like search or global
+search. In the above example, we yank a selection to the &lt;code&gt;&quot;&lt;&#x2F;code&gt; register with
+&lt;code&gt;y&lt;&#x2F;code&gt; and then open up the global search prompt with &lt;code&gt;Space&lt;&#x2F;code&gt; &lt;code&gt;&#x2F;&lt;&#x2F;code&gt;. The available
+registers are shown above the prompt and we hit &lt;code&gt;&quot;&lt;&#x2F;code&gt; to insert the contents of
+the &lt;code&gt;&quot;&lt;&#x2F;code&gt; register.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;reflow-paragraphs&quot;&gt;Reflow paragraphs&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;reflow.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The new &lt;code&gt;:reflow&lt;&#x2F;code&gt; command hard-wraps text to a given column width. Default
+column widths may be configured on a per-language basis. Reflow recognizes
+matching prefixes between lines, so you may reflow line-comments, markdown
+quotes or lines with leading whitespace and the leading characters will be
+placed appropriately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;swap-windows&quot;&gt;Swap windows&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;window-swapping.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Windows may now be swapped with neighbor windows and splits may be transposed.
+With the window menu open (&lt;code&gt;C-w&lt;&#x2F;code&gt; or &lt;code&gt;space w&lt;&#x2F;code&gt;), use &lt;code&gt;H&lt;&#x2F;code&gt;, &lt;code&gt;J&lt;&#x2F;code&gt;, &lt;code&gt;K&lt;&#x2F;code&gt;, and &lt;code&gt;L&lt;&#x2F;code&gt;
+to swap the current window with the left, down, up, and right neighbors,
+respectively. Use &lt;code&gt;t&lt;&#x2F;code&gt; or &lt;code&gt;C-t&lt;&#x2F;code&gt; to switch between a vertical and horizontal
+split or vice versa.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;set-a-language-at-runtime&quot;&gt;Set a language at runtime&lt;&#x2F;h2&gt;
+&lt;asciinema-player src=&quot;&#x2F;set-language.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;The language for a buffer may now be set at runtime. Use
+&lt;code&gt;:set-language language&lt;&#x2F;code&gt; (or &lt;code&gt;:lang language&lt;&#x2F;code&gt; for short) to set the language
+and switch language servers.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;These are just some highlights from the changes in 22.05. Check out the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2205-2022-05-17&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set. Pick up the release binaries for 22.05 on the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.05&quot;&gt;release page&lt;&#x2F;a&gt;. Starting with this release, an AppImage is included in the
+release binaries for easier usage from Linux.&lt;&#x2F;p&gt;
+&lt;p&gt;Expect plenty more features and improvements in Helix 22.07 coming in July.
+Contribute and follow along with development in the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the
+&lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Release 22.03 Highlights</title>
+        <published>2022-03-28T16:25:00+00:00</published>
+        <updated>2022-04-04T13:25:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-22-03-highlights/"/>
+        <id>https://helix-editor.com/news/release-22-03-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-22-03-highlights/">&lt;p&gt;Ranging from small quality-of-life improvements and fixes to large features
+and refactors, Helix 22.03 brings some exciting changes. Helix is a modal
+text editor with built-in support for multiple selections, Language
+Server Protocol (LSP), tree-sitter, and now Debug Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;Before we look at the highlights, there are some administrative notes.
+&lt;code&gt;master&lt;&#x2F;code&gt; branch changes are now published separately from the release
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;&quot;&gt;documentation&lt;&#x2F;a&gt;. Find the new &lt;code&gt;master&lt;&#x2F;code&gt; docs &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.
+Helix is switching versioning schemes. Expect to find new releases in
+Calendar Version format: &lt;code&gt;YY.0M(.MICRO)&lt;&#x2F;code&gt;. We&#x27;re aiming to cut regular
+releases every two months or so. Check out the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2203-2022-03-28&quot;&gt;changelog&lt;&#x2F;a&gt;
+for all of the new features and fixes from this release.&lt;&#x2F;p&gt;
+&lt;p&gt;With that out of the way, let&#x27;s check out the highlights!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;health-check&quot;&gt;Health-check&lt;&#x2F;h2&gt;
+&lt;p&gt;Helix 22.03 brings a new CLI flag: &lt;code&gt;hx --health&lt;&#x2F;code&gt;. Use the new health-check
+flag to troubleshoot missing language servers and queries.&lt;&#x2F;p&gt;
+&lt;p&gt;Check the health of all languages with &lt;code&gt;hx --health&lt;&#x2F;code&gt; or ask for details
+about a specific language with &lt;code&gt;hx --health &amp;lt;lang&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;health-check.cast&quot; cols=&quot;92&quot; rows=&quot;24&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;h2 id=&quot;experimental-dap-support&quot;&gt;Experimental DAP Support&lt;&#x2F;h2&gt;
+&lt;p&gt;Debug Adapter Protocol (DAP) is an abstract protocol for editors and debuggers
+to communicate. It&#x27;s very similar in spirit to the Language Server Protocol
+(LSP), but built for debugging. Interact with the debug adapter with
+&lt;code&gt;&amp;lt;space-d&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;dap.cast&quot; cols=&quot;154&quot; rows=&quot;46&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Note that the DAP adapter is experimental: it isn&#x27;t yet documented, there may
+be bugs, and the UX is a bit clunky. Contributions are very welcome!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;incremental-injection-parsing-rewrite&quot;&gt;Incremental Injection Parsing Rewrite&lt;&#x2F;h2&gt;
+&lt;p&gt;One of the cooler features of syntax highlight driven by tree-sitter is the
+ability to &lt;em&gt;inject&lt;&#x2F;em&gt; a language into another language&#x27;s document. For example,
+if you&#x27;re writing Markdown, you might use a code-fence like so:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;This is some rust:
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;```rust
+&lt;&#x2F;span&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;```
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Helix highlights the Rust block by injecting tree-sitter-rust. Injections
+have been rewritten so that changes within are now parsed incrementally, which
+is a big speed boost when editing documents with large injected blocks.&lt;&#x2F;p&gt;
+&lt;p&gt;Along with this rewrite, Helix now supports &lt;em&gt;combined&lt;&#x2F;em&gt; injections. For example,
+when highlighting Interactive Elixir (IEx), we might have a block of code like
+the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; send(self(), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;receive &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;do: &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The IEx grammar injects tree-sitter-elixir into each line after the prompt
+token. Combined injections cover the case where separate injected documents
+must be parsed in one combined document, like so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;do
+&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok
+&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Helix can now parse all three lines together. In the future this can be used
+to add support for templating languages like EJS or ERB.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tree-sitter-grammars-refactor&quot;&gt;Tree-Sitter Grammars Refactor&lt;&#x2F;h2&gt;
+&lt;p&gt;In the past, tree-sitter grammar repositories have been added to the Helix
+repository as Git submodules. Submodules can be painful to work with though,
+especially when there are more than 50 in a repository. Cloning, CI, and
+packaging times have slowed down as language support has improved.&lt;&#x2F;p&gt;
+&lt;p&gt;Helix 22.03 completely overhauls the system for tree-sitter grammars. The headline
+is that &lt;strong&gt;submodules are gone&lt;&#x2F;strong&gt;! If you&#x27;re working with the source, you can
+now clone with a standard &lt;code&gt;git clone https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&lt;&#x2F;code&gt;.
+So where did the tree-sitter submodules go? They&#x27;ve been replaced with two
+new CLI flags: &lt;code&gt;hx --grammar fetch&lt;&#x2F;code&gt; to clone grammar repositories into the
+runtime directory and &lt;code&gt;hx --grammar build&lt;&#x2F;code&gt; to compile them. Use &lt;code&gt;-g&lt;&#x2F;code&gt; for
+short. Grammar repositories are shallow-cloned in parallel, so fetching all
+60 grammars can now take as little as 6 seconds on a good connection.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re building from source or developing Helix, note that fetching and
+building are included in the &lt;code&gt;helix-term&lt;&#x2F;code&gt; build step, so you should not
+need to manually fetch or build grammars.&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally, if you would like to customize which tree-sitter grammars
+you fetch and build, you may now add the &lt;code&gt;use-grammars&lt;&#x2F;code&gt; key to the &lt;strong&gt;top&lt;&#x2F;strong&gt; of
+your &lt;code&gt;languages.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;use-grammars.cast&quot; cols=&quot;92&quot; rows=&quot;24&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;If you&#x27;re writing a tree-sitter grammar, you can try out integrating it
+by pointing helix to your grammar&#x27;s local path in &lt;code&gt;languages.toml&lt;&#x2F;code&gt; without
+needing to publish changes to a Git remote:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[[language]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ..
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[[grammar]]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;source &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;path &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;local&#x2F;path&#x2F;to&#x2F;tree-sitter-mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Running &lt;code&gt;hx -g build&lt;&#x2F;code&gt; will build the grammar. Add some queries and you&#x27;re
+on your way to interactive grammar development.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;up-next&quot;&gt;Up Next&lt;&#x2F;h2&gt;
+&lt;p&gt;The next release is sure to be exciting as well. Contribute and follow
+along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to
+join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

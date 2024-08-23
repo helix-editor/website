@@ -50,14 +50,14 @@ Adapter Protocol (DAP).</p>
 <p>Jumping features are popular in the (Neo)Vim plugin space and there are even
 plugins to add the same functionality to other tools like browsers. They allow
 you to move your selection efficiently across even large parts of the view,
-like you could by clicking with a mouse, but by entering &quot;labels&quot; instead.
+like you could by clicking with a mouse, but by entering "labels" instead.
 24.03 introduces jumping commands inspired by the <a href="https://github.com/jmacdonald/amp">Amp editor</a>'s <a href="https://amp.rs/docs/usage/#jump-mode">jump mode</a>.
 Press <code>gw</code> to add the jump labels and then enter one of the labels to jump to
 the word under that label. Using <code>gw</code> in select mode (<code>v</code>) extends the
 selection.</p>
 <h2 id="block-comments">Block comments</h2>
 <p>In the past, Helix has only been able to toggle line comments like <code>//</code> and <code>#</code>
-and languages like OCaml have been left with workarounds like a &quot;line&quot; comment
+and languages like OCaml have been left with workarounds like a "line" comment
 token of <code>(*</code>. In 24.03 Helix can now toggle block comments as well. Use <code>C-c</code>
 or <code>&lt;space&gt;c</code> to smartly add or remove line or block comments around the current
 selection based on the language's comment token configuration, <code>&lt;space&gt;c</code> to
@@ -88,8 +88,8 @@ tree-like structure so that these motions can switch layers when needed.</p>
 <p>Stay tuned for future changes that improve injections, like finding textobjects
 within injected content.</p>
 <h2 id="internal-improvements">Internal improvements</h2>
-<p>24.03 also saw major internal improvements. The first comes from a new &quot;event
-system&quot; - a system built around Tokio channels and tasks that allows different
+<p>24.03 also saw major internal improvements. The first comes from a new "event
+system" - a system built around Tokio channels and tasks that allows different
 parts of the Helix codebase to communicate with one another. The event system
 also adds generic ways to debounce and run tasks in background threads so we
 can prevent locking up the UI. Some parts of the code base have already been

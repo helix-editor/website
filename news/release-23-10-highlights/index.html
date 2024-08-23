@@ -80,7 +80,7 @@ langserver and typescript-language-server like so:</p>
 <p>See more details in the <a href="https://docs.helix-editor.com/languages.html">language configuration docs</a>.</p>
 <h2 id="fuzzy-matching-with-nucleo">Fuzzy matching with Nucleo</h2>
 <asciinema-player src="/nucleo-nix-store.cast" cols="94" rows="25"></asciinema-player>
-<p>Helix uses &quot;fuzzy&quot; matching to filter as-you-type in components like the file
+<p>Helix uses "fuzzy" matching to filter as-you-type in components like the file
 picker. Previously we used the popular <code>skim</code>/<code>fuzzy-matcher</code> crates but in the
 23.10 release we've switched to the new
 <a href="https://github.com/helix-editor/nucleo"><code>nucleo</code></a> crate. Nucleo is
@@ -111,9 +111,9 @@ attribute set or jumping to the end of a block in a C-like language:</p>
 <h2 id="expanded-support-for-registers">Expanded support for registers</h2>
 <asciinema-player src="/special-registers.cast" cols="94" rows="25"></asciinema-player>
 <p>Registers allow you to save and paste values. For example you might select
-a paragraph, use <code>&quot;ay</code> to yank it into the <code>a</code> register, and later use <code>&quot;ap</code>
+a paragraph, use <code>"ay</code> to yank it into the <code>a</code> register, and later use <code>"ap</code>
 to paste that paragraph. Some registers have special effects when read or
-written to though like the <code>_</code> &quot;blackhole&quot; register: any values written are
+written to though like the <code>_</code> "blackhole" register: any values written are
 discarded and nothing can be read. Special registers have been expanded to
 include some useful ones from Kakoune and clipboard registers:</p>
 <ul>
@@ -123,7 +123,7 @@ include some useful ones from Kakoune and clipboard registers:</p>
 <li><code>*</code> and <code>+</code>: system and primary clipboards</li>
 </ul>
 <p>Also check out the new register statusline element. It appears when you select
-a register with <code>&quot;</code>. Notice the <code>reg=#</code> in the bottom-right corner of the
+a register with <code>"</code>. Notice the <code>reg=#</code> in the bottom-right corner of the
 statusline in the asciicast when we select the <code>#</code> register and how it goes
 away when we paste that register (<code>p</code>) or increment the selections (<code>C-a</code>).</p>
 <h2 id="initial-support-for-lsp-didchangewatchedfiles">Initial support for LSP DidChangeWatchedFiles</h2>

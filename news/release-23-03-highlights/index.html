@@ -47,7 +47,7 @@ some especially useful and exciting features, so let's jump right in.</p>
 <h2 id="soft-wrap">Soft-wrap</h2>
 <asciinema-player src="/softwrap.cast" cols="94" rows="25"></asciinema-player>
 <p>Soft-wrap breaks up lines to fit in view without inserting actual line break
-characters into the text (so called &quot;hard-wrapping&quot;). This can be useful for
+characters into the text (so called "hard-wrapping"). This can be useful for
 reading and editing documentation or code with especially long lines. Enable
 soft-wrap in your config with the <code>editor.soft-wrap.enable</code> key:</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># ~/.config/helix/config.toml
@@ -56,7 +56,7 @@ soft-wrap in your config with the <code>editor.soft-wrap.enable</code> key:</p>
 </span></code></pre>
 <p>Heuristics for where to break lines and the wrap indicator may also be
 <a href="https://docs.helix-editor.com/configuration.html#editorsoft-wrap-section">configured</a>.</p>
-<p>Soft-wrap is the first feature implemented on top of a new &quot;virtual text&quot; API
+<p>Soft-wrap is the first feature implemented on top of a new "virtual text" API
 within the Helix codebase. The virtual text API allows us to decorate and
 manipulate the actual text in a document without disturbing positioning and
 modifications. The virtual text API opens the door for many new exciting
@@ -88,13 +88,13 @@ language server narrow down the number of symbols and only tell Helix about the
 ones relevant to the search. This rework fixes compatibility with some language
 servers which returned empty symbols with no query (<code>gopls</code>, <code>pyright</code>,
 <code>clangd</code>) or limited results (<code>rust-analyzer</code>).</p>
-<p>The &quot;dynamic picker&quot; introduced in this refactor may benefit other pickers in
+<p>The "dynamic picker" introduced in this refactor may benefit other pickers in
 the future, for example allowing the global search picker (<code>&lt;space&gt;/</code>) to
 update on-the-fly as you change the query.</p>
 <h2 id="version-control-head-statusline-element">Version control HEAD statusline element</h2>
 <asciinema-player src="/vcs-statusline-element.cast" cols="94" rows="25"></asciinema-player>
 <p>A new statusline element has been added which displays the version control
-HEAD. Add this to your statusline by introducing the <code>&quot;version-control&quot;</code>
+HEAD. Add this to your statusline by introducing the <code>"version-control"</code>
 element in the
 <a href="https://docs.helix-editor.com/configuration.html#editorstatusline-section"><code>editor.statusline</code></a>
 section of your config for the <code>left</code>, <code>center</code> or <code>right</code> sides.</p>
@@ -106,7 +106,7 @@ Helix, enabling key combinations that weren't possible to bind before like
 terminals that support the protocol.</p>
 <h2 id="runtime-directory-refactor">Runtime directory refactor</h2>
 <p>Helix keeps files like tree-sitter parsers and queries, themes and the tutor
-file in a special &quot;runtime&quot; directory. This directory is typically installed
+file in a special "runtime" directory. This directory is typically installed
 by your package manager and shouldn't be modified by hand. Multiple runtime
 directories are now supported, so you can keep the runtime files installed by
 your package manager unchanged while adding new tree-sitter parsers and

@@ -70,7 +70,7 @@ improve the display of LSP diagnostics. These can be configured in themes with
 the new <code>underline</code> key:</p>
 <pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>&quot;</span><span style="color:#a3be8c;">diagnostic.error</span><span>&quot; = { </span><span style="color:#bf616a;">underline </span><span>= { </span><span style="color:#bf616a;">style </span><span>= &quot;</span><span style="color:#a3be8c;">curl</span><span>&quot;, </span><span style="color:#bf616a;">color </span><span>= &quot;</span><span style="color:#a3be8c;">red</span><span>&quot; } }
 </span></code></pre>
-<p>The existing <code>underline</code> modifier is now an alias for the <code>&quot;line&quot;</code> style.</p>
+<p>The existing <code>underline</code> modifier is now an alias for the <code>"line"</code> style.</p>
 <p>If you're looking to use this in a theme that hasn't configured it yet, you
 can use the new <a href="https://docs.helix-editor.com/master/themes.html#inheritance">theme inheritance</a> feature to modify just the scopes you would
 like to change:</p>
@@ -94,9 +94,9 @@ auto-complete's help.</p>
 <asciinema-player src="/bufferline.cast" cols="94" rows="25"></asciinema-player>
 <p>The bufferline is a listing of buffers displayed at the top of a window. It
 provides an at-a-glance view of the buffers you're working with. Set
-the <code>editor.bufferline</code> configuration key to <code>&quot;always&quot;</code> to always show the
-bufferline, <code>&quot;multiple&quot;</code> to show the bufferline only when there are multiple
-buffers open, and <code>&quot;never&quot;</code> to disable it.</p>
+the <code>editor.bufferline</code> configuration key to <code>"always"</code> to always show the
+bufferline, <code>"multiple"</code> to show the bufferline only when there are multiple
+buffers open, and <code>"never"</code> to disable it.</p>
 <h2 id="behind-the-scenes-improvements">Behind-the-scenes improvements</h2>
 <p>22.12 brings also brings important changes to Helix's plumbing:</p>
 <ul>
