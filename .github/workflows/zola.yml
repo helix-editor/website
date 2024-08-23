@@ -13,7 +13,7 @@ jobs:
       - name: Install Zola
         run: wget -q -O - "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" | sudo tar xzf - -C /usr/local/bin
         env:
-          ZOLA_VERSION: 0.17.1
+          ZOLA_VERSION: 0.19.2
       - name: Build
         run: zola build
       - name: Deploy
