@@ -36,7 +36,7 @@ language server and this should make it easier to add new completion sources
 in the future.
 
 The other big change comes to the behavior of snippet completions - currently
-only send by language servers - as 25.01 adds support for snippet tabstops.
+only sent by language servers - as 25.01 adds support for snippet tabstops.
 
 {{ asciinema(id="snippet-tabstops", width="94", height="25") }}
 
