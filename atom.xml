@@ -5,8 +5,147 @@
     <link rel="self" type="application/atom+xml" href="https://helix-editor.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://helix-editor.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-03-30T00:00:00+00:00</updated>
+    <updated>2025-01-03T00:01:00+00:00</updated>
     <id>https://helix-editor.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Release 25.01 Highlights</title>
+        <published>2025-01-03T00:01:00+00:00</published>
+        <updated>2025-01-03T00:01:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Helix Contributors
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://helix-editor.com/news/release-25-01-highlights/"/>
+        <id>https://helix-editor.com/news/release-25-01-highlights/</id>
+        
+        <content type="html" xml:base="https://helix-editor.com/news/release-25-01-highlights/">&lt;p&gt;The new year brings in a new Helix release! Say hello to 25.01. This is an
+especially large release comprising changes from a whopping 171 contributors.
+&lt;em&gt;Thank you&lt;&#x2F;em&gt; to everyone who made this release possible!&lt;&#x2F;p&gt;
+&lt;p&gt;New to Helix?
+Helix is a modal text editor with built-in support for multiple selections,
+Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
+Adapter Protocol (DAP).&lt;&#x2F;p&gt;
+&lt;p&gt;This large release has a bunch of big improvements so let&#x27;s jump right in to
+the highlights.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;completions&quot;&gt;Completions&lt;&#x2F;h2&gt;
+&lt;p&gt;Completions have seen two big updates in 25.01. First, completions now support
+paths:&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;path-completion.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Helix now detects a possible path when inserting text and suggests either
+absolute paths or relative paths based on the current working directory. This
+is especially useful for some languages like Nix where paths are commonplace.&lt;&#x2F;p&gt;
+&lt;p&gt;Path completion is especially exciting because it&#x27;s the first completion
+feature not driven by LSP. The change to add path completion refactored parts
+of the codebase that assumed that completions could only ever come from a
+language server and this should make it easier to add new completion sources
+in the future.&lt;&#x2F;p&gt;
+&lt;p&gt;The other big change comes to the behavior of snippet completions - currently
+only sent by language servers - as 25.01 adds support for snippet tabstops.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;snippet-tabstops.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;In the recording above, rust-analyzer suggests a snippet completion for &lt;code&gt;add&lt;&#x2F;code&gt;
+that includes some placeholders for the function arguments. In the past Helix
+would clear these placeholders when accepting the completion with the Enter
+key. Now the Enter key jumps the cursor to the first tabstop. The Tab key can
+be used to switch to the next tabstop. Typing in any other character replaces
+the placeholder text.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;diagnostics&quot;&gt;Diagnostics&lt;&#x2F;h2&gt;
+&lt;p&gt;Historically, LSP diagnostics have appeared right-aligned in the top-right
+corner of the editor. While this display is straightforward, it can become hard
+to read on small terminal sizes or when a language server sends a long
+diagnostic message. 25.01 adds a new way to render diagnostics &lt;em&gt;inline&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;inline-diagnostics.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Inline diagnostics leverage the internal virtual text system to render
+diagnostics at the diagnostic&#x27;s range in the document. Diagnostic messages
+appear after the end of the line or in between lines of the appropriate code.&lt;&#x2F;p&gt;
+&lt;p&gt;Inline diagnostics are currently disabled by default as we tune the display and
+iron out bugs and can be enabled with a config like so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml
+&lt;&#x2F;span&gt;&lt;span&gt;[editor]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic after the end of a line:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;end-of-line-diagnostics &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hint&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[editor.inline-diagnostics]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic on the primary cursor&amp;#39;s line.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Note that `cursor-line` diagnostics are hidden in insert mode.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cursor-line &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic on other lines:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# other-lines = &amp;quot;error&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Setting &lt;code&gt;end-of-line-diagnostics&lt;&#x2F;code&gt;, &lt;code&gt;cursor-line&lt;&#x2F;code&gt; or &lt;code&gt;other-lines&lt;&#x2F;code&gt; to anything
+other than &lt;code&gt;&quot;disable&quot;&lt;&#x2F;code&gt; enables inline diagnostics.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tabular-pickers&quot;&gt;Tabular pickers&lt;&#x2F;h2&gt;
+&lt;p&gt;The picker UI component is central in Helix: it&#x27;s an efficient and readable way
+to jump between files and locations of interest like LSP diagnostics and
+symbols. In 25.01 the picker component has been overhauled significantly so
+that items are laid out as a table.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;tabular-pickers.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Simple pickers such as the file picker (&lt;code&gt;&amp;lt;space&amp;gt;f&lt;&#x2F;code&gt;) which only need one column
+are unchanged. Pickers with multiple fields of information though now show
+column names at the top of the the results pane. Rows still correspond to
+individual items to pick but there are now columns that horizontally align
+the same kinds of content between items. The diagnostics picker for example now
+has three columns - &quot;severity&quot;, &quot;code&quot; and &quot;message&quot; - while the LSP symbol
+picker has two - &quot;kind&quot; and &quot;name&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;Columns are individually filterable: one column is filtered by default and
+others can be filtered with a query syntax: &lt;code&gt;%&amp;lt;column name&amp;gt; filter text&lt;&#x2F;code&gt;. For
+example the diagnostics picker can now be filtered down to only errors by
+searching for &lt;code&gt;%severity error&lt;&#x2F;code&gt;. Filter text is fuzzy matched and column names
+may be specified by a prefix, so a search for &lt;code&gt;%s e&lt;&#x2F;code&gt; will behave the same in
+the diagnostics picker as a search for &lt;code&gt;%severity error&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;interactive-global-search.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Alongside this change, the &lt;code&gt;global_search&lt;&#x2F;code&gt; command (&lt;code&gt;&amp;lt;space&amp;gt;&#x2F;&lt;&#x2F;code&gt;) has been
+refactored to update with the picker&#x27;s query dynamically. This allows searching
+a codebase for a regex interactively. Filenames can then be filtered separately
+with a query like &lt;code&gt;%path filename&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macro-keybindings&quot;&gt;Macro keybindings&lt;&#x2F;h2&gt;
+&lt;p&gt;Initial support for keybindings written as macros has landed in 25.01. Macro
+keybindings can be written by prefixing a string of inputs with &lt;code&gt;@&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Change the `&amp;lt;space&amp;gt;y` keybinding to yank to the `a` register instead of the
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# system clipboard:
+&lt;&#x2F;span&gt;&lt;span&gt;[keys.normal]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;space&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;y &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;@&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;ay&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Macro keybindings use the same infrastructure as macros recorded with &lt;code&gt;q&lt;&#x2F;code&gt; and
+executed with &lt;code&gt;Q&lt;&#x2F;code&gt;, so the above behaves as if you typed&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;&quot;&lt;&#x2F;code&gt;: open the register select popup&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;a&lt;&#x2F;code&gt;: select the &#x27;a&#x27; register&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;y&lt;&#x2F;code&gt;: copy the selection contents to the register&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Macros cover a gap in keybindings: inputs into components like the register
+select popup are not exposed as commands, so operations like selecting a
+register would not otherwise be possible to bind.&lt;&#x2F;p&gt;
+&lt;p&gt;The initial support for macro keybinding limits the bindings to be unusable
+in a command sequence: you can&#x27;t yet combine macros with regular commands. For
+example you could swap out the &lt;code&gt;y&lt;&#x2F;code&gt; above for its command &lt;code&gt;yank&lt;&#x2F;code&gt; in a sequence
+like &lt;code&gt;[&quot;@\&quot;a&quot;, &quot;yank&quot;]&lt;&#x2F;code&gt;, but this is not yet supported.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;commenting&quot;&gt;Commenting&lt;&#x2F;h2&gt;
+&lt;p&gt;25.01 includes improvements to commenting that make for a smoother experience
+when writing line comments like inline documentation.&lt;&#x2F;p&gt;
+&lt;asciinema-player src=&quot;&#x2F;25.01-comment-improvements.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
+&lt;p&gt;Line comments are now continued by default: pressing the Enter key while in
+insert mode or &lt;code&gt;o&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;O&lt;&#x2F;code&gt; in normal mode while the cursor is on a line comment now
+extends that comment, inserting the current comment token prefix and a trailing
+space character. Trailing whitespace is now consistently stripped when pressing
+Enter, so &lt;code&gt;&amp;lt;ret&amp;gt;&amp;lt;ret&amp;gt;&lt;&#x2F;code&gt; can be used to insert a break between two paragraphs in
+inline markdown documentation for example.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;join_selections&lt;&#x2F;code&gt; and &lt;code&gt;join_selections_space&lt;&#x2F;code&gt; commands (&lt;code&gt;J&lt;&#x2F;code&gt; and &lt;code&gt;A-J&lt;&#x2F;code&gt;) have
+also been improved to now strip the comment token when combining line comments.
+This makes it easier to edit existing comments or fix spacing between
+paragraphs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
+&lt;p&gt;As always, this is just the highlights from the 25.01 release. Check out the
+full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2501-2025-01-03&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Release 24.03 Highlights</title>
         <published>2024-03-30T00:00:00+00:00</published>
