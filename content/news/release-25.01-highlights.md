@@ -52,13 +52,13 @@ the placeholder text.
 Historically, LSP diagnostics have appeared right-aligned in the top-right
 corner of the editor. While this display is straightforward, it can become hard
 to read on small terminal sizes or when a language server sends a long
-diagnostic message.
+diagnostic message. 25.01 adds a new way to render diagnostics _inline_.
 
 {{ asciinema(id="inline-diagnostics", width="94", height="25") }}
 
-25.01 adds a new way to rendering diagnostics _inline_. Inline diagnostics
-leverage the internal virtual text system to render diagnostics at the range
-sent by a language server between (and/or after) lines of code.
+Inline diagnostics leverage the internal virtual text system to render
+diagnostics at the diagnostic's range in the document. Diagnostic messages
+appear after the end of the line or in between lines of the appropriate code.
 
 Inline diagnostics are currently disabled by default as we tune the display and
 iron out bugs and can be enabled with a config like so:
@@ -70,16 +70,15 @@ iron out bugs and can be enabled with a config like so:
 end-of-line-diagnostics = "hint"
 
 [editor.inline-diagnostics]
-# Minimum severity to show a diagnostic on the primary cursor's line:
-cursor-line = "hint"
+# Minimum severity to show a diagnostic on the primary cursor's line.
+# Note that `cursor-line` diagnostics are hidden in insert mode.
+cursor-line = "error"
 # Minimum severity to show a diagnostic on other lines:
-other-lines = "error"
+# other-lines = "error"
 ```
 
-Setting `cursor-line` and `other-lines` to anything other than `"disabled"`
-enables inline diagnostics. End-of-line diagnostics can also be enabled by
-setting a minimum severity filter for the `editor.end-of-line-diagnostics`
-config key.
+Setting `end-of-line-diagnostics`, `cursor-line` or `other-lines` to anything
+other than `"disable"` enables inline diagnostics.
 
 ## Tabular pickers
 
