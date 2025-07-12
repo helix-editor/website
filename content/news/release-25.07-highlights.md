@@ -78,7 +78,7 @@ Tools like editors can then use the parser you've defined with the Tree-sitter C
 
 A very powerful tool for working with parsed trees is _Tree-sitter queries_. Queries are a way to pattern-match against subtrees and _capture_ nodes for future use. For an editor you might use a query, commonly called `highlights.scm`, to capture a tree node like a Rust keyword in order to highlight the node's text according to the current theme.
 
-Like syntax trees, the applications for queries are only limited by your imagination. We use currently use queries in Helix for highlighting, indentation and textobjects (recognizing functions, parameters, etc.). In the future, code folding, spell checking and code navigation could use tree-sitter queries as well.
+Like syntax trees, the applications for queries are only limited by your imagination. We currently use queries in Helix for highlighting, indentation and textobjects (recognizing functions, parameters, etc.). In the future, code folding, spell checking and code navigation could use tree-sitter queries as well.
 
 #### History in Helix
 
