@@ -88,11 +88,21 @@ Helix depended on Tree-sitter for syntax highlighting even before its initial pu
 
 The problem with `tree-sitter-highlight` is that it doesn't work incrementally. Creating a new highlight iterator means fully re-parsing the document as well as re-analyzing the queries. This is wasteful since Tree-sitter can reuse queries. Plus parsing in Tree-sitter can work incrementally: you can give the old syntax tree to Tree-sitter and it will parse the new version of the document faster.
 
-So Helix's early highlighter was a fork of `tree-sitter-highlight`, inspired by Tree-sitter's use in the [Atom editor](https://github.com/atom/atom), which factored out the parsed tree (a `Syntax` type) and `tree_sitter::Query`s from the highlighter. With this release we're rewritten the highlighter from scratch in the new `tree-house` crate which fixes a number of longstanding bugs and improves incremental parsing.
+So Helix's early highlighter was a fork of `tree-sitter-highlight`, inspired by Tree-sitter's use in the [Atom editor](https://github.com/atom/atom), which factored out the parsed tree (a `Syntax` type) and `tree_sitter::Query`s from the highlighter. Ideally we wanted to extract this highlighter into its own crate one day so we could share it easily with other tools.
+
+This highlighter grew to become unmaintainable, though. Fixes for longstanding bugs were too large to make or completely incompatible with this highlighter's design and the code was hard to reason about.
+
+#### Enter Tree-house
+
+With this release we've replaced the highlighter with a new crate: [`tree-house`](https://github.com/helix-editor/tree-house). We wrote Tree-house from scratch based on our experience with those early highlighters.
+
+Tree-house leans into the things that worked well like separating parsing from querying and determining injections during parsing. And it leans away from the things that didn't work well, like exposing highlights as an `Iterator`. The Tree-house code is broken down into smaller and more understandable components and it squashes longstanding bugs that we were powerless to solve before. Tree-house also opens the door for future improvements like parallel parsing.
+
+Tree-house's main strength is its robust handling of a feature called _injections_.
 
 #### Injections, a tree of trees
 
-`tree-sitter-highlight` supports a very powerful feature called _injections_. Injection queries capture nodes which should 'switch' to another language. For example in Markdown, you can use a code-fence like so:
+_Injections_ are a concept from `tree-sitter-highlight`. Injection queries capture nodes which should 'switch' to another language. For example in Markdown, you can use a code-fence like so:
 
     ```rust
     println!("Hello, world!")
