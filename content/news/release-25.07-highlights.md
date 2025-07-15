@@ -181,6 +181,6 @@ These has been the highlights from the 25.07 release plus a deeper dive into our
 Come chat about usage and development questions in the [Matrix space][matrix]
 and follow along with Helix's development in the [GitHub repository][helix-git].
 
-[changelog]: https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2507-2025-07-TODO
+[changelog]: https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2507-2025-07-15
 [helix-git]: https://github.com/helix-editor/helix/
 [matrix]: https://matrix.to/#/#helix-community:matrix.org
