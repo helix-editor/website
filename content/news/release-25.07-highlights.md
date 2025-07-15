@@ -6,7 +6,7 @@ description = "Highlights of the 25.07 release."
 in_search_index = true
 +++
 
-A long-awaited 25.07 release is finally here. This release saw the replacement of a major, core component of Helix and the addition of plenty of flashy features besides. This release saw changes from 194 contributors. A hearty _thank you_ to everyone who made this release possible.
+A long-awaited 25.07 release is finally here. This release saw the replacement of a major, core component of Helix and the addition of plenty of flashy features besides. This release saw changes from 195 contributors. A hearty _thank you_ to everyone who made this release possible.
 
 New to Helix? Helix is a modal text editor with built-in support for multiple selections, Language Server Protocol (LSP), tree-sitter, and experimental support for Debug Adapter Protocol (DAP).
 
