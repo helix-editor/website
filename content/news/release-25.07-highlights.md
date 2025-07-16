@@ -20,7 +20,7 @@ Buckle up; these release notes will get a bit technical as we talk about our new
 
 ## LSP documentColors
 
-One of the flashier features of the Language Server Protocol (LSP) spec is the [Document Color Request](microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentColor). This request allows the client (Helix) to ask a language server like `tailwindcss-language-server` or `vscode-css-language-server` what ranges of the document correspond to RGB colors.
+One of the flashier features of the Language Server Protocol (LSP) spec is the [Document Color Request](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentColor). This request allows the client (Helix) to ask a language server like `tailwindcss-language-server` or `vscode-css-language-server` what ranges of the document correspond to RGB colors.
 
 In 25.07 Helix now requests document colors from language servers and displays the swatch (a small box) with the color, inline. This is exactly like the LSP inlay hints feature - which shows types - but for colors.
 
@@ -84,7 +84,7 @@ Like syntax trees, the applications for queries are only limited by your imagina
 
 Helix depended on Tree-sitter for syntax highlighting even before its initial public release via the official Rust bindings to the C library, the [`tree-sitter`](https://crates.io/crates/tree-sitter) crate. The `tree-sitter` crate wraps the C library and is fairly low level. We also need a highlighter and that is provided by a separate crate: `tree-sitter-highlight`.
 
-[`tree-sitter-highlight`](https://crates.io/crates/tree-sitter-highlight) provides a syntax highlighter which takes the queries for a language and a document's text to highlight and can be iterated to produce highlight events. Helix could then consume highlight iterators while rendering the viewable documents. This works out-of-the-box with `tree-sitter-highlight` and for or simple use-cases like highlighting a document once, `tree-sitter-highlight` is all you need.
+[`tree-sitter-highlight`](https://crates.io/crates/tree-sitter-highlight) provides a syntax highlighter which takes the queries for a language and a document's text to highlight and can be iterated to produce highlight events. Helix could then consume highlight iterators while rendering the viewable documents. This works out-of-the-box with `tree-sitter-highlight` and for our simple use-cases like highlighting a document once, `tree-sitter-highlight` is all you need.
 
 The problem with `tree-sitter-highlight` is that it doesn't work incrementally. Creating a new highlight iterator means fully re-parsing the document as well as re-analyzing the queries. This is wasteful since Tree-sitter can reuse queries. Plus parsing in Tree-sitter can work incrementally: you can give the old syntax tree to Tree-sitter and it will parse the new version of the document faster.
 
@@ -134,7 +134,7 @@ Internally Tree-house represents this _layer_ concept as a tree. The overall `Sy
 
 #### Incremental injections
 
-Injections were previously discussed way back in the [22.03 release notes](./2022-03-28-release-22.03-highlights.md) which added support for _combined_ injections, like those Markdown comments. Later that year, [22.12](content/news/2022-12-06-release-22.12-highlights.md) brought _incremental injections_. That change reduced the unnecessary work done to re-parse and rerun injections queries for documents with many injections. The switch to Tree-house improves upon incremental injections so that injection layers are re-parsed and injection queries are rerun only for layers which actually changed from any set of edits.
+Injections were previously discussed way back in the [22.03 release notes](@/news/2022-03-28-release-22.03-highlights.md) which added support for _combined_ injections, like those Markdown comments. Later that year, [22.12](@/news/2022-12-06-release-22.12-highlights.md) brought _incremental injections_. That change reduced the unnecessary work done to re-parse and rerun injections queries for documents with many injections. The switch to Tree-house improves upon incremental injections so that injection layers are re-parsed and injection queries are rerun only for layers which actually changed from any set of edits.
 
 For a more intuitive idea of how this works, imagine a large Markdown list. The Markdown Tree-sitter parser is actually split into two: one for block syntax like code fences and another for "inline" syntax like bold, italics and inline code. The Markdown parser injects the "inline Markdown" parser for situations like list items, so a very large list in Markdown means thousands of small injections of the "inline" parser for each list item.
 
