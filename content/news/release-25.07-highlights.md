@@ -72,7 +72,7 @@ The rest of this post will discuss details about Tree-sitter and Tree-house. Loo
 
 #### Tree-sitter
 
-Not familiar with [Tree-sitter](https://github.com/tree-sitter/tree-sitter)? At a high level, it's a framework for generating and using fast, error-tolerant parsers. In a `grammar.js` file you can write parser rules via the [Grammar DSL](https://tree-sitter.github.io/tree-sitter/creating-parsers/2-the-grammar-dsl.html) and use then use `tree-sitter` CLI tools to generate and test the parser.
+Not familiar with [Tree-sitter](https://github.com/tree-sitter/tree-sitter)? At a high level, it's a framework for generating and using fast, error-tolerant parsers. In a `grammar.js` file you can write parser rules via the [Grammar DSL](https://tree-sitter.github.io/tree-sitter/creating-parsers/2-the-grammar-dsl.html) and then use `tree-sitter` CLI tools to generate and test the parser.
 
 Tools like editors can then use the parser you've defined with the Tree-sitter C library, or language specific bindings, to parse and act on syntax trees. What you do with the syntax tree is up to your imagination! Language servers can use Tree-sitter for their parsers, diff tools like [Difftastic](https://github.com/Wilfred/difftastic) can produce syntax-aware diffs, a language server like [Codebook](https://github.com/blopker/codebook) can do a syntax-aware scan for spell checking. Even [GitHub uses tree-sitter](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github) for code navigation and highlighting of some languages.
 
