@@ -1,1 +1,8 @@
-<asciinema-player src="/{{ id }}.cast" cols="{{ width | default(value="150") }}" rows="{{ height | default(value="35") }}"></asciinema-player>
+<div id="{{ id }}"></div>
+<script src="/asciinema-player.min.js"></script>
+<script>
+  AsciinemaPlayer.create("/{{ id }}.cast", document.getElementById("{{ id }}"), {
+    cols: "{{ width | default(value="150") }}",
+    rows: "{{ height | default(value="35") }}",
+  });
+</script>
