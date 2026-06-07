@@ -118,7 +118,7 @@ time {
 
 code {
   padding: 0.25rem 0.5rem;
-  background-color: #2b303b;
+  background-color: hsl(274, 39.5%, 9.5%);
   color: #c0c5ce;
   border-radius: 3px;
   font-size: 1.2rem;
