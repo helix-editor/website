@@ -3,6 +3,8 @@
 }
 html {
   box-sizing: border-box;
+  background: #281733;
+  color-scheme: dark;
 }
 *, *:before, *:after {
   box-sizing: inherit;

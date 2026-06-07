@@ -1,0 +1,7 @@
+{
+  "name": "tsq",
+  "scopeName": "source.tsq",
+  "displayName": "Tree-sitter Query (tsq alias)",
+  "fileTypes": ["tsq"],
+  "patterns": [{ "include": "source.scm" }]
+}

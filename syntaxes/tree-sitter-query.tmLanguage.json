@@ -1,0 +1,64 @@
+{
+  "name": "scm",
+  "scopeName": "source.scm",
+  "displayName": "Tree-sitter Query",
+  "fileTypes": ["tsq", "scm"],
+  "patterns": [
+    {
+      "match": ";.*$",
+      "name": "comment.line.semicolon.tsq"
+    },
+    {
+      "name": "string.quoted.double.tsq",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.tsq" }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.tsq" }
+      },
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape.tsq"
+        }
+      ]
+    },
+    {
+      "comment": "@capture.name (with dots and dashes)",
+      "match": "@[\\w.\\-]+",
+      "name": "variable.other.capture.tsq"
+    },
+    {
+      "comment": "#predicate? — #eq?, #match?, #any-of?, #kind-eq?, #same-line?, ...",
+      "match": "#[\\w\\-]+\\?",
+      "name": "support.function.predicate.tsq"
+    },
+    {
+      "comment": "#directive! — #set!, #select-adjacent!, #strip!, #trim!, #gsub!",
+      "match": "#[\\w\\-]+!",
+      "name": "meta.directive.tsq"
+    },
+    {
+      "comment": "field name:  or negated !field:",
+      "match": "!?[A-Za-z_][\\w-]*:",
+      "name": "entity.other.attribute-name.tsq"
+    },
+    {
+      "comment": "wildcards and special node kinds",
+      "match": "\\b(?:_|MISSING|ERROR)\\b",
+      "name": "constant.language.wildcard.tsq"
+    },
+    {
+      "comment": "named node kind",
+      "match": "[A-Za-z_][\\w-]*",
+      "name": "entity.name.function.tsq"
+    },
+    {
+      "comment": "anchors / quantifiers",
+      "match": "[.*+?]",
+      "name": "keyword.operator.tsq"
+    }
+  ]
+}
