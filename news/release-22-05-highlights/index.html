@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#281733">
     <title>
       Release 22.05 Highlights |  Helix
     </title>
@@ -45,8 +47,8 @@ Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).</p>
 <p>Today marks the 22.05 release, a featureful release with over double the number
 of contributors as last release (110!). A big thanks to all involved! 🙌</p>
-<p>Also a big shout out to <a href="https://github.com/amirrezaask"><code>@amirrezaask</code></a> for
-this great <a href="https://www.youtube.com/watch?v=__U4A2Q9fNI">Helix introduction video</a>!</p>
+<p>Also a big shout out to <a rel="external" href="https://github.com/amirrezaask"><code>@amirrezaask</code></a> for
+this great <a rel="external" href="https://www.youtube.com/watch?v=__U4A2Q9fNI">Helix introduction video</a>!</p>
 <p>Let's check out the flashy features of 22.05.</p>
 <h2 id="indentation-rework">Indentation rework</h2>
 <p>The indentation system has been fully reworked. Indentation still works by
@@ -56,20 +58,16 @@ simple node names. Expect more robust indentation with fewer edge cases.</p>
 <h2 id="configurable-gutters">Configurable gutters</h2>
 <p>Gutters can now be configured in your <code>config.toml</code> file. For example, you can
 remove the line-number gutter while still showing LSP diagnostics.</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[editor]
-</span><span style="color:#bf616a;">gutters </span><span>= [&quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] </span><span style="color:#65737e;"># default is [&quot;diagnostics&quot;, &quot;line-numbers&quot;]
-</span></code></pre>
-<h2 id="local-language-configuration">Local language configuration</h2>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: #FFFFFF;">editor</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">gutters =</span><span> [</span><span style="color: #CCCCCC;">&quot;diagnostics&quot;</span><span>]</span><span style="color: #697C81;"> # default is [&quot;diagnostics&quot;, &quot;line-numbers&quot;]</span></span></code></pre><h2 id="local-language-configuration">Local language configuration</h2>
 <p>Language configuration can now be specified local to a project. Create a
 <code>.helix</code> directory and a <code>languages.toml</code> under it to override values from the
-<a href="https://docs.helix-editor.com/guides/adding_languages.html#language-configuration">default language configuration</a>. For example, override a C project's indents
+<a rel="external" href="https://docs.helix-editor.com/guides/adding_languages.html#language-configuration">default language configuration</a>. For example, override a C project's indents
 to use tabs instead of spaces for indentation:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># my_c_project/.helix/languages.toml
-</span><span>[[language]]
-</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">c</span><span>&quot;
-</span><span style="color:#bf616a;">indent </span><span>= { </span><span style="color:#bf616a;">tab-width </span><span>= </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#bf616a;">unit </span><span>= &quot;</span><span style="color:#96b5b4;">\t</span><span>&quot; }
-</span></code></pre>
-<h2 id="rulers">Rulers</h2>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="toml"><span class="giallo-l"><span style="color: #697C81;"># my_c_project/.helix/languages.toml</span></span>
+<span class="giallo-l"><span>[[</span><span style="color: #FFFFFF;">language</span><span>]]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">name =</span><span style="color: #CCCCCC;"> &quot;c&quot;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">indent =</span><span> {</span><span style="color: #DBBFEF;"> tab-width =</span><span style="color: #E8DCA0;"> 8</span><span>,</span><span style="color: #DBBFEF;"> unit =</span><span style="color: #CCCCCC;"> &quot;</span><span style="color: #EFBA5D;">\t</span><span style="color: #CCCCCC;">&quot;</span><span> }</span></span></code></pre><h2 id="rulers">Rulers</h2>
 <asciinema-player src="/rulers.cast" cols="94" rows="25"></asciinema-player>
 <p>Vertical rulers may now be configured through the <code>rulers</code> option. Use them
 as a guide when adhering to a maximum line length.</p>
@@ -111,13 +109,13 @@ split or vice versa.</p>
 and switch language servers.</p>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>These are just some highlights from the changes in 22.05. Check out the
-<a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2205-2022-05-17">changelog</a> for the full set. Pick up the release binaries for 22.05 on the
-<a href="https://github.com/helix-editor/helix/releases/tag/22.05">release page</a>. Starting with this release, an AppImage is included in the
+<a rel="external" href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2205-2022-05-17">changelog</a> for the full set. Pick up the release binaries for 22.05 on the
+<a rel="external" href="https://github.com/helix-editor/helix/releases/tag/22.05">release page</a>. Starting with this release, an AppImage is included in the
 release binaries for easier usage from Linux.</p>
 <p>Expect plenty more features and improvements in Helix 22.07 coming in July.
 Contribute and follow along with development in the
-<a href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to join in on discussions in the
-<a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
+<a rel="external" href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to join in on discussions in the
+<a rel="external" href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
 
 
 <script src="/asciinema-player.min.js"></script>

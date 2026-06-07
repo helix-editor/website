@@ -28,9 +28,9 @@
 &lt;p&gt;Buckle up; these release notes will get a bit technical as we talk about our new bindings to Tree-sitter, &lt;code&gt;tree-house&lt;&#x2F;code&gt;. Before we get into the weeds, let&#x27;s see check out flashier features.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;file-explorer&quot;&gt;File explorer&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;file-explorer.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
-&lt;p&gt;25.07 adds a file explorer under &lt;code&gt;&amp;lt;space&amp;gt;e&lt;&#x2F;code&gt;. The file explorer is a &lt;em&gt;picker&lt;&#x2F;em&gt;, a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;nvim-telescope&#x2F;telescope.nvim&quot;&gt;telescope&lt;&#x2F;a&gt;-like UI component central to Helix. Like most other pickers you can fuzzy search within the options. Selecting a directory with Enter opens a new file explorer under that directory and selecting a file opens that file. This is useful for examining a directory as a hierarchy. In contrast the usual file explorer (&lt;code&gt;&amp;lt;space&amp;gt;f&lt;&#x2F;code&gt;) opens a picker with the contents of a directory recursively. For sprawling projects, the file explorer can be a more precise tool.&lt;&#x2F;p&gt;
+&lt;p&gt;25.07 adds a file explorer under &lt;code&gt;&amp;lt;space&amp;gt;e&lt;&#x2F;code&gt;. The file explorer is a &lt;em&gt;picker&lt;&#x2F;em&gt;, a &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;nvim-telescope&#x2F;telescope.nvim&quot;&gt;telescope&lt;&#x2F;a&gt;-like UI component central to Helix. Like most other pickers you can fuzzy search within the options. Selecting a directory with Enter opens a new file explorer under that directory and selecting a file opens that file. This is useful for examining a directory as a hierarchy. In contrast the usual file explorer (&lt;code&gt;&amp;lt;space&amp;gt;f&lt;&#x2F;code&gt;) opens a picker with the contents of a directory recursively. For sprawling projects, the file explorer can be a more precise tool.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;lsp-documentcolors&quot;&gt;LSP documentColors&lt;&#x2F;h2&gt;
-&lt;p&gt;One of the flashier features of the Language Server Protocol (LSP) spec is the &lt;a href=&quot;https:&#x2F;&#x2F;microsoft.github.io&#x2F;language-server-protocol&#x2F;specifications&#x2F;lsp&#x2F;3.17&#x2F;specification&#x2F;#textDocument_documentColor&quot;&gt;Document Color Request&lt;&#x2F;a&gt;. This request allows the client (Helix) to ask a language server like &lt;code&gt;tailwindcss-language-server&lt;&#x2F;code&gt; or &lt;code&gt;vscode-css-language-server&lt;&#x2F;code&gt; what ranges of the document correspond to RGB colors.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the flashier features of the Language Server Protocol (LSP) spec is the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;microsoft.github.io&#x2F;language-server-protocol&#x2F;specifications&#x2F;lsp&#x2F;3.17&#x2F;specification&#x2F;#textDocument_documentColor&quot;&gt;Document Color Request&lt;&#x2F;a&gt;. This request allows the client (Helix) to ask a language server like &lt;code&gt;tailwindcss-language-server&lt;&#x2F;code&gt; or &lt;code&gt;vscode-css-language-server&lt;&#x2F;code&gt; what ranges of the document correspond to RGB colors.&lt;&#x2F;p&gt;
 &lt;p&gt;In 25.07 Helix now requests document colors from language servers and displays the swatch (a small box) with the color, inline. This is exactly like the LSP inlay hints feature - which shows types - but for colors.&lt;&#x2F;p&gt;
 &lt;asciinema-player src=&quot;&#x2F;lsp-document-colors.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
 &lt;h2 id=&quot;new-command-mode-features&quot;&gt;New command mode features&lt;&#x2F;h2&gt;
@@ -43,54 +43,51 @@
 &lt;p&gt;25.07 removes the &lt;code&gt;:rsort&lt;&#x2F;code&gt; command and replaces it with &lt;code&gt;:sort --reverse&lt;&#x2F;code&gt;, or &lt;code&gt;:sort -r&lt;&#x2F;code&gt; for short. And the &lt;code&gt;:write&lt;&#x2F;code&gt; commands now all accept a &lt;code&gt;--no-format&lt;&#x2F;code&gt; flag. Typically you want to format the current document(s), if they&#x27;re configured to auto-format, but occasionally it&#x27;s useful to write the file exactly as-is. These are great use-cases for flags: you shouldn&#x27;t need extra typable commands just to tweak small details.&lt;&#x2F;p&gt;
 &lt;p&gt;Flags are displayed in the infobox for typable commands and the long versions (like &lt;code&gt;--reverse&lt;&#x2F;code&gt;) can be auto-completed.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;expansions&quot;&gt;Expansions&lt;&#x2F;h3&gt;
-&lt;p&gt;Expansions introduce a special syntax to interpolate values. These mostly follow &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mawww&#x2F;kakoune&quot;&gt;Kakoune&lt;&#x2F;a&gt;&#x27;s concept of expansions with some minor tweaks.&lt;&#x2F;p&gt;
+&lt;p&gt;Expansions introduce a special syntax to interpolate values. These mostly follow &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mawww&#x2F;kakoune&quot;&gt;Kakoune&lt;&#x2F;a&gt;&#x27;s concept of expansions with some minor tweaks.&lt;&#x2F;p&gt;
 &lt;p&gt;Variables based on the current editor state can be written as &lt;code&gt;%{variable_name}&lt;&#x2F;code&gt;. &lt;code&gt;%{buffer_name}&lt;&#x2F;code&gt; prints the name of the currently-focused document as it appears in the statusline, and &lt;code&gt;%{cursor_line}&lt;&#x2F;code&gt; prints the 1-indexed line number of the primary cursor.&lt;&#x2F;p&gt;
 &lt;p&gt;Shell commands can be executed with the &lt;code&gt;%sh{..}&lt;&#x2F;code&gt; expansion. Together with the variable expansions above and the new, simple &lt;code&gt;:echo&lt;&#x2F;code&gt; command that prints to the statusline, a command like this prints the git blame of the current line on the statusline:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;:echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;:echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Both variable names and expansion kinds (like &lt;code&gt;sh&lt;&#x2F;code&gt; for shell commands or &lt;code&gt;u&lt;&#x2F;code&gt; for Unicode) can be auto-completed.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;extensible-parsing&quot;&gt;Extensible parsing&lt;&#x2F;h3&gt;
 &lt;p&gt;The initial reason to explore this rewrite was to revisit how the command line was parsed. With the changes in 25.07, command mode parses and completes file names better, allows for flags and expansions, and also enables switching to other methods of parsing part-way through the line.&lt;&#x2F;p&gt;
-&lt;p&gt;Typable commands &lt;code&gt;:set-option&lt;&#x2F;code&gt; and &lt;code&gt;:toggle-option&lt;&#x2F;code&gt; now use &lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;serde_json&#x2F;latest&#x2F;serde_json&#x2F;struct.StreamDeserializer.html&quot;&gt;&lt;code&gt;serde_json&lt;&#x2F;code&gt;&#x27;s streaming deserializer&lt;&#x2F;a&gt; to parse complex config values like lists. Shell commands like &lt;code&gt;:run-shell-command&lt;&#x2F;code&gt; and &lt;code&gt;:pipe&lt;&#x2F;code&gt; no longer try to parse the command line after the command name. So you don&#x27;t need to guess how to escape Helix&#x27;s parsing rules and then your shell&#x27;s parsing rules - the ultimate quote hell.&lt;&#x2F;p&gt;
+&lt;p&gt;Typable commands &lt;code&gt;:set-option&lt;&#x2F;code&gt; and &lt;code&gt;:toggle-option&lt;&#x2F;code&gt; now use &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;serde_json&#x2F;latest&#x2F;serde_json&#x2F;struct.StreamDeserializer.html&quot;&gt;&lt;code&gt;serde_json&lt;&#x2F;code&gt;&#x27;s streaming deserializer&lt;&#x2F;a&gt; to parse complex config values like lists. Shell commands like &lt;code&gt;:run-shell-command&lt;&#x2F;code&gt; and &lt;code&gt;:pipe&lt;&#x2F;code&gt; no longer try to parse the command line after the command name. So you don&#x27;t need to guess how to escape Helix&#x27;s parsing rules and then your shell&#x27;s parsing rules - the ultimate quote hell.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;tree-house&quot;&gt;Tree-house&lt;&#x2F;h2&gt;
 &lt;p&gt;In this release cycle we switched out the crates we use to interact with Tree-sitter, adding new crates built from the ground up and removing the official bindings alongside a lot of old code from Helix.&lt;&#x2F;p&gt;
-&lt;p&gt;The rest of this post will discuss details about Tree-sitter and Tree-house. Looking for more details about the changes since Helix 25.01.1? Check out the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2507-2025-07-15&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set of code changes.&lt;&#x2F;p&gt;
+&lt;p&gt;The rest of this post will discuss details about Tree-sitter and Tree-house. Looking for more details about the changes since Helix 25.01.1? Check out the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2507-2025-07-15&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set of code changes.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;tree-sitter&quot;&gt;Tree-sitter&lt;&#x2F;h4&gt;
-&lt;p&gt;Not familiar with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;Tree-sitter&lt;&#x2F;a&gt;? At a high level, it&#x27;s a framework for generating and using fast, error-tolerant parsers. In a &lt;code&gt;grammar.js&lt;&#x2F;code&gt; file you can write parser rules via the &lt;a href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;creating-parsers&#x2F;2-the-grammar-dsl.html&quot;&gt;Grammar DSL&lt;&#x2F;a&gt; and then use &lt;code&gt;tree-sitter&lt;&#x2F;code&gt; CLI tools to generate and test the parser.&lt;&#x2F;p&gt;
-&lt;p&gt;Tools like editors can then use the parser you&#x27;ve defined with the Tree-sitter C library, or language specific bindings, to parse and act on syntax trees. What you do with the syntax tree is up to your imagination! Language servers can use Tree-sitter for their parsers, diff tools like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Wilfred&#x2F;difftastic&quot;&gt;Difftastic&lt;&#x2F;a&gt; can produce syntax-aware diffs, a language server like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;blopker&#x2F;codebook&quot;&gt;Codebook&lt;&#x2F;a&gt; can do a syntax-aware scan for spell checking. Even &lt;a href=&quot;https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;repositories&#x2F;working-with-files&#x2F;using-files&#x2F;navigating-code-on-github&quot;&gt;GitHub uses tree-sitter&lt;&#x2F;a&gt; for code navigation and highlighting of some languages.&lt;&#x2F;p&gt;
+&lt;p&gt;Not familiar with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;Tree-sitter&lt;&#x2F;a&gt;? At a high level, it&#x27;s a framework for generating and using fast, error-tolerant parsers. In a &lt;code&gt;grammar.js&lt;&#x2F;code&gt; file you can write parser rules via the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;creating-parsers&#x2F;2-the-grammar-dsl.html&quot;&gt;Grammar DSL&lt;&#x2F;a&gt; and then use &lt;code&gt;tree-sitter&lt;&#x2F;code&gt; CLI tools to generate and test the parser.&lt;&#x2F;p&gt;
+&lt;p&gt;Tools like editors can then use the parser you&#x27;ve defined with the Tree-sitter C library, or language specific bindings, to parse and act on syntax trees. What you do with the syntax tree is up to your imagination! Language servers can use Tree-sitter for their parsers, diff tools like &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Wilfred&#x2F;difftastic&quot;&gt;Difftastic&lt;&#x2F;a&gt; can produce syntax-aware diffs, a language server like &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;blopker&#x2F;codebook&quot;&gt;Codebook&lt;&#x2F;a&gt; can do a syntax-aware scan for spell checking. Even &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;repositories&#x2F;working-with-files&#x2F;using-files&#x2F;navigating-code-on-github&quot;&gt;GitHub uses tree-sitter&lt;&#x2F;a&gt; for code navigation and highlighting of some languages.&lt;&#x2F;p&gt;
 &lt;p&gt;A very powerful tool for working with parsed trees is &lt;em&gt;Tree-sitter queries&lt;&#x2F;em&gt;. Queries are a way to pattern-match against subtrees and &lt;em&gt;capture&lt;&#x2F;em&gt; nodes for future use. For an editor you might use a query, commonly called &lt;code&gt;highlights.scm&lt;&#x2F;code&gt;, to capture a tree node like a Rust keyword in order to highlight the node&#x27;s text according to the current theme.&lt;&#x2F;p&gt;
 &lt;p&gt;Like syntax trees, the applications for queries are only limited by your imagination. We currently use queries in Helix for highlighting, indentation and textobjects (recognizing functions, parameters, etc.). In the future, code folding, spell checking and code navigation could use tree-sitter queries as well.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;history-in-helix&quot;&gt;History in Helix&lt;&#x2F;h4&gt;
-&lt;p&gt;Helix depended on Tree-sitter for syntax highlighting even before its initial public release via the official Rust bindings to the C library, the &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. The &lt;code&gt;tree-sitter&lt;&#x2F;code&gt; crate wraps the C library and is fairly low level. We also need a highlighter and that is provided by a separate crate: &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;tree-sitter-highlight&quot;&gt;&lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; provides a syntax highlighter which takes the queries for a language and a document&#x27;s text to highlight and can be iterated to produce highlight events. Helix could then consume highlight iterators while rendering the viewable documents. This works out-of-the-box with &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; and for our simple use-cases like highlighting a document once, &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; is all you need.&lt;&#x2F;p&gt;
+&lt;p&gt;Helix depended on Tree-sitter for syntax highlighting even before its initial public release via the official Rust bindings to the C library, the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. The &lt;code&gt;tree-sitter&lt;&#x2F;code&gt; crate wraps the C library and is fairly low level. We also need a highlighter and that is provided by a separate crate: &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;tree-sitter-highlight&quot;&gt;&lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; provides a syntax highlighter which takes the queries for a language and a document&#x27;s text to highlight and can be iterated to produce highlight events. Helix could then consume highlight iterators while rendering the viewable documents. This works out-of-the-box with &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; and for our simple use-cases like highlighting a document once, &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; is all you need.&lt;&#x2F;p&gt;
 &lt;p&gt;The problem with &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; is that it doesn&#x27;t work incrementally. Creating a new highlight iterator means fully re-parsing the document as well as re-analyzing the queries. This is wasteful since Tree-sitter can reuse queries. Plus parsing in Tree-sitter can work incrementally: you can give the old syntax tree to Tree-sitter and it will parse the new version of the document faster.&lt;&#x2F;p&gt;
-&lt;p&gt;So Helix&#x27;s early highlighter was a fork of &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;, inspired by Tree-sitter&#x27;s use in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;atom&#x2F;atom&quot;&gt;Atom editor&lt;&#x2F;a&gt;, which factored out the parsed tree (a &lt;code&gt;Syntax&lt;&#x2F;code&gt; type) and &lt;code&gt;tree_sitter::Query&lt;&#x2F;code&gt;s from the highlighter. Ideally we wanted to extract this highlighter into its own crate one day so we could share it easily with other tools.&lt;&#x2F;p&gt;
+&lt;p&gt;So Helix&#x27;s early highlighter was a fork of &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;, inspired by Tree-sitter&#x27;s use in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;atom&#x2F;atom&quot;&gt;Atom editor&lt;&#x2F;a&gt;, which factored out the parsed tree (a &lt;code&gt;Syntax&lt;&#x2F;code&gt; type) and &lt;code&gt;tree_sitter::Query&lt;&#x2F;code&gt;s from the highlighter. Ideally we wanted to extract this highlighter into its own crate one day so we could share it easily with other tools.&lt;&#x2F;p&gt;
 &lt;p&gt;This highlighter grew to become unmaintainable, though. Fixes for longstanding bugs were too large to make or completely incompatible with this highlighter&#x27;s design and the code was hard to reason about.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;enter-tree-house&quot;&gt;Enter Tree-house&lt;&#x2F;h4&gt;
-&lt;p&gt;With this release we&#x27;ve replaced the highlighter with a new crate: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;tree-house&quot;&gt;&lt;code&gt;tree-house&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. We wrote Tree-house from scratch based on our experience with those early highlighters.&lt;&#x2F;p&gt;
+&lt;p&gt;With this release we&#x27;ve replaced the highlighter with a new crate: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;tree-house&quot;&gt;&lt;code&gt;tree-house&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. We wrote Tree-house from scratch based on our experience with those early highlighters.&lt;&#x2F;p&gt;
 &lt;p&gt;Tree-house leans into the things that worked well like separating parsing from querying and determining injections during parsing. And it leans away from the things that didn&#x27;t work well, like exposing highlights as an &lt;code&gt;Iterator&lt;&#x2F;code&gt;. The Tree-house code is broken down into smaller and more understandable components and it squashes longstanding bugs that we were powerless to solve before. Tree-house also opens the door for future improvements like parallel parsing.&lt;&#x2F;p&gt;
 &lt;p&gt;Tree-house&#x27;s main strength is its robust handling of a feature called &lt;em&gt;injections&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;injections-a-tree-of-trees&quot;&gt;Injections, a tree of trees&lt;&#x2F;h4&gt;
 &lt;p&gt;&lt;em&gt;Injections&lt;&#x2F;em&gt; are a concept from &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt;. Injection queries capture nodes which should &#x27;switch&#x27; to another language. For example in Markdown, you can use a code-fence like so:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;```rust
-&lt;&#x2F;span&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)
-&lt;&#x2F;span&gt;&lt;span&gt;```
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;```rust&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;```&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;And you would expect the contents of that code-fence to be highlighted as Rust code. How this works is that the full text of this Markdown document is parsed using a Markdown Tree-sitter parser. An &lt;code&gt;injections.scm&lt;&#x2F;code&gt; query for Markdown tells Helix that the contents of this code-fence should be treated as Rust code instead. Then Helix runs a Rust Tree-sitter parser for that range of the document and creates a syntax tree.&lt;&#x2F;p&gt;
 &lt;p&gt;Then when it comes time to highlight this document, the &lt;code&gt;highlights.scm&lt;&#x2F;code&gt; query for Markdown defines highlights for the Markdown parts. And when we get to the Rust &lt;em&gt;layer&lt;&#x2F;em&gt; of the document, the Rust &lt;code&gt;highlights.scm&lt;&#x2F;code&gt; take over.&lt;&#x2F;p&gt;
 &lt;p&gt;While this is a simple example, injections can work robustly even in complicated cases. This release adds support for Markdown injection within Rust&#x27;s doc comments for example, leading to deeply nested injections like this:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F; A type that parses **stuff**
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F; This is a doc comment, so it should have _Markdown_ highlighting
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F; on top of the regular comment highlights.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F; # Heading 1
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F; Know what we can do with Markdown? Inject Rust!
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;&#x2F;&#x2F;     println!(&amp;quot;Hello, world!&amp;quot;);
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;pub struct &lt;&#x2F;span&gt;&lt;span&gt;Parser(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;* ... *&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;);
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F; A type that parses **stuff**&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F; This is a doc comment, so it should have _Markdown_ highlighting&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F; on top of the regular comment highlights.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F; # Heading 1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F; Know what we can do with Markdown? Inject Rust!&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;&#x2F;&#x2F;     println!(&amp;quot;Hello, world!&amp;quot;);&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt;pub struct&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; Parser&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;&#x2F;* ... *&#x2F;&lt;&#x2F;span&gt;&lt;span&gt;);&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;In a Rust file like this, the &lt;em&gt;root&lt;&#x2F;em&gt; layer covering the full document is Rust, naturally. Then each doc line comment (&lt;code&gt;&#x2F;&#x2F;&#x2F;&lt;&#x2F;code&gt;) has the content past it parsed as a Markdown document, &lt;em&gt;combined&lt;&#x2F;em&gt; - meaning that the ranges are collectively treated as one Markdown layer. And nested within that, the indented block should act like a code-fence which is another Rust layer.&lt;&#x2F;p&gt;
 &lt;p&gt;Internally Tree-house represents this &lt;em&gt;layer&lt;&#x2F;em&gt; concept as a tree. The overall &lt;code&gt;Syntax&lt;&#x2F;code&gt; type has a root layer for its file type, and children layers under that for all of its injections. And the children layers can inject other layers themselves, and so on. So the layers form a tree. And each layer is parsed so that it has its own syntax tree, making a kind of &lt;em&gt;tree of trees&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;incremental-injections&quot;&gt;Incremental injections&lt;&#x2F;h4&gt;
@@ -100,10 +97,9 @@
 &lt;h4 id=&quot;locals&quot;&gt;Locals&lt;&#x2F;h4&gt;
 &lt;p&gt;Another useful concept from &lt;code&gt;tree-sitter-highlight&lt;&#x2F;code&gt; is &lt;em&gt;locals&lt;&#x2F;em&gt;. &lt;code&gt;locals.scm&lt;&#x2F;code&gt; is a query used to tag nodes which should have their highlight applied to any later &lt;em&gt;references&lt;&#x2F;em&gt; within the same &lt;em&gt;scope&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Imagine a simple Rust function:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;add&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;b&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) -&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;usize &lt;&#x2F;span&gt;&lt;span&gt;{
-&lt;&#x2F;span&gt;&lt;span&gt;    a + b
-&lt;&#x2F;span&gt;&lt;span&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt;fn&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; add&lt;&#x2F;span&gt;&lt;span&gt;(a&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; usize&lt;&#x2F;span&gt;&lt;span&gt;, b&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; usize&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; -&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; usize&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    a&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; +&lt;&#x2F;span&gt;&lt;span&gt; b&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The &lt;code&gt;a&lt;&#x2F;code&gt; and &lt;code&gt;b&lt;&#x2F;code&gt; parameters to this function should be highlighted as parameters - possibly a different highlight depending on the theme. To track this information, the locals query captures nodes for function parameters like &lt;code&gt;a&lt;&#x2F;code&gt; and &lt;code&gt;b&lt;&#x2F;code&gt; and also the &lt;em&gt;scope&lt;&#x2F;em&gt;: the function body in this case. Any &lt;em&gt;references&lt;&#x2F;em&gt; - also captured by the locals query - within the scope should inherit the definition&#x27;s highlight.&lt;&#x2F;p&gt;
 &lt;p&gt;Tree-house takes a different approach to locals which solves a longstanding bug in Helix. Since the highlighter is only run for the small range you can see on your screen, locals disappeared whenever the definition fell out of view.&lt;&#x2F;p&gt;
 &lt;asciinema-player src=&quot;&#x2F;viewport-locals-before.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
@@ -116,9 +112,9 @@
 &lt;p&gt;Building on this, a &lt;code&gt;TreeCursor&lt;&#x2F;code&gt; type mirroring the &lt;code&gt;TreeCursor&lt;&#x2F;code&gt; from Tree-sitter C library moves across injection layers with an API nearly identical to Tree-sitter&#x27;s &lt;code&gt;TreeCursor&lt;&#x2F;code&gt; API. A new &lt;code&gt;QueryIter&lt;&#x2F;code&gt; type provides the ability to run any query across all injection layers in the document - not just highlights.&lt;&#x2F;p&gt;
 &lt;p&gt;Taking advantage of injections for all Tree-sitter based features will lead to a more consistent experience across language boundaries. Comment tokens and textobjects within an HTML &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; tag should follow JavaScript rules rather than HTML. Indentation within a Markdown code-fence should follow the language you&#x27;re writing out, not Markdown. These features are not yet merged or released but eventually all Tree-sitter based Helix features should behave as consistently as highlighting.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
-&lt;p&gt;These has been the highlights from the 25.07 release plus a deeper dive into our Tree-sitter integration. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2507-2025-07-15&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
-&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
-and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;These has been the highlights from the 25.07 release plus a deeper dive into our Tree-sitter integration. Check out the full &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2507-2025-07-15&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -179,18 +175,17 @@ diagnostics at the diagnostic&#x27;s range in the document. Diagnostic messages
 appear after the end of the line or in between lines of the appropriate code.&lt;&#x2F;p&gt;
 &lt;p&gt;Inline diagnostics are currently disabled by default as we tune the display and
 iron out bugs and can be enabled with a config like so:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml
-&lt;&#x2F;span&gt;&lt;span&gt;[editor]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic after the end of a line:
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;end-of-line-diagnostics &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hint&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;[editor.inline-diagnostics]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic on the primary cursor&amp;#39;s line.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Note that `cursor-line` diagnostics are hidden in insert mode.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cursor-line &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Minimum severity to show a diagnostic on other lines:
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# other-lines = &amp;quot;error&amp;quot;
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;editor&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# Minimum severity to show a diagnostic after the end of a line:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;end-of-line-diagnostics =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;hint&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;editor&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;inline-diagnostics&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# Minimum severity to show a diagnostic on the primary cursor&amp;#39;s line.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# Note that `cursor-line` diagnostics are hidden in insert mode.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;cursor-line =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;error&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# Minimum severity to show a diagnostic on other lines:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# other-lines = &amp;quot;error&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Setting &lt;code&gt;end-of-line-diagnostics&lt;&#x2F;code&gt;, &lt;code&gt;cursor-line&lt;&#x2F;code&gt; or &lt;code&gt;other-lines&lt;&#x2F;code&gt; to anything
 other than &lt;code&gt;&quot;disable&quot;&lt;&#x2F;code&gt; enables inline diagnostics.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;tabular-pickers&quot;&gt;Tabular pickers&lt;&#x2F;h2&gt;
@@ -220,11 +215,10 @@ with a query like &lt;code&gt;%path filename&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;macro-keybindings&quot;&gt;Macro keybindings&lt;&#x2F;h2&gt;
 &lt;p&gt;Initial support for keybindings written as macros has landed in 25.01. Macro
 keybindings can be written by prefixing a string of inputs with &lt;code&gt;@&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Change the `&amp;lt;space&amp;gt;y` keybinding to yank to the `a` register instead of the
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# system clipboard:
-&lt;&#x2F;span&gt;&lt;span&gt;[keys.normal]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;space&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;y &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;@&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;ay&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# Change the `&amp;lt;space&amp;gt;y` keybinding to yank to the `a` register instead of the&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# system clipboard:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;keys&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;normal&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;space&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;y =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;@&lt;&#x2F;span&gt;&lt;span style=&quot;color: #EFBA5D;&quot;&gt;\&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;ay&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Macro keybindings use the same infrastructure as macros recorded with &lt;code&gt;q&lt;&#x2F;code&gt; and
 executed with &lt;code&gt;Q&lt;&#x2F;code&gt;, so the above behaves as if you typed&lt;&#x2F;p&gt;
 &lt;ol&gt;
@@ -255,9 +249,9 @@ This makes it easier to edit existing comments or fix spacing between
 paragraphs.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;As always, this is just the highlights from the 25.01 release. Check out the
-full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2501-2025-01-03&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
-&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
-and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+full &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2501-2025-01-03&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -290,7 +284,7 @@ Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 plugins to add the same functionality to other tools like browsers. They allow
 you to move your selection efficiently across even large parts of the view,
 like you could by clicking with a mouse, but by entering &quot;labels&quot; instead.
-24.03 introduces jumping commands inspired by the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jmacdonald&#x2F;amp&quot;&gt;Amp editor&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;amp.rs&#x2F;docs&#x2F;usage&#x2F;#jump-mode&quot;&gt;jump mode&lt;&#x2F;a&gt;.
+24.03 introduces jumping commands inspired by the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jmacdonald&#x2F;amp&quot;&gt;Amp editor&lt;&#x2F;a&gt;&#x27;s &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;amp.rs&#x2F;docs&#x2F;usage&#x2F;#jump-mode&quot;&gt;jump mode&lt;&#x2F;a&gt;.
 Press &lt;code&gt;gw&lt;&#x2F;code&gt; to add the jump labels and then enter one of the labels to jump to
 the word under that label. Using &lt;code&gt;gw&lt;&#x2F;code&gt; in select mode (&lt;code&gt;v&lt;&#x2F;code&gt;) extends the
 selection.&lt;&#x2F;p&gt;
@@ -303,9 +297,9 @@ selection based on the language&#x27;s comment token configuration, &lt;code&gt;
 toggle block comments around the current selection, or &lt;code&gt;&amp;lt;space&amp;gt;&amp;lt;A-c&amp;gt;&lt;&#x2F;code&gt; to toggle
 only line comments on the current line.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;improvements-to-tree-sitter-injections&quot;&gt;Improvements to tree-sitter injections&lt;&#x2F;h2&gt;
-&lt;p&gt;Helix uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; incremental parsing for syntax highlighting,
+&lt;p&gt;Helix uses &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tree-sitter&#x2F;tree-sitter&quot;&gt;&lt;code&gt;tree-sitter&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; incremental parsing for syntax highlighting,
 textobjects, indentation and some motions and commands. 24.03 improves how we
-handle &lt;em&gt;&lt;a href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;syntax-highlighting#language-injection&quot;&gt;injections&lt;&#x2F;a&gt;&lt;&#x2F;em&gt; - a powerful tree-sitter feature for parsing documents
+handle &lt;em&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;tree-sitter.github.io&#x2F;tree-sitter&#x2F;syntax-highlighting#language-injection&quot;&gt;injections&lt;&#x2F;a&gt;&lt;&#x2F;em&gt; - a powerful tree-sitter feature for parsing documents
 with multiple languages. For example you might have JavaScript, CSS or other
 languages within a &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;lt;style&amp;gt;&lt;&#x2F;code&gt; tag in HTML. The HTML parser doesn&#x27;t
 need to know how to parse all of these languages. Instead it can &lt;em&gt;inject&lt;&#x2F;em&gt;
@@ -338,8 +332,8 @@ navigating around in insert mode, for example with arrow keys. It&#x27;s now hoo
 into document changes instead, so it can smartly pop up when you start changing
 a document rather than every time the editor goes idle.&lt;&#x2F;p&gt;
 &lt;p&gt;The other major improvement to be excited for is the general replacement of the
-&lt;code&gt;regex&lt;&#x2F;code&gt; crate with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;regex-cursor&quot;&gt;&lt;code&gt;regex-cursor&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a streaming regex implementation
-compatible with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;cessen&#x2F;ropey&quot;&gt;&lt;code&gt;ropey&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, the rope crate we use to represent all documents.
+&lt;code&gt;regex&lt;&#x2F;code&gt; crate with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;regex-cursor&quot;&gt;&lt;code&gt;regex-cursor&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a streaming regex implementation
+compatible with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;cessen&#x2F;ropey&quot;&gt;&lt;code&gt;ropey&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, the rope crate we use to represent all documents.
 &lt;code&gt;regex-cursor&lt;&#x2F;code&gt; is capable of running on &lt;em&gt;discontiguous strings&lt;&#x2F;em&gt; - input that
 may not be collocated in memory. In a rope, different parts of the document
 might be stored separately internally. To use the &lt;code&gt;regex&lt;&#x2F;code&gt; API we needed to
@@ -348,9 +342,9 @@ memory footprint of that slice of the document. &lt;code&gt;regex-cursor&lt;&#x2
 chunks of the rope instead, which greatly improves efficiency.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;As always, this is just the highlights from the 24.03 release. Check out the
-full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2404-2024-03-30&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
-&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
-and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+full &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2404-2024-03-30&quot;&gt;changelog&lt;&#x2F;a&gt; for the details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -383,7 +377,7 @@ Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 Previously each language could only support one language server at a time but
 now you can configure multiple to work in tandem. For example you might use
 the TypeScript language server for JavaScript&#x2F;TypeScript development and also
-configure &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mattn&#x2F;efm-langserver&quot;&gt;efm-langserver&lt;&#x2F;a&gt; for
+configure &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mattn&#x2F;efm-langserver&quot;&gt;efm-langserver&lt;&#x2F;a&gt; for
 Prettier formatting and ESLint diagnostics. With the new support for multiple
 language servers, you can specify which features to use from each language
 server.&lt;&#x2F;p&gt;
@@ -392,30 +386,29 @@ language configuration (&lt;code&gt;languages.toml&lt;&#x2F;code&gt;). All langu
 specified separately from languages and then each language selects which
 language server(s) to use. From the example above, you might configure efm-
 langserver and typescript-language-server like so:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[language-server.efm]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;command &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;efm-langserver&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;documentFormatting &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;[language-server.typescript-language-server]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;command &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript-language-server&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;args &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;--stdio&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hostInfo &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;helix&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;[[language]]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;auto-format &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;language-servers &lt;&#x2F;span&gt;&lt;span&gt;= [
-&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;efm&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;only-features &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] },
-&lt;&#x2F;span&gt;&lt;span&gt;  { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;typescript-language-server&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;except-features &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] },
-&lt;&#x2F;span&gt;&lt;span&gt;]
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;See more details in the &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;languages.html&quot;&gt;language configuration docs&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;language-server&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;efm&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;command =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;efm-langserver&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;documentFormatting =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; true&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;language-server&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;typescript-language-server&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;command =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;typescript-language-server&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;args =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;&amp;quot;--stdio&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;config&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;hostInfo =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;helix&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;language&lt;&#x2F;span&gt;&lt;span&gt;]]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;typescript&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;auto-format =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; true&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;language-servers =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;efm&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; only-features =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;&amp;quot;format&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;diagnostics&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;] },&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;typescript-language-server&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; except-features =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;&amp;quot;format&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;diagnostics&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;] },&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;See more details in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;languages.html&quot;&gt;language configuration docs&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;fuzzy-matching-with-nucleo&quot;&gt;Fuzzy matching with Nucleo&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;nucleo-nix-store.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
 &lt;p&gt;Helix uses &quot;fuzzy&quot; matching to filter as-you-type in components like the file
 picker. Previously we used the popular &lt;code&gt;skim&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;fuzzy-matcher&lt;&#x2F;code&gt; crates but in the
 23.10 release we&#x27;ve switched to the new
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;nucleo&quot;&gt;&lt;code&gt;nucleo&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. Nucleo is
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;nucleo&quot;&gt;&lt;code&gt;nucleo&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; crate. Nucleo is
 significantly faster than skim and fzf, handles Unicode correctly, and uses a
 bonus system that feels more intuitive.&lt;&#x2F;p&gt;
 &lt;p&gt;Nucleo also enables us to lazily stream in new items, which is a big boost for
@@ -429,14 +422,13 @@ upcoming release notes to see where we&#x27;ll take the picker.&lt;&#x2F;p&gt;
 &lt;p&gt;Smart tab is a new feature bound to the tab key in the default keymap. When
 you press tab and the line to the left of the cursor isn&#x27;t all whitespace,
 the cursor will jump to the end of the syntax tree&#x27;s parent node. For example:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;nix&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-nix &quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span&gt;{
-&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;key &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;value&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;;
-&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;nested &lt;&#x2F;span&gt;&lt;span&gt;= {
-&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;key2 &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;value2&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# When the cursor is at the end of the line here, &amp;lt;tab&amp;gt;
-&lt;&#x2F;span&gt;&lt;span&gt;                     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# jumps right after the closing brace on the next line.
-&lt;&#x2F;span&gt;&lt;span&gt;  };
-&lt;&#x2F;span&gt;&lt;span&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;  key =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;value&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;  nested =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;    key2 =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;value2&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #697C81;&quot;&gt; # When the cursor is at the end of the line here, &amp;lt;tab&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;                     # jumps right after the closing brace on the next line.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  };&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This is useful in languages like Nix for adding semicolons at the end of an
 attribute set or jumping to the end of a block in a C-like language:&lt;&#x2F;p&gt;
 &lt;asciinema-player src=&quot;&#x2F;smart-tab.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
@@ -474,9 +466,9 @@ via tree-sitter-regex. The highlighting makes special characters more obvious
 and can catch syntax errors like trailing backslashes.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;As always, this is just the tip of the iceberg for the 23.10 release. Check out
-the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2310-2023-10-24&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details.&lt;&#x2F;p&gt;
-&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
-and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2310-2023-10-24&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -508,12 +500,11 @@ some especially useful and exciting features, so let&#x27;s jump right in.&lt;&#
 characters into the text (so called &quot;hard-wrapping&quot;). This can be useful for
 reading and editing documentation or code with especially long lines. Enable
 soft-wrap in your config with the &lt;code&gt;editor.soft-wrap.enable&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml
-&lt;&#x2F;span&gt;&lt;span&gt;[editor.soft-wrap]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;enable &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;config.toml&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;editor&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;soft-wrap&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;enable =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; true&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Heuristics for where to break lines and the wrap indicator may also be
-&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorsoft-wrap-section&quot;&gt;configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorsoft-wrap-section&quot;&gt;configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Soft-wrap is the first feature implemented on top of a new &quot;virtual text&quot; API
 within the Helix codebase. The virtual text API allows us to decorate and
 manipulate the actual text in a document without disturbing positioning and
@@ -554,10 +545,10 @@ update on-the-fly as you change the query.&lt;&#x2F;p&gt;
 &lt;p&gt;A new statusline element has been added which displays the version control
 HEAD. Add this to your statusline by introducing the &lt;code&gt;&quot;version-control&quot;&lt;&#x2F;code&gt;
 element in the
-&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorstatusline-section&quot;&gt;&lt;code&gt;editor.statusline&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;configuration.html#editorstatusline-section&quot;&gt;&lt;code&gt;editor.statusline&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;
 section of your config for the &lt;code&gt;left&lt;&#x2F;code&gt;, &lt;code&gt;center&lt;&#x2F;code&gt; or &lt;code&gt;right&lt;&#x2F;code&gt; sides.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;enhanced-keyboard-protocol&quot;&gt;Enhanced keyboard protocol&lt;&#x2F;h2&gt;
-&lt;p&gt;Support for the &lt;a href=&quot;https:&#x2F;&#x2F;sw.kovidgoyal.net&#x2F;kitty&#x2F;keyboard-protocol&#x2F;&quot;&gt;enhanced keyboard protocol&lt;&#x2F;a&gt; is now enabled. Terminals that
+&lt;p&gt;Support for the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;sw.kovidgoyal.net&#x2F;kitty&#x2F;keyboard-protocol&#x2F;&quot;&gt;enhanced keyboard protocol&lt;&#x2F;a&gt; is now enabled. Terminals that
 support the protocol (Kitty, WezTerm) can now send unambiguous keycodes to
 Helix, enabling key combinations that weren&#x27;t possible to bind before like
 &lt;code&gt;C-&#x2F;&lt;&#x2F;code&gt;, &lt;code&gt;C-h&lt;&#x2F;code&gt; or &lt;code&gt;S-backspace&lt;&#x2F;code&gt;. This functionality works out-of-the-box for
@@ -573,9 +564,9 @@ queries to a local runtime directory. On Unix systems you can add files to the
 directory installed by a package manager.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;These flashy features are just the tip of the iceberg though. Check out the
-23.03 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2303-2023-03-31&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the changes in this release.&lt;&#x2F;p&gt;
-&lt;p&gt;Come chat about usage and development questions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
-and follow along with Helix&#x27;s development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+23.03 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2303-2023-03-31&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the changes in this release.&lt;&#x2F;p&gt;
+&lt;p&gt;Come chat about usage and development questions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix space&lt;&#x2F;a&gt;
+and follow along with Helix&#x27;s development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -600,14 +591,14 @@ Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today we cut the 22.12 release. This release is big and featureful and saw
 contributions from 99 contributors. Thank you all! 🎊&lt;&#x2F;p&gt;
-&lt;p&gt;Helix now has a logo! Thank you &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jakehl&quot;&gt;&lt;code&gt;@jakehl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for your
+&lt;p&gt;Helix now has a logo! Thank you &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jakehl&quot;&gt;&lt;code&gt;@jakehl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for your
 contribution!&lt;&#x2F;p&gt;
 &lt;img src=&quot;&#x2F;logo-with-text.svg&quot; style=&quot;max-width: 75%; display: block; margin-left: auto; margin-right: auto&quot; &#x2F;&gt;
 &lt;p&gt;Looking for an introduction to Helix or to see Helix out in the wild? Check out
 these new videos on Helix.&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xHebvTGOdH8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7mTi278jUS8&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Now let&#x27;s jump into the highlights.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;git-diff-gutter&quot;&gt;Git diff gutter&lt;&#x2F;h2&gt;
@@ -624,18 +615,15 @@ hunk and &lt;code&gt;[g&lt;&#x2F;code&gt; jumps to the previous.&lt;&#x2F;p&gt;
 styles like curls or dots as well as colors. Extended underlines can be used to
 improve the display of LSP diagnostics. These can be configured in themes with
 the new &lt;code&gt;underline&lt;&#x2F;code&gt; key:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;style &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;curl&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;quot;diagnostic.error&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; underline =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; style =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;curl&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; color =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;red&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; } }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The existing &lt;code&gt;underline&lt;&#x2F;code&gt; modifier is now an alias for the &lt;code&gt;&quot;line&quot;&lt;&#x2F;code&gt; style.&lt;&#x2F;p&gt;
 &lt;p&gt;If you&#x27;re looking to use this in a theme that hasn&#x27;t configured it yet, you
-can use the new &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;themes.html#inheritance&quot;&gt;theme inheritance&lt;&#x2F;a&gt; feature to modify just the scopes you would
+can use the new &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;themes.html#inheritance&quot;&gt;theme inheritance&lt;&#x2F;a&gt; feature to modify just the scopes you would
 like to change:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;themes&#x2F;my-onedark.toml
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;inherits &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;onedark&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostic.error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; = { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;fg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorfg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bg &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;errorbg&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;underline &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;color &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;red&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; } }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;autosave-when-the-terminal-loses-focus&quot;&gt;Autosave when the terminal loses focus&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# ~&#x2F;.config&#x2F;helix&#x2F;themes&#x2F;my-onedark.toml&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;inherits =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;onedark&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&amp;quot;diagnostic.error&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; fg =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;errorfg&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; bg =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;errorbg&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; underline =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; color =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;red&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; } }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;autosave-when-the-terminal-loses-focus&quot;&gt;Autosave when the terminal loses focus&lt;&#x2F;h2&gt;
 &lt;img src=&quot;&#x2F;auto-save.gif&quot; style=&quot;max-width: 80%; display: block; margin-left: auto; margin-right: auto&quot;&#x2F;&gt;
 &lt;p&gt;Terminals with support for focus events can now automatically save the current
 file when you focus on a new window. Enable this behavior by setting the
@@ -665,15 +653,15 @@ files in particular since markdown uses injections extensively.&lt;&#x2F;li&gt;
 gracefully handles cases like language servers not supporting capabilities
 and unexpected language server crashes.&lt;&#x2F;li&gt;
 &lt;li&gt;The speed and memory usage of the &lt;code&gt;:reload&lt;&#x2F;code&gt; command has been vastly improved.
-This comes from the creation of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
+This comes from the creation of &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pascalkuthe&#x2F;imara-diff&quot;&gt;&lt;code&gt;imara-diff&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new diffing
 implementation which is faster than the one used internally by &lt;code&gt;git&lt;&#x2F;code&gt;!&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;There are many more changes arriving now in 22.12 than we can fit in this post.
-Check out the 22.12 &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2212-2022-12-06&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the performance
+Check out the 22.12 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2212-2022-12-06&quot;&gt;changelog&lt;&#x2F;a&gt; for the full details on all of the performance
 boosts, usability improvements and fixes in 22.12.&lt;&#x2F;p&gt;
-&lt;p&gt;Contribute and follow along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub
-repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix
+&lt;p&gt;Contribute and follow along with development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub
+repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix
 channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
@@ -773,13 +761,13 @@ terminal emulators that support bracketed paste work as if you had pressed
 &lt;code&gt;Space-p&lt;&#x2F;code&gt; in normal mode. In the above cast, the entire text of &lt;em&gt;Moby-Dick&lt;&#x2F;em&gt;
 is pasted with &lt;code&gt;C-v&lt;&#x2F;code&gt; in insert mode instantly.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
-&lt;p&gt;These changes are just the highlights. Check out the full &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-31&quot;&gt;changelog&lt;&#x2F;a&gt; to see
-all that&#x27;s changed since 22.05. Release binaries can be found on the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.08&quot;&gt;release
+&lt;p&gt;These changes are just the highlights. Check out the full &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2208-2022-08-31&quot;&gt;changelog&lt;&#x2F;a&gt; to see
+all that&#x27;s changed since 22.05. Release binaries can be found on the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.08&quot;&gt;release
 page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Be ready for more exciting changes in Helix 22.10 expected in October!
 Contribute and follow along with development in the
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in
-the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;Helix GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in
+the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -804,8 +792,8 @@ Language Server Protocol (LSP), tree-sitter, and experimental support for Debug
 Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Today marks the 22.05 release, a featureful release with over double the number
 of contributors as last release (110!). A big thanks to all involved! 🙌&lt;&#x2F;p&gt;
-&lt;p&gt;Also a big shout out to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;amirrezaask&quot;&gt;&lt;code&gt;@amirrezaask&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for
-this great &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=__U4A2Q9fNI&quot;&gt;Helix introduction video&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;p&gt;Also a big shout out to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;amirrezaask&quot;&gt;&lt;code&gt;@amirrezaask&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for
+this great &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=__U4A2Q9fNI&quot;&gt;Helix introduction video&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s check out the flashy features of 22.05.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;indentation-rework&quot;&gt;Indentation rework&lt;&#x2F;h2&gt;
 &lt;p&gt;The indentation system has been fully reworked. Indentation still works by
@@ -815,20 +803,16 @@ simple node names. Expect more robust indentation with fewer edge cases.&lt;&#x2
 &lt;h2 id=&quot;configurable-gutters&quot;&gt;Configurable gutters&lt;&#x2F;h2&gt;
 &lt;p&gt;Gutters can now be configured in your &lt;code&gt;config.toml&lt;&#x2F;code&gt; file. For example, you can
 remove the line-number gutter while still showing LSP diagnostics.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[editor]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gutters &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;diagnostics&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# default is [&amp;quot;diagnostics&amp;quot;, &amp;quot;line-numbers&amp;quot;]
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;local-language-configuration&quot;&gt;Local language configuration&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;editor&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;gutters =&lt;&#x2F;span&gt;&lt;span&gt; [&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;&amp;quot;diagnostics&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;color: #697C81;&quot;&gt; # default is [&amp;quot;diagnostics&amp;quot;, &amp;quot;line-numbers&amp;quot;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;local-language-configuration&quot;&gt;Local language configuration&lt;&#x2F;h2&gt;
 &lt;p&gt;Language configuration can now be specified local to a project. Create a
 &lt;code&gt;.helix&lt;&#x2F;code&gt; directory and a &lt;code&gt;languages.toml&lt;&#x2F;code&gt; under it to override values from the
-&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;guides&#x2F;adding_languages.html#language-configuration&quot;&gt;default language configuration&lt;&#x2F;a&gt;. For example, override a C project&#x27;s indents
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;guides&#x2F;adding_languages.html#language-configuration&quot;&gt;default language configuration&lt;&#x2F;a&gt;. For example, override a C project&#x27;s indents
 to use tabs instead of spaces for indentation:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# my_c_project&#x2F;.helix&#x2F;languages.toml
-&lt;&#x2F;span&gt;&lt;span&gt;[[language]]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;c&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;indent &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;tab-width &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;unit &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\t&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;rulers&quot;&gt;Rulers&lt;&#x2F;h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# my_c_project&#x2F;.helix&#x2F;languages.toml&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;language&lt;&#x2F;span&gt;&lt;span&gt;]]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;c&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;indent =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; tab-width =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; 8&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; unit =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #EFBA5D;&quot;&gt;\t&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;rulers&quot;&gt;Rulers&lt;&#x2F;h2&gt;
 &lt;asciinema-player src=&quot;&#x2F;rulers.cast&quot; cols=&quot;94&quot; rows=&quot;25&quot;&gt;&lt;&#x2F;asciinema-player&gt;
 &lt;p&gt;Vertical rulers may now be configured through the &lt;code&gt;rulers&lt;&#x2F;code&gt; option. Use them
 as a guide when adhering to a maximum line length.&lt;&#x2F;p&gt;
@@ -870,13 +854,13 @@ split or vice versa.&lt;&#x2F;p&gt;
 and switch language servers.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;&#x2F;h2&gt;
 &lt;p&gt;These are just some highlights from the changes in 22.05. Check out the
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2205-2022-05-17&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set. Pick up the release binaries for 22.05 on the
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.05&quot;&gt;release page&lt;&#x2F;a&gt;. Starting with this release, an AppImage is included in the
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2205-2022-05-17&quot;&gt;changelog&lt;&#x2F;a&gt; for the full set. Pick up the release binaries for 22.05 on the
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;releases&#x2F;tag&#x2F;22.05&quot;&gt;release page&lt;&#x2F;a&gt;. Starting with this release, an AppImage is included in the
 release binaries for easier usage from Linux.&lt;&#x2F;p&gt;
 &lt;p&gt;Expect plenty more features and improvements in Helix 22.07 coming in July.
 Contribute and follow along with development in the
-&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the
-&lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to join in on discussions in the
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -902,10 +886,10 @@ text editor with built-in support for multiple selections, Language
 Server Protocol (LSP), tree-sitter, and now Debug Adapter Protocol (DAP).&lt;&#x2F;p&gt;
 &lt;p&gt;Before we look at the highlights, there are some administrative notes.
 &lt;code&gt;master&lt;&#x2F;code&gt; branch changes are now published separately from the release
-&lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;&quot;&gt;documentation&lt;&#x2F;a&gt;. Find the new &lt;code&gt;master&lt;&#x2F;code&gt; docs &lt;a href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;&quot;&gt;documentation&lt;&#x2F;a&gt;. Find the new &lt;code&gt;master&lt;&#x2F;code&gt; docs &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.helix-editor.com&#x2F;master&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.
 Helix is switching versioning schemes. Expect to find new releases in
 Calendar Version format: &lt;code&gt;YY.0M(.MICRO)&lt;&#x2F;code&gt;. We&#x27;re aiming to cut regular
-releases every two months or so. Check out the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2203-2022-03-28&quot;&gt;changelog&lt;&#x2F;a&gt;
+releases every two months or so. Check out the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;blob&#x2F;master&#x2F;CHANGELOG.md#2203-2022-03-28&quot;&gt;changelog&lt;&#x2F;a&gt;
 for all of the new features and fixes from this release.&lt;&#x2F;p&gt;
 &lt;p&gt;With that out of the way, let&#x27;s check out the highlights!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;health-check&quot;&gt;Health-check&lt;&#x2F;h2&gt;
@@ -926,28 +910,25 @@ be bugs, and the UX is a bit clunky. Contributions are very welcome!&lt;&#x2F;p&
 &lt;p&gt;One of the cooler features of syntax highlight driven by tree-sitter is the
 ability to &lt;em&gt;inject&lt;&#x2F;em&gt; a language into another language&#x27;s document. For example,
 if you&#x27;re writing Markdown, you might use a code-fence like so:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;This is some rust:
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;```rust
-&lt;&#x2F;span&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)
-&lt;&#x2F;span&gt;&lt;span&gt;```
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;This is some rust:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;```rust&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;println!(&amp;quot;Hello, world!&amp;quot;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;```&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Helix highlights the Rust block by injecting tree-sitter-rust. Injections
 have been rewritten so that changes within are now parsed incrementally, which
 is a big speed boost when editing documents with large injected blocks.&lt;&#x2F;p&gt;
 &lt;p&gt;Along with this rewrite, Helix now supports &lt;em&gt;combined&lt;&#x2F;em&gt; injections. For example,
 when highlighting Interactive Elixir (IEx), we might have a block of code like
 the following:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; send(self(), &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello&lt;&#x2F;span&gt;&lt;span&gt;)
-&lt;&#x2F;span&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;receive &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;do: &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:hello &lt;&#x2F;span&gt;&lt;span&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok&lt;&#x2F;span&gt;&lt;span&gt;)
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;elixir&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;iex&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt; send&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span&gt;(), :&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9FF28F;&quot;&gt;hello&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;iex&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt; receive&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; do&lt;&#x2F;span&gt;&lt;span&gt;: (:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9FF28F;&quot;&gt;hello&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; -&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt; :&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9FF28F;&quot;&gt;ok&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The IEx grammar injects tree-sitter-elixir into each line after the prompt
 token. Combined injections cover the case where separate injected documents
 must be parsed in one combined document, like so:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;elixir&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-elixir &quot;&gt;&lt;code class=&quot;language-elixir&quot; data-lang=&quot;elixir&quot;&gt;&lt;span&gt;iex&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;do
-&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;:ok
-&lt;&#x2F;span&gt;&lt;span&gt;...&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;end
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;elixir&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;iex&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt; if&lt;&#x2F;span&gt;&lt;span style=&quot;color: #E8DCA0;&quot;&gt; true&lt;&#x2F;span&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt; do&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;..&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;   :&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9FF28F;&quot;&gt;ok&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;..&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: #ECCDBA;&quot;&gt; end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Helix can now parse all three lines together. In the future this can be used
 to add support for templating languages like EJS or ERB.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;tree-sitter-grammars-refactor&quot;&gt;Tree-Sitter Grammars Refactor&lt;&#x2F;h2&gt;
@@ -973,20 +954,19 @@ your &lt;code&gt;languages.toml&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
 &lt;p&gt;If you&#x27;re writing a tree-sitter grammar, you can try out integrating it
 by pointing helix to your grammar&#x27;s local path in &lt;code&gt;languages.toml&lt;&#x2F;code&gt; without
 needing to publish changes to a Git remote:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[[language]]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# ..
-&lt;&#x2F;span&gt;&lt;span&gt;
-&lt;&#x2F;span&gt;&lt;span&gt;[[grammar]]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;source &lt;&#x2F;span&gt;&lt;span&gt;= { &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;path &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;local&#x2F;path&#x2F;to&#x2F;tree-sitter-mylang&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; }
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #A4A0E8; background-color: #1F1029;&quot;&gt;&lt;code data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;language&lt;&#x2F;span&gt;&lt;span&gt;]]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;mylang&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #697C81;&quot;&gt;# ..&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;[[&lt;&#x2F;span&gt;&lt;span style=&quot;color: #FFFFFF;&quot;&gt;grammar&lt;&#x2F;span&gt;&lt;span&gt;]]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;name =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;mylang&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt;source =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #DBBFEF;&quot;&gt; path =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #CCCCCC;&quot;&gt; &amp;quot;&#x2F;local&#x2F;path&#x2F;to&#x2F;tree-sitter-mylang&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Running &lt;code&gt;hx -g build&lt;&#x2F;code&gt; will build the grammar. Add some queries and you&#x27;re
 on your way to interactive grammar development.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;up-next&quot;&gt;Up Next&lt;&#x2F;h2&gt;
 &lt;p&gt;The next release is sure to be exciting as well. Contribute and follow
-along with development in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to
-join in on discussions in the &lt;a href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+along with development in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;helix-editor&#x2F;helix&#x2F;&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and be sure to
+join in on discussions in the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;matrix.to&#x2F;#&#x2F;#helix-community:matrix.org&quot;&gt;Matrix channel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
     </entry>

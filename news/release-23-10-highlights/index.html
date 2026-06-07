@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#281733">
     <title>
       Release 23.10 Highlights |  Helix
     </title>
@@ -53,7 +55,7 @@ Adapter Protocol (DAP).</p>
 Previously each language could only support one language server at a time but
 now you can configure multiple to work in tandem. For example you might use
 the TypeScript language server for JavaScript/TypeScript development and also
-configure <a href="https://github.com/mattn/efm-langserver">efm-langserver</a> for
+configure <a rel="external" href="https://github.com/mattn/efm-langserver">efm-langserver</a> for
 Prettier formatting and ESLint diagnostics. With the new support for multiple
 language servers, you can specify which features to use from each language
 server.</p>
@@ -62,30 +64,29 @@ language configuration (<code>languages.toml</code>). All language servers are n
 specified separately from languages and then each language selects which
 language server(s) to use. From the example above, you might configure efm-
 langserver and typescript-language-server like so:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[language-server.efm]
-</span><span style="color:#bf616a;">command </span><span>= &quot;</span><span style="color:#a3be8c;">efm-langserver</span><span>&quot;
-</span><span style="color:#bf616a;">config</span><span>.</span><span style="color:#bf616a;">documentFormatting </span><span>= </span><span style="color:#d08770;">true
-</span><span>
-</span><span>[language-server.typescript-language-server]
-</span><span style="color:#bf616a;">command </span><span>= &quot;</span><span style="color:#a3be8c;">typescript-language-server</span><span>&quot;
-</span><span style="color:#bf616a;">args </span><span>= [&quot;</span><span style="color:#a3be8c;">--stdio</span><span>&quot;]
-</span><span style="color:#bf616a;">config</span><span>.</span><span style="color:#bf616a;">hostInfo </span><span>= &quot;</span><span style="color:#a3be8c;">helix</span><span>&quot;
-</span><span>
-</span><span>[[language]]
-</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">typescript</span><span>&quot;
-</span><span style="color:#bf616a;">auto-format </span><span>= </span><span style="color:#d08770;">true
-</span><span style="color:#bf616a;">language-servers </span><span>= [
-</span><span>  { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">efm</span><span>&quot;, </span><span style="color:#bf616a;">only-features </span><span>= [&quot;</span><span style="color:#a3be8c;">format</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] },
-</span><span>  { </span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">typescript-language-server</span><span>&quot;, </span><span style="color:#bf616a;">except-features </span><span>= [&quot;</span><span style="color:#a3be8c;">format</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">diagnostics</span><span>&quot;] },
-</span><span>]
-</span></code></pre>
-<p>See more details in the <a href="https://docs.helix-editor.com/languages.html">language configuration docs</a>.</p>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: #FFFFFF;">language-server</span><span>.</span><span style="color: #FFFFFF;">efm</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">command =</span><span style="color: #CCCCCC;"> &quot;efm-langserver&quot;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">config</span><span>.</span><span style="color: #DBBFEF;">documentFormatting =</span><span style="color: #E8DCA0;"> true</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>[</span><span style="color: #FFFFFF;">language-server</span><span>.</span><span style="color: #FFFFFF;">typescript-language-server</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">command =</span><span style="color: #CCCCCC;"> &quot;typescript-language-server&quot;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">args =</span><span> [</span><span style="color: #CCCCCC;">&quot;--stdio&quot;</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">config</span><span>.</span><span style="color: #DBBFEF;">hostInfo =</span><span style="color: #CCCCCC;"> &quot;helix&quot;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>[[</span><span style="color: #FFFFFF;">language</span><span>]]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">name =</span><span style="color: #CCCCCC;"> &quot;typescript&quot;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">auto-format =</span><span style="color: #E8DCA0;"> true</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">language-servers =</span><span> [</span></span>
+<span class="giallo-l"><span>  {</span><span style="color: #DBBFEF;"> name =</span><span style="color: #CCCCCC;"> &quot;efm&quot;</span><span>,</span><span style="color: #DBBFEF;"> only-features =</span><span> [</span><span style="color: #CCCCCC;">&quot;format&quot;</span><span>,</span><span style="color: #CCCCCC;"> &quot;diagnostics&quot;</span><span>] },</span></span>
+<span class="giallo-l"><span>  {</span><span style="color: #DBBFEF;"> name =</span><span style="color: #CCCCCC;"> &quot;typescript-language-server&quot;</span><span>,</span><span style="color: #DBBFEF;"> except-features =</span><span> [</span><span style="color: #CCCCCC;">&quot;format&quot;</span><span>,</span><span style="color: #CCCCCC;"> &quot;diagnostics&quot;</span><span>] },</span></span>
+<span class="giallo-l"><span>]</span></span></code></pre>
+<p>See more details in the <a rel="external" href="https://docs.helix-editor.com/languages.html">language configuration docs</a>.</p>
 <h2 id="fuzzy-matching-with-nucleo">Fuzzy matching with Nucleo</h2>
 <asciinema-player src="/nucleo-nix-store.cast" cols="94" rows="25"></asciinema-player>
 <p>Helix uses "fuzzy" matching to filter as-you-type in components like the file
 picker. Previously we used the popular <code>skim</code>/<code>fuzzy-matcher</code> crates but in the
 23.10 release we've switched to the new
-<a href="https://github.com/helix-editor/nucleo"><code>nucleo</code></a> crate. Nucleo is
+<a rel="external" href="https://github.com/helix-editor/nucleo"><code>nucleo</code></a> crate. Nucleo is
 significantly faster than skim and fzf, handles Unicode correctly, and uses a
 bonus system that feels more intuitive.</p>
 <p>Nucleo also enables us to lazily stream in new items, which is a big boost for
@@ -99,14 +100,13 @@ upcoming release notes to see where we'll take the picker.</p>
 <p>Smart tab is a new feature bound to the tab key in the default keymap. When
 you press tab and the line to the left of the cursor isn't all whitespace,
 the cursor will jump to the end of the syntax tree's parent node. For example:</p>
-<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span>{
-</span><span>  </span><span style="color:#d08770;">key </span><span>= &quot;</span><span style="color:#a3be8c;">value</span><span>&quot;;
-</span><span>  </span><span style="color:#d08770;">nested </span><span>= {
-</span><span>    </span><span style="color:#d08770;">key2 </span><span>= &quot;</span><span style="color:#a3be8c;">value2</span><span>&quot;; </span><span style="color:#65737e;"># When the cursor is at the end of the line here, &lt;tab&gt;
-</span><span>                     </span><span style="color:#65737e;"># jumps right after the closing brace on the next line.
-</span><span>  };
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="nix"><span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">  key =</span><span style="color: #CCCCCC;"> &quot;value&quot;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">  nested =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">    key2 =</span><span style="color: #CCCCCC;"> &quot;value2&quot;</span><span>;</span><span style="color: #697C81;"> # When the cursor is at the end of the line here, &lt;tab&gt;</span></span>
+<span class="giallo-l"><span style="color: #697C81;">                     # jumps right after the closing brace on the next line.</span></span>
+<span class="giallo-l"><span>  };</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>This is useful in languages like Nix for adding semicolons at the end of an
 attribute set or jumping to the end of a block in a C-like language:</p>
 <asciinema-player src="/smart-tab.cast" cols="94" rows="25"></asciinema-player>
@@ -144,9 +144,9 @@ via tree-sitter-regex. The highlighting makes special characters more obvious
 and can catch syntax errors like trailing backslashes.</p>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>As always, this is just the tip of the iceberg for the 23.10 release. Check out
-the <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2310-2023-10-24">changelog</a> for the full details.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+the <a rel="external" href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2310-2023-10-24">changelog</a> for the full details.</p>
+<p>Come chat about usage and development questions in the <a rel="external" href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
+and follow along with Helix's development in the <a rel="external" href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
 
 
 <script src="/asciinema-player.min.js"></script>

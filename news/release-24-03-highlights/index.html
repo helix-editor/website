@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#281733">
     <title>
       Release 24.03 Highlights |  Helix
     </title>
@@ -53,7 +55,7 @@ Adapter Protocol (DAP).</p>
 plugins to add the same functionality to other tools like browsers. They allow
 you to move your selection efficiently across even large parts of the view,
 like you could by clicking with a mouse, but by entering "labels" instead.
-24.03 introduces jumping commands inspired by the <a href="https://github.com/jmacdonald/amp">Amp editor</a>'s <a href="https://amp.rs/docs/usage/#jump-mode">jump mode</a>.
+24.03 introduces jumping commands inspired by the <a rel="external" href="https://github.com/jmacdonald/amp">Amp editor</a>'s <a rel="external" href="https://amp.rs/docs/usage/#jump-mode">jump mode</a>.
 Press <code>gw</code> to add the jump labels and then enter one of the labels to jump to
 the word under that label. Using <code>gw</code> in select mode (<code>v</code>) extends the
 selection.</p>
@@ -66,9 +68,9 @@ selection based on the language's comment token configuration, <code>&lt;space&g
 toggle block comments around the current selection, or <code>&lt;space&gt;&lt;A-c&gt;</code> to toggle
 only line comments on the current line.</p>
 <h2 id="improvements-to-tree-sitter-injections">Improvements to tree-sitter injections</h2>
-<p>Helix uses <a href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> incremental parsing for syntax highlighting,
+<p>Helix uses <a rel="external" href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> incremental parsing for syntax highlighting,
 textobjects, indentation and some motions and commands. 24.03 improves how we
-handle <em><a href="https://tree-sitter.github.io/tree-sitter/syntax-highlighting#language-injection">injections</a></em> - a powerful tree-sitter feature for parsing documents
+handle <em><a rel="external" href="https://tree-sitter.github.io/tree-sitter/syntax-highlighting#language-injection">injections</a></em> - a powerful tree-sitter feature for parsing documents
 with multiple languages. For example you might have JavaScript, CSS or other
 languages within a <code>&lt;script&gt;</code> or <code>&lt;style&gt;</code> tag in HTML. The HTML parser doesn't
 need to know how to parse all of these languages. Instead it can <em>inject</em>
@@ -101,8 +103,8 @@ navigating around in insert mode, for example with arrow keys. It's now hooked
 into document changes instead, so it can smartly pop up when you start changing
 a document rather than every time the editor goes idle.</p>
 <p>The other major improvement to be excited for is the general replacement of the
-<code>regex</code> crate with <a href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a>, a streaming regex implementation
-compatible with <a href="https://github.com/cessen/ropey"><code>ropey</code></a>, the rope crate we use to represent all documents.
+<code>regex</code> crate with <a rel="external" href="https://github.com/pascalkuthe/regex-cursor"><code>regex-cursor</code></a>, a streaming regex implementation
+compatible with <a rel="external" href="https://github.com/cessen/ropey"><code>ropey</code></a>, the rope crate we use to represent all documents.
 <code>regex-cursor</code> is capable of running on <em>discontiguous strings</em> - input that
 may not be collocated in memory. In a rope, different parts of the document
 might be stored separately internally. To use the <code>regex</code> API we needed to
@@ -111,9 +113,9 @@ memory footprint of that slice of the document. <code>regex-cursor</code> operat
 chunks of the rope instead, which greatly improves efficiency.</p>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>As always, this is just the highlights from the 24.03 release. Check out the
-full <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2404-2024-03-30">changelog</a> for the details.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+full <a rel="external" href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2404-2024-03-30">changelog</a> for the details.</p>
+<p>Come chat about usage and development questions in the <a rel="external" href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
+and follow along with Helix's development in the <a rel="external" href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
 
 
 <script src="/asciinema-player.min.js"></script>

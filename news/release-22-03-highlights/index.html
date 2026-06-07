@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#281733">
     <title>
       Release 22.03 Highlights |  Helix
     </title>
@@ -46,10 +48,10 @@ text editor with built-in support for multiple selections, Language
 Server Protocol (LSP), tree-sitter, and now Debug Adapter Protocol (DAP).</p>
 <p>Before we look at the highlights, there are some administrative notes.
 <code>master</code> branch changes are now published separately from the release
-<a href="https://docs.helix-editor.com/">documentation</a>. Find the new <code>master</code> docs <a href="https://docs.helix-editor.com/master/">here</a>.
+<a rel="external" href="https://docs.helix-editor.com/">documentation</a>. Find the new <code>master</code> docs <a rel="external" href="https://docs.helix-editor.com/master/">here</a>.
 Helix is switching versioning schemes. Expect to find new releases in
 Calendar Version format: <code>YY.0M(.MICRO)</code>. We're aiming to cut regular
-releases every two months or so. Check out the <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2203-2022-03-28">changelog</a>
+releases every two months or so. Check out the <a rel="external" href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2203-2022-03-28">changelog</a>
 for all of the new features and fixes from this release.</p>
 <p>With that out of the way, let's check out the highlights!</p>
 <h2 id="health-check">Health-check</h2>
@@ -70,28 +72,25 @@ be bugs, and the UX is a bit clunky. Contributions are very welcome!</p>
 <p>One of the cooler features of syntax highlight driven by tree-sitter is the
 ability to <em>inject</em> a language into another language's document. For example,
 if you're writing Markdown, you might use a code-fence like so:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>This is some rust:
-</span><span>
-</span><span>```rust
-</span><span>println!(&quot;Hello, world!&quot;)
-</span><span>```
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="plain"><span class="giallo-l"><span>This is some rust:</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>```rust</span></span>
+<span class="giallo-l"><span>println!(&quot;Hello, world!&quot;)</span></span>
+<span class="giallo-l"><span>```</span></span></code></pre>
 <p>Helix highlights the Rust block by injecting tree-sitter-rust. Injections
 have been rewritten so that changes within are now parsed incrementally, which
 is a big speed boost when editing documents with large injected blocks.</p>
 <p>Along with this rewrite, Helix now supports <em>combined</em> injections. For example,
 when highlighting Interactive Elixir (IEx), we might have a block of code like
 the following:</p>
-<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; send(self(), </span><span style="color:#a3be8c;">:hello</span><span>)
-</span><span>iex&gt; </span><span style="color:#b48ead;">receive </span><span style="color:#d08770;">do: </span><span>(</span><span style="color:#a3be8c;">:hello </span><span>-&gt; </span><span style="color:#a3be8c;">:ok</span><span>)
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="elixir"><span class="giallo-l"><span>iex</span><span style="color: #DBBFEF;">&gt;</span><span style="color: #FFFFFF;"> send</span><span>(</span><span style="color: #FFFFFF;">self</span><span>(), :</span><span style="color: #9FF28F;">hello</span><span>)</span></span>
+<span class="giallo-l"><span>iex</span><span style="color: #DBBFEF;">&gt;</span><span style="color: #ECCDBA;"> receive</span><span style="color: #E8DCA0;"> do</span><span>: (:</span><span style="color: #9FF28F;">hello</span><span style="color: #DBBFEF;"> -&gt;</span><span> :</span><span style="color: #9FF28F;">ok</span><span>)</span></span></code></pre>
 <p>The IEx grammar injects tree-sitter-elixir into each line after the prompt
 token. Combined injections cover the case where separate injected documents
 must be parsed in one combined document, like so:</p>
-<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex&gt; </span><span style="color:#b48ead;">if </span><span style="color:#d08770;">true </span><span style="color:#b48ead;">do
-</span><span>...&gt;   </span><span style="color:#a3be8c;">:ok
-</span><span>...&gt; </span><span style="color:#b48ead;">end
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="elixir"><span class="giallo-l"><span>iex</span><span style="color: #DBBFEF;">&gt;</span><span style="color: #ECCDBA;"> if</span><span style="color: #E8DCA0;"> true</span><span style="color: #ECCDBA;"> do</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">..</span><span>.</span><span style="color: #DBBFEF;">&gt;</span><span>   :</span><span style="color: #9FF28F;">ok</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">..</span><span>.</span><span style="color: #DBBFEF;">&gt;</span><span style="color: #ECCDBA;"> end</span></span></code></pre>
 <p>Helix can now parse all three lines together. In the future this can be used
 to add support for templating languages like EJS or ERB.</p>
 <h2 id="tree-sitter-grammars-refactor">Tree-Sitter Grammars Refactor</h2>
@@ -117,20 +116,19 @@ your <code>languages.toml</code>:</p>
 <p>If you're writing a tree-sitter grammar, you can try out integrating it
 by pointing helix to your grammar's local path in <code>languages.toml</code> without
 needing to publish changes to a Git remote:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[[language]]
-</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
-</span><span style="color:#65737e;"># ..
-</span><span>
-</span><span>[[grammar]]
-</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">mylang</span><span>&quot;
-</span><span style="color:#bf616a;">source </span><span>= { </span><span style="color:#bf616a;">path </span><span>= &quot;</span><span style="color:#a3be8c;">/local/path/to/tree-sitter-mylang</span><span>&quot; }
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="toml"><span class="giallo-l"><span>[[</span><span style="color: #FFFFFF;">language</span><span>]]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">name =</span><span style="color: #CCCCCC;"> &quot;mylang&quot;</span></span>
+<span class="giallo-l"><span style="color: #697C81;"># ..</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>[[</span><span style="color: #FFFFFF;">grammar</span><span>]]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">name =</span><span style="color: #CCCCCC;"> &quot;mylang&quot;</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">source =</span><span> {</span><span style="color: #DBBFEF;"> path =</span><span style="color: #CCCCCC;"> &quot;/local/path/to/tree-sitter-mylang&quot;</span><span> }</span></span></code></pre>
 <p>Running <code>hx -g build</code> will build the grammar. Add some queries and you're
 on your way to interactive grammar development.</p>
 <h2 id="up-next">Up Next</h2>
 <p>The next release is sure to be exciting as well. Contribute and follow
-along with development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to
-join in on discussions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
+along with development in the <a rel="external" href="https://github.com/helix-editor/helix/">GitHub repository</a> and be sure to
+join in on discussions in the <a rel="external" href="https://matrix.to/#/#helix-community:matrix.org">Matrix channel</a>.</p>
 
 
 <script src="/asciinema-player.min.js"></script>

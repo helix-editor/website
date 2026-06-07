@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#281733">
     <title>
       Release 23.03 Highlights |  Helix
     </title>
@@ -52,12 +54,11 @@ some especially useful and exciting features, so let's jump right in.</p>
 characters into the text (so called "hard-wrapping"). This can be useful for
 reading and editing documentation or code with especially long lines. Enable
 soft-wrap in your config with the <code>editor.soft-wrap.enable</code> key:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># ~/.config/helix/config.toml
-</span><span>[editor.soft-wrap]
-</span><span style="color:#bf616a;">enable </span><span>= </span><span style="color:#d08770;">true
-</span></code></pre>
+<pre class="giallo" style="color: #A4A0E8; background-color: #1F1029;"><code data-lang="toml"><span class="giallo-l"><span style="color: #697C81;"># ~/.config/helix/config.toml</span></span>
+<span class="giallo-l"><span>[</span><span style="color: #FFFFFF;">editor</span><span>.</span><span style="color: #FFFFFF;">soft-wrap</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #DBBFEF;">enable =</span><span style="color: #E8DCA0;"> true</span></span></code></pre>
 <p>Heuristics for where to break lines and the wrap indicator may also be
-<a href="https://docs.helix-editor.com/configuration.html#editorsoft-wrap-section">configured</a>.</p>
+<a rel="external" href="https://docs.helix-editor.com/configuration.html#editorsoft-wrap-section">configured</a>.</p>
 <p>Soft-wrap is the first feature implemented on top of a new "virtual text" API
 within the Helix codebase. The virtual text API allows us to decorate and
 manipulate the actual text in a document without disturbing positioning and
@@ -98,10 +99,10 @@ update on-the-fly as you change the query.</p>
 <p>A new statusline element has been added which displays the version control
 HEAD. Add this to your statusline by introducing the <code>"version-control"</code>
 element in the
-<a href="https://docs.helix-editor.com/configuration.html#editorstatusline-section"><code>editor.statusline</code></a>
+<a rel="external" href="https://docs.helix-editor.com/configuration.html#editorstatusline-section"><code>editor.statusline</code></a>
 section of your config for the <code>left</code>, <code>center</code> or <code>right</code> sides.</p>
 <h2 id="enhanced-keyboard-protocol">Enhanced keyboard protocol</h2>
-<p>Support for the <a href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">enhanced keyboard protocol</a> is now enabled. Terminals that
+<p>Support for the <a rel="external" href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">enhanced keyboard protocol</a> is now enabled. Terminals that
 support the protocol (Kitty, WezTerm) can now send unambiguous keycodes to
 Helix, enabling key combinations that weren't possible to bind before like
 <code>C-/</code>, <code>C-h</code> or <code>S-backspace</code>. This functionality works out-of-the-box for
@@ -117,9 +118,9 @@ queries to a local runtime directory. On Unix systems you can add files to the
 directory installed by a package manager.</p>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>These flashy features are just the tip of the iceberg though. Check out the
-23.03 <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2303-2023-03-31">changelog</a> for the full details on all of the changes in this release.</p>
-<p>Come chat about usage and development questions in the <a href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
-and follow along with Helix's development in the <a href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
+23.03 <a rel="external" href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2303-2023-03-31">changelog</a> for the full details on all of the changes in this release.</p>
+<p>Come chat about usage and development questions in the <a rel="external" href="https://matrix.to/#/#helix-community:matrix.org">Matrix space</a>
+and follow along with Helix's development in the <a rel="external" href="https://github.com/helix-editor/helix/">GitHub repository</a>.</p>
 
 
 <script src="/asciinema-player.min.js"></script>
