@@ -136,6 +136,7 @@ for (const player of document.getElementsByTagName("asciinema-player")) {
   AsciinemaPlayer.create(player.attributes["src"].value, player, {
     cols: parseInt(player.attributes["cols"].value),
     rows: parseInt(player.attributes["rows"].value),
+    keystrokeOverlay: true,
   });
 }
 </script>
